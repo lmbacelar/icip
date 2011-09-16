@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  registration: MyString
+  manufacturer: MyString
+  model: MyString
+
+two:
+  registration: MyString
+  manufacturer: MyString
+  model: MyString

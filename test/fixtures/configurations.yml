@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  number: 1
+  description: MyString
+  aircraft_id: 1
+
+two:
+  number: 1
+  description: MyString
+  aircraft_id: 1
