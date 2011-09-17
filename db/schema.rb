@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20110915230743) do
   end
 
   create_table "zones", :force => true do |t|
-    t.string   "name",                :limit => 1
+    t.string   "name",                :limit => 2
     t.string   "description",         :limit => 50
     t.integer  "inspection_interval"
     t.integer  "configuration_id"
