@@ -1,5 +1,6 @@
 class Zone < ActiveRecord::Base
 
+  include CsvSerialize::InstanceMethods
   CsvColumns = %w[name description inspection_interval]
 
   attr_accessible :name, :description, :inspection_interval, :image_attributes, :items_attributes
