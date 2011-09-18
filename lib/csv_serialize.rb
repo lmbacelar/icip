@@ -15,9 +15,9 @@ module CsvSerialize
           end
         end
       rescue Errno::EISDIR
-        puts "ERROR: '#{fname}' is a directory. #{name.pluralize} not imported."
+        puts "ERROR: '#{fname}' is a directory. #{name.pluralize} not exported."
       rescue Errno::EACCES
-        puts "ERROR: Permission denied on '#{fname}'. #{name.pluralize} not imported."
+        puts "ERROR: Permission denied on '#{fname}'. #{name.pluralize} not exported."
       end
     end
 
@@ -60,9 +60,9 @@ module CsvSerialize
           end
         end
       rescue Errno::EISDIR
-        puts "ERROR: '#{fname}' is a directory. #{assoc_sym.to_s.titleize.pluralize} not imported."
+        puts "ERROR: '#{fname}' is a directory. #{assoc_sym.to_s.titleize.pluralize} not exported."
       rescue Errno::EACCES
-        puts "ERROR: Permission denied on '#{fname}'. #{assoc_sym.to_s.titleize.pluralize} not imported."
+        puts "ERROR: Permission denied on '#{fname}'. #{assoc_sym.to_s.titleize.pluralize} not exported."
       end
     end
 
@@ -86,6 +86,46 @@ module CsvSerialize
         puts "ERROR: Permission denied on '#{fname}'. #{assoc_sym.to_s.titleize.pluralize} not imported."
       rescue Errno::ENOENT
         puts "ERROR: '#{fname}' not found. #{assoc_sym.to_s.titleize.pluralize} not imported."
+      end
+    end
+
+    ##
+    # WARNING: Images with the same filename will be destroyed.
+    #          This could be improved.
+    def images_to_csv(fname)
+      begin
+        CSV.open(fname, 'w') do |csv|
+          csv << ['file_url']
+          images.collect do |i|
+            # copy file to csv path
+            FileUtils.cp File.join(Rails.public_path,i.file_url), File.join(Rails.root,File.join(File.dirname(fname), File.basename(i.file_url)))
+            # write filename
+            csv << [File.basename(i.file_url)]
+          end
+        end
+      rescue Errno::EISDIR
+        puts "ERROR: '#{fname}' is a directory. #{assoc_sym.to_s.titleize.pluralize} not exported."
+      rescue Errno::EACCES
+        puts "ERROR: Permission denied on '#{fname}'. #{assoc_sym.to_s.titleize.pluralize} not exported."
+      end
+    end
+
+    def images_from_csv(fname)
+      begin
+        is = CSV.read(fname)
+        i = is.shift
+        if i.count == 1 && i[0] == 'file_url'
+          is.each { |i| images.create(:file => File.open(File.join(Rails.root, File.join(File.dirname(fname), i)))) }
+        else
+          puts "ERROR: Invalid format of #{fname}. Should be 'file_url'. Images not imported."
+          false
+        end
+      rescue Errno::EISDIR
+        puts "ERROR: '#{fname}' is a directory. Images not imported."
+      rescue Errno::EACCES
+        puts "ERROR: Permission denied on '#{fname}'. Images not imported."
+      rescue Errno::ENOENT
+        puts "ERROR: '#{fname}' not found. Images not imported."
       end
     end
   end # InstanceMethods
