@@ -1,0 +1,118 @@
+////////////////////////////////////////////
+//
+// General Elements
+//
+html
+  height: 100%
+
+body
+  margin: 0px
+  background-attachment: fixed !important
+  @include gradient
+  font:
+    family: Verdana, Helvetica, Arial
+    size: 0.95em
+
+////////////////////////////////////////////
+//
+// Default Links
+//
+a
+  color: blue
+  text-decoration: none
+  img
+    border: none
+  &:hover
+    text-decoration: underline
+
+////////////////////////////////////////////
+//
+// Default Tables
+//
+table
+  border-collapse: collapse
+
+tr, tr.alt
+  &:hover
+    background-color: lighten($pri_color, 15%)
+
+tr.alt
+  background-color: lighten($pri_color, 25%)
+
+td, th
+  border-bottom: 1px dotted darken($pri_color, 40%)
+  padding: 3px 7px 2px 7px
+
+th
+  text-align: left
+  padding-top: 5px
+  padding-bottom: 4px
+  background-color: darken($pri_color, 30%)
+  color: $back_color
+
+////////////////////////////////////////////
+//
+// General Classes
+//
+.clear
+  clear: both
+  height: 0
+  overflow: hidden
+
+
+////////////////////////////////////////////
+//
+// Main layout elements
+//
+#header
+  background: darken($pri_color, 40%)
+  color: white
+  padding: 4px 100px
+  border-bottom: solid 5px darken($pri_color, 60%)
+  h1
+    font-size: 2em
+
+#container
+  width: 98%
+  margin-top: 30px
+
+#sidebar, #main
+  border: solid 2px darken($pri_color, 40%)
+  @include rounded-corners(10px)
+
+#sidebar
+  display: none
+  background-color: lighten($pri_color, 20%)
+  float: left
+  width: 160px
+  margin-left: 1%
+  padding: 20px 1em
+  a
+    display: block
+    font-weight: bold
+    width: 140px
+    text-align: center
+    text-decoration: none
+    padding: 8px
+    margin: 8px 0px
+    color: white
+    background-color: darken($pri_color, 40%)
+    border: solid 2px darken($pri_color, 60%)
+    @include rounded-corners(5px)
+    &:hover
+      background-color: darken($pri_color, 20%)
+
+#main
+  background: $back_color
+  margin-left: 2%
+  padding: 20px 40px
+
+#footer
+  font-size: 0.7em
+  padding: 50px
+  text-align: right
+
+////////////////////////////////////////////
+//
+// End
+//

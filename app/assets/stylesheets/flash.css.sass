@@ -1,0 +1,52 @@
+////////////////////////////////////////////
+//
+// Flash specific sass content
+//
+#flash_notice,
+#flash_error,
+#flash_alert
+  padding: 5px 8px
+  margin: 10px 0
+  @include rounded-corners
+
+#flash_notice
+  background-color: $notice_color
+  border: solid 1px darken($notice_color, 50%)
+
+#flash_error,
+#flash_alert
+  background-color: lighten($error_color, 50%)
+  border: solid 1px $error_color
+
+.fieldWithErrors
+  display: inline
+
+.error_messages
+  width: 400px
+  border: 2px solid $error_color
+  @include rounded-corners
+  padding: 0
+  padding-bottom: 12px
+  margin-bottom: 20px
+  background-color: $back_color
+  font:
+    size: 0.85em
+  h2
+    text-align: left
+    padding: 5px 5px 5px 15px
+    margin: 0
+    font:
+      weight: bold
+      size: 0.85em
+    background-color: $error_color
+    color: white
+  p
+    margin: 8px 10px
+  ul
+    margin: 0
+
+////////////////////////////////////////////
+//
+// End
+//
+

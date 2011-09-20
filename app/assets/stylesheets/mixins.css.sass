@@ -1,0 +1,27 @@
+////////////////////////////////////////////
+//
+// Mixins
+//
+// TODO: IE Filter is not an image, so it will not remain fixed in background.
+//       could try adding a 100% height element with the filter on it behind your page content and setting that to position: fixed
+//
+@mixin rounded-corners($radius: 5px)
+  border-radius: $radius
+  -moz-border-radius: $radius
+  -webkit-border-radius: $radius
+
+@mixin gradient($start_color: $pri_color, $end_color: lighten($start_color, 20%), $direction: vertical)
+  background: $start_color
+  @if $direction == vertical
+    background: -moz-linear-gradient(top, $start_color, $end_color)
+    background: -webkit-gradient(linear, left top, left bottom, from($start_color), to($end_color))
+    filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr="#{$start_color}", EndColorStr="#{$end_color}", GradientType=0)
+  @if $direction == horizontal
+    background: -moz-linear-gradient(left, $start_color, $end_color)
+    background: -webkit-gradient(linear, left top, right top, from($start_color), to($end_color))
+    filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr="#{$start_color}", EndColorStr="#{$end_color}", GradientType=1)
+
+////////////////////////////////////////////
+//
+// End
+//
