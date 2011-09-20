@@ -1,0 +1,29 @@
+!!!
+%html
+
+  %head
+    %title
+      = yield(:title) || 'Untitled'
+    %meta{'http-equiv'=>'Content-Type', :content=>'text/html; charset=utf-8'}/
+    = stylesheet_link_tag 'application', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css'
+    = javascript_include_tag 'application'
+    = csrf_meta_tag
+    = yield(:head)
+
+  %body
+    #header
+      %h1 ICIP - Interior Cabin Inspection Program
+    #container
+      #sidebar
+        = link_to 'Aircrafts', aircrafts_path
+      #main
+        - flash.each do |name, msg|
+          = content_tag :div, msg, :id => "flash_#{name}"
+
+        - if show_title?
+          %h1= yield(:title)
+
+        = yield
+    #footer
+      2011 by
+      = mail_to 'lbacelar@tap.pt', 'Luis Bacelar'
