@@ -1,4 +1,12 @@
 Icip::Application.routes.draw do
+
+  root :to => 'aircrafts#index'
+
+  resources :aircrafts
+
+
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
