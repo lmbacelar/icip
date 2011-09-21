@@ -110,6 +110,11 @@ module CsvSerialize
       end
     end
 
+    ##
+    # WARNING: If same file is  uploaded repeatedly on different associations
+    #          a new image is created for each file.
+    #          There isi lots of waste space with this approach.
+    #          Improve this...
     def images_from_csv(fname)
       begin
         is = CSV.read(fname)
