@@ -3,7 +3,9 @@ Icip::Application.routes.draw do
   root :to => 'aircrafts#index'
 
   resources :aircrafts, :shallow => true do
-    resources :konfigurations
+    resources :konfigurations, :shallow => true do
+      resources :zones
+    end
   end
 
 

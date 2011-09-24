@@ -1,0 +1,17 @@
+.group
+  .title= group_title
+  .item_titles
+    Name
+    %br
+    Description
+    %br
+    Insp. Interval
+    %br
+  .items
+    = @zone.name
+    %br
+    = @zone.description
+    %br
+    = "#{@zone.inspection_interval} days"
+    %br
+  .clear

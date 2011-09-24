@@ -1,0 +1,16 @@
+- title "Zone #{@zone.name} on #{@aircraft.registration}, Configuration ##{@konfiguration.number} "
+
+= render @zone, { :group_title => 'Details' }
+
+-# if @zone.images.any?
+  = render :file => 'images/_images', :locals => { :images => @zone.images }
+
+.actions
+  = link_to "Back to #{@aircraft.registration}", @aircraft
+  |
+  = link_to "Back to Configuration ##{@konfiguration.number}", @konfiguration
+  |
+  = link_to 'Edit Zone', edit_zone_path(@zone)
+  |
+  = link_to 'Destroy Zone', @zone, :confirm => 'Are you sure?', :method => :delete
+

@@ -1,0 +1,21 @@
+.group
+  .title Zones
+  .items
+    %table
+      %thead
+        %tr
+          %th Name
+          %th Description
+          %th Inspection Interval
+          %th
+      %tfoot
+        %tr
+          %td
+          %td
+          %td
+          %td
+            %ul.icons
+              %li= icon_to 'New', new_konfiguration_zone_path(@konfiguration)
+      %tbody
+        = render :partial => 'zones/zone_row', :collection => zones, :as => :zone
+  .clear

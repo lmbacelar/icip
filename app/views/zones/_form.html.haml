@@ -1,0 +1,11 @@
+= simple_form_for target do |f|
+  = f.error_messages
+  .group
+    .title Details
+    .inputs
+      = f.input :name, :input_html => { :size => 2 }
+      = f.input :description
+      = f.input :inspection_interval, :input_html => { :size => 2 }
+    .clear
+  = f.submit
+
