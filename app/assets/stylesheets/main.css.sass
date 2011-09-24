@@ -32,23 +32,41 @@ a
 table
   border-collapse: collapse
 
-tr, tr.alt
-  &:hover
-    background-color: lighten($pri_color, 15%)
-
-tr.alt
-  background-color: lighten($pri_color, 25%)
-
 td, th
-  border-bottom: 1px dotted darken($pri_color, 40%)
-  padding: 3px 7px 2px 7px
+  padding: 2px 7px 2px 7px
 
-th
-  text-align: left
-  padding-top: 5px
-  padding-bottom: 4px
-  background-color: darken($pri_color, 30%)
-  color: $back_color
+thead
+  th
+    text-align: left
+    padding-top: 5px
+    padding-bottom: 4px
+    background-color: darken($pri_color, 30%)
+    color: $back_color
+    border:
+      top: 2px solid darken($pri_color, 40%)
+      bottom: 1px solid darken($pri_color, 40%)
+
+tfoot
+  td
+    text-align: left
+    padding-top: 5px
+    padding-bottom: 4px
+    background-color: lighten($sec_color, 0%)
+    color: $back_color
+    border:
+      top: 1px solid darken($sec_color, 40%)
+      bottom: 2px solid darken($sec_color, 40%)
+
+tbody
+  tr, tr.alt
+    &:hover
+      background-color: lighten($pri_color, 15%)
+  tr.alt
+    background-color: lighten($pri_color, 25%)
+  td, th
+    border-bottom: 1px dotted darken($pri_color, 40%)
+
+
 
 ////////////////////////////////////////////
 //
