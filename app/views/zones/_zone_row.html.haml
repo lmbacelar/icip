@@ -1,7 +1,7 @@
 %tr{:class => cycle('', 'alt')}
   %td= zone.name
   %td= zone.description
-  %td= zone.inspection_interval
+  %td= "#{zone.inspection_interval} days"
   %td
     %ul.icons
       %li= icon_to 'Show', zone
