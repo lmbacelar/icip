@@ -1,0 +1,15 @@
+- title 'Configuration'
+
+= render @konfiguration, { :group_title => 'Details' }
+= render @aircraft, { :group_title => 'Aircraft' }
+
+-# if @konfiguration.zones.any?
+  = render :file => 'zones/_zones_row', :locals => { :zones => @konfiguration.zones }
+
+.actions
+  = link_to 'Back to Aircraft', @aircraft
+  |
+  = link_to 'Edit Configuration', edit_konfiguration_path(@konfiguration)
+  |
+  = link_to 'Destroy Configuration', @konfiguration, :confirm => 'Are you sure?', :method => :delete
+

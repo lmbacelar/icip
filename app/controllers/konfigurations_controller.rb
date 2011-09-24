@@ -1,5 +1,11 @@
 class KonfigurationsController < ApplicationController
- def new
+
+  def show
+    @konfiguration = Konfiguration.find(params[:id])
+    @aircraft = @konfiguration.aircraft
+  end
+
+  def new
     @aircraft = Aircraft.find(params[:aircraft_id])
     @konfiguration = @aircraft.konfigurations.build
     @konfiguration.number = 1 + ( @aircraft.konfigurations.maximum(:number) || 0 )
