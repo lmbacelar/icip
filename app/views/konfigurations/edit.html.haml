@@ -1,8 +1,8 @@
-- title 'Edit Configuration'
+- title "Edit Configuration ##{@konfiguration.number} on #{@aircraft.registration}"
 
 = render 'form', { :target => @konfiguration }
 
 .actions
   = link_to 'Show', @konfiguration
   |
-  = link_to 'Back to Aircraft', @aircraft
+  = link_to "Back to #{@aircraft.registration}", @aircraft

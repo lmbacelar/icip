@@ -1,13 +1,12 @@
-- title 'Configuration'
+- title "Configuration ##{@konfiguration.number} on #{@aircraft.registration}"
 
 = render @konfiguration, { :group_title => 'Details' }
-= render @aircraft, { :group_title => 'Aircraft' }
 
--# if @konfiguration.zones.any?
-  = render :file => 'zones/_zones_row', :locals => { :zones => @konfiguration.zones }
+- if @konfiguration.zones.any?
+  = render :file => 'zones/_zones', :locals => { :zones => @konfiguration.zones }
 
 .actions
-  = link_to 'Back to Aircraft', @aircraft
+  = link_to "Back to #{@aircraft.registration}", @aircraft
   |
   = link_to 'Edit Configuration', edit_konfiguration_path(@konfiguration)
   |
