@@ -1,0 +1,8 @@
+%tr{:class => cycle('', 'alt')}
+  %td= konfiguration.number
+  %td= konfiguration.description
+  %td= I18n.l konfiguration.created_at, :format => :short_date
+  %td
+    %ul.icons
+      %li= icon_to 'Edit', edit_konfiguration_path(konfiguration)
+      %li= icon_to 'Destroy', konfiguration, :confirm => 'Are you sure?', :method => :delete

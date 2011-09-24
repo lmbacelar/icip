@@ -1,4 +1,4 @@
-class Configuration < ActiveRecord::Base
+class Konfiguration < ActiveRecord::Base
 
   include CsvSerialize::InstanceMethods
   CsvColumns = %w[number description]
@@ -10,6 +10,7 @@ class Configuration < ActiveRecord::Base
   accepts_nested_attributes_for :zones, :reject_if => lambda { |z| z[:name].blank? }, :allow_destroy => true
 
   validates :number, :presence => true, :uniqueness => {:scope => :aircraft_id}
+  validates :description, :presence => true, :uniqueness => {:scope => :aircraft_id}
 
   scope :newest, order('number DESC')
   scope :oldest, order('number ASC')
@@ -18,7 +19,7 @@ class Configuration < ActiveRecord::Base
     newest.first
   end
   def current?
-    self == self.aircraft.configurations.current
+    self == self.aircraft.konfigurations.current
   end
   def self.obsolete
     newest.slice(1, newest.count-1)

@@ -1,0 +1,10 @@
+= simple_form_for target do |f|
+  = f.error_messages
+  .group
+    .title Details
+    .inputs
+      = f.input :number, :input_html => { :readonly => true, :size => 8 }
+      = f.input :description
+    .clear
+  = f.submit
+

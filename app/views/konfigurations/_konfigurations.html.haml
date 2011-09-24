@@ -1,0 +1,21 @@
+.group
+  .title Configurations
+  .items
+    %table
+      %thead
+        %tr
+          %th No
+          %th Description
+          %th Created At
+          %th
+      %tfoot
+        %tr
+          %td
+          %td
+          %td
+          %td
+            %ul.icons
+              %li= icon_to 'New', new_aircraft_konfiguration_path(@aircraft)
+      %tbody
+        = render konfigurations.newest
+  .clear

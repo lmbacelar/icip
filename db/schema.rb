@@ -11,20 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110918110330) do
+ActiveRecord::Schema.define(:version => 20110924104623) do
 
   create_table "aircrafts", :force => true do |t|
     t.string   "registration", :limit => 10
     t.string   "manufacturer", :limit => 50
     t.string   "model",        :limit => 50
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "configurations", :force => true do |t|
-    t.integer  "number"
-    t.string   "description"
-    t.integer  "aircraft_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -37,11 +29,19 @@ ActiveRecord::Schema.define(:version => 20110918110330) do
     t.datetime "updated_at"
   end
 
+  create_table "konfigurations", :force => true do |t|
+    t.integer  "number"
+    t.string   "description"
+    t.integer  "aircraft_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "zones", :force => true do |t|
     t.string   "name",                :limit => 2
     t.string   "description",         :limit => 50
     t.integer  "inspection_interval"
-    t.integer  "configuration_id"
+    t.integer  "konfiguration_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
