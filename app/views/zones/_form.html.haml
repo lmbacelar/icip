@@ -1,4 +1,4 @@
-= simple_form_for target do |f|
+= simple_nested_form_for target, :html => { :multipart => true } do |f|
   = f.error_messages
   .group
     .title Details
@@ -7,5 +7,21 @@
       = f.input :description
       = f.input :inspection_interval, :input_html => { :size => 2 }
     .clear
+
+  // TODO
+  // Move to partial.
+  // Can't do it now because of nested_form bug on haml partials
+  .group.images
+    .title Images
+    .item_titles
+    .items
+      = f.fields_for :images do |i|
+        = link_to File.basename(i.object.file_url.to_s), i.object.file_url.to_s, :target => '_blank'
+        = i.link_to_remove 'Remove'
+        or upload this
+        = i.file_field :file
+      = f.link_to_add 'Add image', :images
+    .clear
+
   = f.submit
 

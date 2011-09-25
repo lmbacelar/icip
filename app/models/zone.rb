@@ -3,7 +3,7 @@ class Zone < ActiveRecord::Base
   include CsvSerialize::InstanceMethods
   CsvColumns = %w[name description inspection_interval]
 
-  attr_accessible :name, :description, :inspection_interval, :image_attributes, :items_attributes
+  attr_accessible :name, :description, :inspection_interval, :images_attributes, :items_attributes
 
   belongs_to :konfiguration
   #has_many  :items, :dependent => :destroy

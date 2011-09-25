@@ -12,7 +12,7 @@ class ZonesController < ApplicationController
   def create
     @zone = @konfiguration.zones.build(params[:zone])
     if @zone.save
-      redirect_to @konfiguration, :notice  => "Successfully updated zone."
+      redirect_to @zone, :notice  => "Successfully updated zone."
     else
       render :action => 'new'
     end
@@ -23,7 +23,7 @@ class ZonesController < ApplicationController
 
   def update
     if @zone.update_attributes(params[:zone])
-      redirect_to @konfiguration, :notice  => "Successfully updated zone."
+      redirect_to @zone, :notice  => "Successfully updated zone."
     else
       render :action => 'edit'
     end

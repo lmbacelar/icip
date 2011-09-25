@@ -2,7 +2,7 @@
 
 = render @zone, { :group_title => 'Details' }
 
--# if @zone.images.any?
+- if @zone.images.any?
   = render :file => 'images/_images', :locals => { :images => @zone.images }
 
 .actions
