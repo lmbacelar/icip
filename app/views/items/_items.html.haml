@@ -1,0 +1,19 @@
+.group.right_column
+  .title Items
+  .items
+    %table
+      %thead
+        %tr
+          %th Name
+          %th Kind
+          %th
+      %tfoot
+        %tr
+          %td
+          %td
+          %td
+            %ul.icons
+              %li= icon_to 'New', new_zone_item_path(@zone)
+      %tbody
+        = render :partial => 'items/item_row', :collection => items.sort_natural, :as => :item
+  .clear

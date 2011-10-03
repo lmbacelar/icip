@@ -4,7 +4,9 @@ Icip::Application.routes.draw do
 
   resources :aircrafts, :shallow => true do
     resources :konfigurations, :shallow => true do
-      resources :zones
+      resources :zones, :shallow => true do
+        resources :items
+      end
     end
   end
 

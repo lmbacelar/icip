@@ -1,0 +1,12 @@
+= simple_nested_form_for target do |f|
+  = f.error_messages
+
+  - if @zone.images.any?
+    .group.left_column
+      .title Layout
+      - @zone.images.each do |i|
+        .item_locator= image_tag i.file_url.to_s
+
+  = render :partial => 'form_details', :locals => { :f => f }
+
+  = f.submit

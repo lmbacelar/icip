@@ -1,0 +1,9 @@
+- title "New Item on #{@aircraft.registration}, Configuration ##{@konfiguration.number}, Zone #{@zone.name}"
+
+= render 'form', { :target => [@zone, @item] }
+
+.actions
+  = link_to "Back to Zone #{@zone.name}", @zone
+  |
+  = link_to "Back to #{@aircraft.registration}", @aircraft
+

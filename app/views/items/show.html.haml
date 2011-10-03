@@ -1,0 +1,19 @@
+- title "Item #{@item.name} on #{@aircraft.registration}, Configuration ##{@konfiguration.number}, Zone #{@zone.name}"
+
+- if @zone.images.any?
+  .group.left_column
+    .title Layout
+    - @zone.images.each do |i|
+      = image_tag i.file_url.to_s
+
+= render @item, { :group_title => 'Details' }
+
+.actions
+  = link_to "Back to Zone #{@zone.name}", @zone
+  |
+  = link_to "Back to #{@aircraft.registration}", @aircraft
+  |
+  = link_to 'Edit Item', edit_item_path(@item)
+  |
+  = link_to 'Destroy Item', @item, :confirm => 'Are you sure?', :method => :delete
+

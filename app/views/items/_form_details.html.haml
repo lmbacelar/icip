@@ -1,0 +1,5 @@
+.group.right_column
+  .title Item
+  .inputs
+    = f.input :name, :input_html => { :size => 4 }
+    = f.input :kind, :collection => Item::ItemKinds, :include_blank => false
