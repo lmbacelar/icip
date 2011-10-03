@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  kind: MyString
+  zone_id: 1
+  part_id: 1
+
+two:
+  name: MyString
+  kind: MyString
+  zone_id: 1
+  part_id: 1
