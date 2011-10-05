@@ -13,6 +13,7 @@ class Item < ActiveRecord::Base
 
   validates :name, :presence => true, :uniqueness => { :scope => :zone_id }
   validates :kind, :inclusion => { :in => ItemKinds }
+  validates :part, :presence => true
 
   scope :sort_natural, order("kind, LPAD(SUBSTRING(name from '[0-9]+'),5, '0'), SUBSTRING(name from '[^0-9]+')")
 end
