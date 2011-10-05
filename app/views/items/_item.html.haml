@@ -5,9 +5,13 @@
     %br
     Kind
     %br
+    P/N
+    %br
   .items
     = @item.name
     %br
     = @item.kind
+    %br
+    = @item.part.try(:number)
     %br
   .clear

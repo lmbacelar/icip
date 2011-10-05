@@ -1,6 +1,7 @@
 %tr{:class => cycle('', 'alt')}
   %td= item.name
   %td= item.kind
+  %td= item.part.try(:number)
   %td
     %ul.icons
       %li= icon_to 'Show', item

@@ -3,10 +3,11 @@ class Zone < ActiveRecord::Base
   include CsvSerialize::InstanceMethods
   CsvColumns = %w[name description inspection_interval]
 
-  attr_accessible :name, :description, :inspection_interval, :images_attributes, :items_attributes
+  attr_accessible :name, :description, :inspection_interval, :images_attributes, :parts_attributes, :items_attributes
 
   belongs_to :konfiguration
   has_many  :items, :dependent => :destroy
+  has_many :parts, :through => :items
   has_many  :images, :as => :imageable, :dependent => :destroy
   accepts_nested_attributes_for :items, :reject_if => lambda { |i| i[:name].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :images, :reject_if => lambda { |i| i[:file].blank? }, :allow_destroy => true

@@ -1,12 +1,13 @@
 - title "Item #{@item.name} on #{@aircraft.registration}, Configuration ##{@konfiguration.number}, Zone #{@zone.name}"
 
-- if @zone.images.any?
-  .group.left_column
-    .title Layout
-    - @zone.images.each do |i|
-      = image_tag i.file_url.to_s
+%div
+  - if @zone.images.any?
+    .group.left_column
+      .title Layout
+      - @zone.images.each do |i|
+        = image_tag i.file_url.to_s
 
-= render @item, { :group_title => 'Details' }
+  = render @item, { :group_title => 'Details' }
 
 .actions
   = link_to "Back to Zone #{@zone.name}", @zone

@@ -5,10 +5,10 @@ class Item < ActiveRecord::Base
 
   ItemKinds = %w[Seat Lavatory Carpet Panel Sidewall Label]
 
-  attr_accessible :name, :kind
+  attr_accessible :name, :kind, :part_id
 
   belongs_to :zone
-#  belongs_to :part
+  belongs_to :part
 #  has_one :location, :dependent => :destroy
 
   validates :name, :presence => true, :uniqueness => { :scope => :zone_id }
