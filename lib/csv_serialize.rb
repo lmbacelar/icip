@@ -52,7 +52,7 @@ module CsvSerialize
           # header
           csv << csv_data
           # iterate children
-          association(assoc_sym).target.collect do |c|
+          association(assoc_sym).load_target.collect do |c|
             line = []
             csv_data.each { |d| line << c[d] }
             # export data
