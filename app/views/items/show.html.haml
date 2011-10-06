@@ -8,7 +8,7 @@
         = image_tag i.file_url.to_s
 
   = render @item, { :group_title => 'Details' }
-  = render @location, { :group_title => 'Location' }
+  = render(@location, { :group_title => 'Location' }) unless @location.nil?
 
 .actions
   = link_to "Back to Zone #{@zone.name}", @zone
