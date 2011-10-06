@@ -1,6 +1,8 @@
 require 'file_size_validator'
 class Image < ActiveRecord::Base
-  belongs_to :imageable, :polymorphic => true
+  has_many :image_assignments
+  has_many :imageables, :through => :image_assignments, :dependent => :destroy
+
   mount_uploader :file, ImageUploader
   validates :file, :file_size => { :maximum => 5.megabytes.to_i }
 

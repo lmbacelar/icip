@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111006103021) do
+ActiveRecord::Schema.define(:version => 20111006163512) do
 
   create_table "aircrafts", :force => true do |t|
     t.string   "registration", :limit => 10
@@ -21,10 +21,16 @@ ActiveRecord::Schema.define(:version => 20111006103021) do
     t.datetime "updated_at"
   end
 
-  create_table "images", :force => true do |t|
-    t.string   "file"
+  create_table "image_assignments", :force => true do |t|
+    t.integer  "image_id"
     t.integer  "imageable_id"
     t.string   "imageable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "images", :force => true do |t|
+    t.string   "file"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -51,7 +57,6 @@ ActiveRecord::Schema.define(:version => 20111006103021) do
     t.float    "y1"
     t.float    "x2"
     t.float    "y2"
-    t.integer  "image_id"
     t.integer  "locatable_id"
     t.string   "locatable_type"
     t.datetime "created_at"
