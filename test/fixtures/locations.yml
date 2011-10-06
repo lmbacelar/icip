@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  x1: 1.5
+  y1: 1.5
+  x2: 1.5
+  y2: 1.5
+  image_id: 1
+  locatable_id: 1
+  locatable_type: MyString
+
+two:
+  x1: 1.5
+  y1: 1.5
+  x2: 1.5
+  y2: 1.5
+  image_id: 1
+  locatable_id: 1
+  locatable_type: MyString

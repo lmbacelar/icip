@@ -39,6 +39,7 @@ private
     @zone = Zone.find(params[:zone_id])
     @konfiguration = @zone.konfiguration
     @aircraft = @konfiguration.aircraft
+    @location = nil
   end
 
   def load_resources_from_item
@@ -46,5 +47,6 @@ private
     @zone = @item.zone
     @konfiguration = @zone.konfiguration
     @aircraft = @konfiguration.aircraft
+    @location = @item.location
   end
 end

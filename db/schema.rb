@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111005103018) do
+ActiveRecord::Schema.define(:version => 20111006103021) do
 
   create_table "aircrafts", :force => true do |t|
     t.string   "registration", :limit => 10
@@ -42,6 +42,18 @@ ActiveRecord::Schema.define(:version => 20111005103018) do
     t.integer  "number"
     t.string   "description"
     t.integer  "aircraft_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "locations", :force => true do |t|
+    t.float    "x1"
+    t.float    "y1"
+    t.float    "x2"
+    t.float    "y2"
+    t.integer  "image_id"
+    t.integer  "locatable_id"
+    t.string   "locatable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

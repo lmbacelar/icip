@@ -9,7 +9,7 @@ class Item < ActiveRecord::Base
 
   belongs_to :zone
   belongs_to :part
-#  has_one :location, :dependent => :destroy
+  has_one :location, :as => :locatable, :dependent => :destroy
 
   validates :name, :presence => true, :uniqueness => { :scope => :zone_id }
   validates :kind, :inclusion => { :in => Kinds }
