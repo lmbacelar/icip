@@ -110,17 +110,15 @@ module CsvSerialize
       end
     end
 
-    ##
-    # WARNING: If same file is  uploaded repeatedly on different associations
-    #          a new image is created for each file.
-    #          There isi lots of waste space with this approach.
-    #          Improve this...
     def images_from_csv(fname)
       begin
         is = CSV.read(fname)
         i = is.shift
         if i.count == 1 && i[0] == 'file_url'
-          is.each { |i| images.create(:file => File.open(File.join(Rails.root, File.join(File.dirname(fname), i)))) }
+          is.each do |i|
+            url = File.join(Rails.root, File.join(File.dirname(fname), i))
+            images << Image.find_or_create_by_checksum(:file => File.open(url), :checksum => Image.checksum(url))
+          end
         else
           puts "ERROR: Invalid format of #{fname}. Should be 'file_url'. Images not imported."
           false

@@ -6,12 +6,10 @@ class ZonesController < ApplicationController
   end
 
   def new
-    @zone = @konfiguration.zones.build
   end
 
   def create
-    @zone = @konfiguration.zones.build(params[:zone])
-    if @zone.save
+    if load_existing_images && @zone.update_attributes(params[:zone])
       redirect_to @zone, :notice  => "Successfully updated zone."
     else
       render :action => 'new'
@@ -22,7 +20,7 @@ class ZonesController < ApplicationController
   end
 
   def update
-    if @zone.update_attributes(params[:zone])
+    if load_existing_images && @zone.update_attributes(params[:zone])
       redirect_to @zone, :notice  => "Successfully updated zone."
     else
       render :action => 'edit'
@@ -38,11 +36,21 @@ private
   def load_resources_from_konfiguration
     @konfiguration = Konfiguration.find(params[:konfiguration_id])
     @aircraft = @konfiguration.aircraft
+    @zone = @konfiguration.zones.build
   end
 
   def load_resources_from_zone
     @zone = Zone.find(params[:id])
     @konfiguration = @zone.konfiguration
     @aircraft = @konfiguration.aircraft
+  end
+
+  def load_existing_images
+    params[:zone][:images_attributes].each do |k,v|
+      if v[:file] && img = Image.find_by_checksum(Image.checksum(v[:file].tempfile))
+        @zone.images << img
+        params[:zone][:images_attributes].delete(k)
+      end
+    end
   end
 end

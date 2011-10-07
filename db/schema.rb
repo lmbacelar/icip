@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111006163512) do
+ActiveRecord::Schema.define(:version => 20111006195646) do
 
   create_table "aircrafts", :force => true do |t|
     t.string   "registration", :limit => 10
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20111006163512) do
     t.string   "file"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "checksum"
   end
 
   create_table "items", :force => true do |t|
@@ -53,10 +54,10 @@ ActiveRecord::Schema.define(:version => 20111006163512) do
   end
 
   create_table "locations", :force => true do |t|
-    t.float    "x1"
-    t.float    "y1"
-    t.float    "x2"
-    t.float    "y2"
+    t.integer  "x1"
+    t.integer  "y1"
+    t.integer  "x2"
+    t.integer  "y2"
     t.integer  "locatable_id"
     t.string   "locatable_type"
     t.datetime "created_at"
