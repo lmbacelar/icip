@@ -1,4 +1,6 @@
-- title "Zone #{@zone.name} on #{@aircraft.registration}, Configuration ##{@konfiguration.number} "
+= title "Zone #{@zone.name}", "Zone #{@zone.name} on |
+                               #{link_to @aircraft.registration, @aircraft}, |
+                               #{link_to "Configuration ##{@konfiguration.number}", @konfiguration}" |
 
 = render @zone, { :group_title => 'Details' }
 

@@ -1,4 +1,5 @@
-- title "Edit Configuration ##{@konfiguration.number} on #{@aircraft.registration}"
+= title 'Edit Configuration', "Edit Configuration on |
+                               #{link_to @aircraft.registration, @aircraft}" |
 
 = render 'form', { :target => @konfiguration }
 

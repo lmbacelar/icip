@@ -1,14 +1,16 @@
-- title "Item #{@item.name} on #{@aircraft.registration}, Configuration ##{@konfiguration.number}, Zone #{@zone.name}"
+= title "Item #{@item.name}", "Item #{@item.name} on |
+                              #{link_to @aircraft.registration, @aircraft}, |
+                              #{link_to "Configuration ##{@konfiguration.number}", @konfiguration}, |
+                              #{link_to "Zone #{@zone.name}", @zone}" |
 
-%div
-  - if @zone.images.any?
-    .group.left_column
-      .title Layout
-      - @zone.images.each do |i|
-        = image_tag i.file_url.to_s
+- if @zone.images.any?
+  .group.left_column
+    .title Layout
+    - @zone.images.each do |i|
+      = image_tag i.file_url.to_s
 
-  = render @item, { :group_title => 'Details' }
-  = render(@location, { :group_title => 'Location' }) unless @location.nil?
+= render @item, { :group_title => 'Details' }
+= render(@location, { :group_title => 'Location' }) unless @location.nil?
 
 .actions
   = link_to "Back to Zone #{@zone.name}", @zone

@@ -1,4 +1,5 @@
-- title "Configuration ##{@konfiguration.number} on #{@aircraft.registration}"
+= title "Configuration ##{@konfiguration.number}", "Configuration ##{@konfiguration.number} on |
+                                                    #{link_to @aircraft.registration, @aircraft}" |
 
 = render @konfiguration, { :group_title => 'Details' }
 

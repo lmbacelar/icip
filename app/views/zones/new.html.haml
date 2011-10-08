@@ -1,4 +1,6 @@
-- title "New Zone on #{@aircraft.registration}, Configuration ##{@konfiguration.number}"
+= title 'New Zone', "New Zone on |
+                     #{link_to @aircraft.registration, @aircraft}, |
+                     #{link_to "Configuration ##{@konfiguration.number}", @konfiguration}" |
 
 = render 'form', { :target => [@konfiguration, @zone] }
 
