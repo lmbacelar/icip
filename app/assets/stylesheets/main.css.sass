@@ -12,6 +12,7 @@ body
   font:
     family: Verdana, Helvetica, Arial
     size: 0.95em
+    color: $fore_color
 
 ////////////////////////////////////////////
 //
@@ -20,10 +21,16 @@ body
 a
   color: blue
   text-decoration: none
-  img
-    border: none
   &:hover
     text-decoration: underline
+  img
+    border: none
+
+h1
+  font:
+    color: $fore_color
+  a
+    color: $fore_color
 
 ////////////////////////////////////////////
 //
