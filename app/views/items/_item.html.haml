@@ -1,17 +1,10 @@
-.group.right_column
+.group
   .title= group_title
-  .item_titles
-    Name
-    %br
-    Kind
-    %br
-    P/N
-    %br
-  .items
-    = @item.name
-    %br
-    = @item.kind
-    %br
-    = @item.part.try(:number)
-    %br
-  .clear
+  .content
+    %dl
+      %dt Name
+      %dd= @item.name
+      %dt Kind
+      %dd= @item.kind
+      %dt P/N
+      %dd= @item.part.try(:number)

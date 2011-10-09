@@ -2,48 +2,13 @@
 //
 // Groups
 //
-.images
-  span
-    padding-right: 2em
 
 .group
   border: solid 1px darken($sec_color, 40%)
   @include rounded-corners
-  padding: 0px
+  padding: 0
+  margin: 0em 1em 1em 0em
   @include gradient($sec_color, lighten($sec_color,20%), vertical)
-
-.left_column
-  float: left
-  width: 400px
-  img
-    display: block
-  margin:
-    right: 10px
-  background-color: $back_color
-
-.right_column
-  float: none
-  margin-left: 420px
-  td, input
-    padding: 3px
-  input[readonly]
-    font:
-      family: Verdana, Helvetica, Arial
-      size: 1em
-    background-color: transparent
-    border: none
-
-.group, .left_column, .right_column
-  margin:
-    bottom: 20px
-  textarea
-    width: 99%
-    height: 3em
-  pre
-    margin: 2px 10px
-    font:
-      family: Verdana, Helvetica, Arial
-      size: 1em
   .title
     color: lighten($sec_color, 50%)
     @include gradient(darken($sec_color, 40%), darken($sec_color, 20%), vertical)
@@ -51,24 +16,73 @@
     font-size: 1.05em
     font-weight: bolder
     margin-bottom: 10px
-  .item_titles, .items
-    float: left
-    margin: 2px 10px
-    line-height: 200%
-    tr, td, th
-      line-height: 100%
-  .item_titles
-    width: 140px
-    text-align: right
-  .items
-    text-align: left
+  .content
+    padding: 5px 15px 20px 20px
 
-.actions
-  clear: both
-  border-top: solid 1px darken($pri_color, 40%)
-  margin: 20px 0px
-  padding: 10px 0px
 
+
+
+////  .images
+////    span
+////      padding-right: 2em
+////
+////  .group
+////    border: solid 1px darken($sec_color, 40%)
+////    @include rounded-corners
+////    padding: 0px
+////    @include gradient($sec_color, lighten($sec_color,20%), vertical)
+////
+////  .left_column
+////    float: left
+////    width: 400px
+////    img
+////      display: block
+////    margin:
+////      right: 10px
+////    background-color: $back_color
+////
+////  .right_column
+////    float: none
+////    margin-left: 420px
+////    td, input
+////      padding: 3px
+////    input[readonly]
+////      font:
+////        family: Verdana, Helvetica, Arial
+////        size: 1em
+////      background-color: transparent
+////      border: none
+////
+////  .group, .left_column, .right_column
+////    margin:
+////      bottom: 20px
+////    textarea
+////      width: 99%
+////      height: 3em
+////    pre
+////      margin: 2px 10px
+////      font:
+////        family: Verdana, Helvetica, Arial
+////        size: 1em
+////    .title
+////      color: lighten($sec_color, 50%)
+////      @include gradient(darken($sec_color, 40%), darken($sec_color, 20%), vertical)
+////      padding: 5px 20px
+////      font-size: 1.05em
+////      font-weight: bolder
+////      margin-bottom: 10px
+////    .item_titles, .items
+////      float: left
+////      margin: 2px 10px
+////      line-height: 200%
+////      tr, td, th
+////        line-height: 100%
+////    .item_titles
+////      width: 140px
+////      text-align: right
+////    .items
+////      text-align: left
+////
 ////////////////////////////////////////////
 //
 // End

@@ -1,25 +1,14 @@
-.group.right_column
+.group
   .title= group_title
-  .item_titles
-    Image
-    %br
-    x1
-    %br
-    y1
-    %br
-    x2
-    %br
-    y2
-    %br
-  .items
-    = @location.image.file_url.to_s
-    %br
-    = @location.x1
-    %br
-    = @location.y1
-    %br
-    = @location.x2
-    %br
-    = @location.y2
-    %br
-  .clear
+  .content
+    %dl
+      %dt Image
+      %dd= @location.image.file_url.to_s
+      %dt x1
+      %dd= @location.x1
+      %dt y1
+      %dd= @location.y1
+      %dt x2
+      %dd= @location.x2
+      %dt y2
+      %dd= @location.y2

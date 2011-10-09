@@ -2,12 +2,13 @@
                                #{link_to @aircraft.registration, @aircraft}, |
                                #{link_to "Configuration ##{@konfiguration.number}", @konfiguration}" |
 
-= render @zone, { :group_title => 'Details' }
+.columns
+  .fix.left
+    = render :file => 'images/_images', :locals => { :images => @zone.images }
 
-- if @zone.images.any?
-  = render :file => 'images/_images', :locals => { :images => @zone.images }
-
-= render :file => 'items/_items', :locals => { :items => @zone.items }
+  .fix.right
+    = render @zone, { :group_title => 'Details' }
+    = render :file => 'items/_items', :locals => { :items => @zone.items }
 
 .actions
   = link_to "Back to Configuration ##{@konfiguration.number}", @konfiguration

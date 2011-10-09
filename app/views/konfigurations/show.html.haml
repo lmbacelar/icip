@@ -1,10 +1,12 @@
 = title "Configuration ##{@konfiguration.number}", "Configuration ##{@konfiguration.number} on |
                                                     #{link_to @aircraft.registration, @aircraft}" |
 
-= render @konfiguration, { :group_title => 'Details' }
-
-- if @konfiguration.zones.any?
-  = render :file => 'zones/_zones', :locals => { :zones => @konfiguration.zones }
+.columns
+  .var.left
+    = render @konfiguration, { :group_title => 'Details' }
+  .var.right
+    - if @konfiguration.zones.any?
+      = render :file => 'zones/_zones', :locals => { :zones => @konfiguration.zones }
 
 .actions
   = link_to "Back to #{@aircraft.registration}", @aircraft

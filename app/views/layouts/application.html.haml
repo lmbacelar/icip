@@ -2,8 +2,7 @@
 %html
 
   %head
-    %title
-      = yield(:title) || 'Untitled'
+    %title= yield(:title) || 'Untitled'
     %meta{'http-equiv'=>'Content-Type', :content=>'text/html; charset=utf-8'}/
     = stylesheet_link_tag 'application', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css'
     = javascript_include_tag 'application'
@@ -13,12 +12,11 @@
   %body
     #header
       %h1 ICIP - Interior Cabin Inspection Program
-    #container
-      #main
-        - flash.each do |name, msg|
-          = content_tag :div, msg, :id => "flash_#{name}"
+    #main
+      - flash.each do |name, msg|
+        = content_tag :div, msg, :id => "flash_#{name}"
 
-        = yield
+      = yield
     #footer
       2011 by
       = mail_to 'lbacelar@tap.pt', 'Luis Bacelar'

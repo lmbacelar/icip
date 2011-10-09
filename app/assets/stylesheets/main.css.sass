@@ -2,21 +2,18 @@
 //
 // General Elements
 //
-html
-  height: 100%
-
 body
   margin: 0px
   background-attachment: fixed !important
   @include gradient
   font:
     family: Verdana, Helvetica, Arial
-    size: 0.95em
+    size: 1em
     color: $fore_color
 
 ////////////////////////////////////////////
 //
-// Default Links
+// Links
 //
 a
   color: blue
@@ -27,10 +24,25 @@ a
     border: none
 
 h1
-  font:
-    color: $fore_color
   a
     color: $fore_color
+
+
+////////////////////////////////////////////
+//
+// Definition Lists
+//
+dl
+  margin: 0
+  dt, dd
+    margin-bottom: 10px
+  dt
+    float: left
+    width: 140px
+    text-align: right
+    display: block
+  dd
+    margin-left: 160px
 
 ////////////////////////////////////////////
 //
@@ -74,17 +86,6 @@ tbody
     border-bottom: 1px dotted darken($pri_color, 40%)
 
 
-
-////////////////////////////////////////////
-//
-// General Classes
-//
-.clear
-  clear: both
-  height: 0
-  overflow: hidden
-
-
 ////////////////////////////////////////////
 //
 // Main layout elements
@@ -97,45 +98,24 @@ tbody
   h1
     font-size: 2em
 
-#container
-  width: 98%
-  margin-top: 30px
-
-#sidebar, #main
-  border: solid 2px darken($pri_color, 40%)
-  @include rounded-corners(10px)
-
-#sidebar
-  display: none
-  background-color: lighten($pri_color, 20%)
-  float: left
-  width: 160px
-  margin-left: 1%
-  padding: 20px 1em
-  a
-    display: block
-    font-weight: bold
-    width: 140px
-    text-align: center
-    text-decoration: none
-    padding: 8px
-    margin: 8px 0px
-    color: white
-    background-color: darken($pri_color, 40%)
-    border: solid 2px darken($pri_color, 60%)
-    @include rounded-corners(5px)
-    &:hover
-      background-color: darken($pri_color, 20%)
-
-#main
-  background: $back_color
-  margin-left: 2%
-  padding: 20px 40px
-
 #footer
   font-size: 0.7em
   padding: 50px
   text-align: right
+
+#main
+  margin: 2% 5%
+  border: solid 2px darken($pri_color, 40%)
+  @include rounded-corners(10px)
+  background: $back_color
+  padding: 20px 40px
+
+.actions
+  clear: both
+  border-top: solid 1px darken($pri_color, 40%)
+  margin: 20px 0px
+  padding: 10px 0px
+
 
 ////////////////////////////////////////////
 //

@@ -1,18 +1,10 @@
 .group
   .title= group_title
-  .item_titles
-    Registration
-    %br
-    Manufacturer
-    %br
-    Model
-    %br
-  .items
-    = link_to_unless_current @aircraft.registration, @aircraft
-    %br
-    = @aircraft.manufacturer
-    %br
-    = @aircraft.model
-    %br
-  .clear
-
+  .content
+    %dl
+      %dt Registration
+      %dd= @aircraft.registration
+      %dt Manufacturer
+      %dd= @aircraft.manufacturer
+      %dt Model
+      %dd= @aircraft.model

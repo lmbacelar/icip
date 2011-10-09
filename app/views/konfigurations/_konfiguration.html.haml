@@ -1,17 +1,10 @@
 .group
   .title= group_title
-  .item_titles
-    Number
-    %br
-    Description
-    %br
-    Created at
-    %br
-  .items
-    = @konfiguration.number
-    %br
-    = @konfiguration.description
-    %br
-    = I18n.l @konfiguration.created_at, :format => :short_date
-    %br
-  .clear
+  .content
+    %dl
+      %dt Number
+      %dd= @konfiguration.number
+      %dt Description
+      %dd= @konfiguration.description
+      %dt Created at
+      %dd= I18n.l @konfiguration.created_at, :format => :short_date
