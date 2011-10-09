@@ -2,8 +2,9 @@
   .title= group_title
   .content
     %dl
-      %dt Image
-      %dd= @location.image.file_url.to_s
+      -if @location.image
+        %dt Image
+        %dd= @location.image.file_url.to_s
       %dt x1
       %dd= @location.x1
       %dt y1

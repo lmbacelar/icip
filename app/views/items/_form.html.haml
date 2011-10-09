@@ -1,12 +1,35 @@
 = simple_nested_form_for target do |f|
   = f.error_messages
 
-  - if @zone.images.any?
-    .group.left_column
-      .title Layout
-      - @zone.images.each do |i|
-        .item_locator= image_tag i.file_url.to_s
+  .columns
+    .fix.left
+      .group
+        .title Layout
+        - @zone.images.each do |i|
+          .item_locator= image_tag i.file_url.to_s
 
-  = render :partial => 'form_details', :locals => { :f => f }
-
-  = f.submit
+    .fix.right
+      = render :partial => 'form_details', :locals => { :f => f }
+      .group
+        .title Location
+        .content
+          = f.fields_for :location do |o|
+            .columns
+              .var.left
+                = o.input :x1, :input_html => { :size => 3 }
+                = o.input :y1, :input_html => { :size => 3 }
+                = o.input :x2, :input_html => { :size => 3 }
+                = o.input :y2, :input_html => { :size => 3 }
+              .var.right
+                .fill_loc_help
+                  %p
+                    %strong To reset coordinates:
+                  %p.fill_loc_step_1
+                    1. Click
+                    %em top left
+                    location of item on image.
+                  %p.fill_loc_step_2{:hidden => 'true'}
+                    2. Click
+                    %em bottom right
+                    location of item on image.
+    = f.submit

@@ -1,6 +1,6 @@
-.group.right_column
+.group
   .title Item
-  .inputs
+  .content
     = f.input :name, :input_html => { :size => 4 }
     = f.input :kind, :collection => Item::Kinds, :include_blank => false, :prompt => '(Select one)'
     = f.association :part, :include_blank => false, :prompt => '(Select one)'
