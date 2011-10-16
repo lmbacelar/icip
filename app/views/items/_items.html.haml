@@ -1,18 +1,28 @@
 .group
   .title Items
   .content
-    %table
+    %table{:id => 'items_table'}
       %thead
         %tr
           %th Name
           %th Kind
           %th P/N
+          %th{:style => 'display:none'} Image id
+          %th{:style => 'display:none'} X1
+          %th{:style => 'display:none'} Y1
+          %th{:style => 'display:none'} X2
+          %th{:style => 'display:none'} Y2
           %th
       %tfoot
         %tr
           %td
           %td
           %td
+          %td{:style => 'display:none'}
+          %td{:style => 'display:none'}
+          %td{:style => 'display:none'}
+          %td{:style => 'display:none'}
+          %td{:style => 'display:none'}
           %td
             %ul.icons
               %li= icon_to 'New', new_zone_item_path(@zone)

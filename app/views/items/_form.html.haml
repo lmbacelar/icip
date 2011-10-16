@@ -1,10 +1,12 @@
 = simple_form_for target do |f|
   = f.error_messages
 
+
   .columns
     .fix.left
       .group
         .title Layout
+        .item_location
         - @zone.images.each do |i|
           .item_locator{:id => i.id}= image_tag i.file_url.to_s
 

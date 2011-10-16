@@ -3,13 +3,14 @@
   .content
     %dl
       -if @location.image
+        %dd{:id => 'image_id', :style => 'display: none'}= @location.image.id
         %dt Image
         %dd= @location.image.file_url.to_s
       %dt x1
-      %dd= @location.x1
+      %dd{:id => 'x1'}= @location.x1
       %dt y1
-      %dd= @location.y1
+      %dd{:id => 'y1'}= @location.y1
       %dt x2
-      %dd= @location.x2
+      %dd{:id => 'x2'}= @location.x2
       %dt y2
-      %dd= @location.y2
+      %dd{:id => 'y2'}= @location.y2
