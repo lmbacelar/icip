@@ -1,4 +1,4 @@
-= simple_nested_form_for target do |f|
+= simple_form_for target do |f|
   = f.error_messages
 
   .columns
@@ -6,20 +6,23 @@
       .group
         .title Layout
         - @zone.images.each do |i|
-          .item_locator= image_tag i.file_url.to_s
+          .item_locator{:id => i.id}= image_tag i.file_url.to_s
 
     .fix.right
       = render :partial => 'form_details', :locals => { :f => f }
       .group
         .title Location
         .content
-          = f.fields_for :location do |o|
-            .columns
-              .var.left
-                = o.input :x1, :input_html => { :size => 3 }
-                = o.input :y1, :input_html => { :size => 3 }
-                = o.input :x2, :input_html => { :size => 3 }
-                = o.input :y2, :input_html => { :size => 3 }
-              .var.right
-                = render :partial => 'fill_loc_help'
+          .item_location_form
+            = f.simple_fields_for :location do |o|
+              = o.input :image_id, :as => :select, :collection => @zone.images.all, :label_method => :file, :value_mathod => :id, :include_blank => false
+              = o.input :x1, :input_html => { :size => 3 }
+              = o.input :y1, :input_html => { :size => 3 }
+              = o.input :x2, :input_html => { :size => 3 }
+              = o.input :y2, :input_html => { :size => 3 }
+          .item_location_helper{:style => 'display: none'}
+            %p
+              %strong To set/reset coordinates:
+            %p
+              Click and drag mouse on image.
     = f.submit

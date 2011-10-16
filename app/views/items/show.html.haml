@@ -8,7 +8,8 @@
     .group
       .title Layout
       - @zone.images.each do |i|
-        .item_locator= image_tag i.file_url.to_s
+        = content_tag_for :image, i do
+          = image_tag i.file_url.to_s
   .fix.right
     = render @item, { :group_title => 'Details' }
     = render(@location, { :group_title => 'Location' }) unless @location.nil?

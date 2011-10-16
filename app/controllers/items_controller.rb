@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_filter :load_resources_from_zone, :only => [:new, :create]
   before_filter :load_resources_from_item, :except => [:new, :create]
+  before_filter :set_image_params, :only => [:create, :update]
 
   def show
   end
@@ -43,10 +44,16 @@ private
   end
 
   def load_resources_from_item
+    @image_id = 'test'
     @item = Item.find(params[:id])
     @zone = @item.zone
     @konfiguration = @zone.konfiguration
     @aircraft = @konfiguration.aircraft
     @location = @item.location || @item.build_location
+  end
+
+  def set_image_params
+    image_id = params[:item][:location_attributes].delete(:image_id)
+    params[:item][:location_attributes].merge!( {:image => Image.find(image_id)} ) unless image_id.empty?
   end
 end
