@@ -1,7 +1,7 @@
 class Item < ActiveRecord::Base
 
   include CsvSerialize::InstanceMethods
-  CsvColumns = %w[name kind part.number part.description]
+  CsvColumns = %w[name kind part.number part.description location.image location.x1 location.y1 location.x2 location.y2]
 
   Kinds = %w[Seat Lavatory Carpet Panel Sidewall Label]
 
