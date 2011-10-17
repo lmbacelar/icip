@@ -21,6 +21,10 @@
     background: -webkit-gradient(linear, left top, right top, from($start_color), to($end_color))
     filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr="#{$start_color}", EndColorStr="#{$end_color}", GradientType=1)
 
+@mixin opaque($opacity: 0.5)
+  opacity: $opacity
+  filter: alpha(opacity = $opacity*100)
+
 ////////////////////////////////////////////
 //
 // End
