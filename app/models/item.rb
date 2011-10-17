@@ -20,4 +20,6 @@ class Item < ActiveRecord::Base
   validates :part, :presence => true
 
   scope :sort_natural, order("kind, LPAD(SUBSTRING(name from '[0-9]+'),5, '0'), SUBSTRING(name from '[^0-9]+')")
+  scope :locatable, lambda { self.joins("JOIN locations ON items.id = locations.locatable_id") }
+  scope :at_position, lambda { |x,y| locatable.where("locations.x1 <= #{x} AND locations.x2 >= #{x} AND locations.y1 <= #{y} AND locations.y2 >= #{y}") }
 end
