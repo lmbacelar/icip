@@ -10,6 +10,8 @@ class Item < ActiveRecord::Base
   belongs_to :zone
   belongs_to :part
   has_one :location, :as => :locatable, :dependent => :destroy
+  has_one :image_assignment, :through => :location
+  has_one :image, :through => :image_assignment
   accepts_nested_attributes_for :location, :reject_if => lambda { |o| o[:x1].nil? ||
                                                                       o[:y1].nil? ||
                                                                       o[:x2].nil? ||
@@ -20,6 +22,12 @@ class Item < ActiveRecord::Base
   validates :part, :presence => true
 
   scope :sort_natural, order("kind, LPAD(SUBSTRING(name from '[0-9]+'),5, '0'), SUBSTRING(name from '[^0-9]+')")
-  scope :locatable, lambda { self.joins("JOIN locations ON items.id = locations.locatable_id") }
-  scope :at_position, lambda { |x,y| locatable.where("locations.x1 <= #{x} AND locations.x2 >= #{x} AND locations.y1 <= #{y} AND locations.y2 >= #{y}") }
+  scope :locatable, joins(:location)
+  def self.on_image(image_id)
+    locatable.joins(:image).where("images.id = ?", image_id)
+  end
+  def self.at_position(x,y)
+    locatable.where("locations.x1 <= ? AND locations.x2 >= ? AND locations.y1 <= ? AND locations.y2 >= ?",
+                    x, x, y, y)
+  end
 end
