@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  revnum: 1
+  author: MyString
+  notes: MyText
+
+two:
+  revnum: 1
+  author: MyString
+  notes: MyText

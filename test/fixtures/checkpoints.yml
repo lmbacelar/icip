@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  number: MyString
+  checkpointable_id: 1
+  checkpointable_type: MyString
+
+two:
+  number: MyString
+  checkpointable_id: 1
+  checkpointable_type: MyString
