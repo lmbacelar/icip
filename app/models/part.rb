@@ -3,6 +3,9 @@ class Part < ActiveRecord::Base
 
   has_many  :items, :dependent => :destroy
   accepts_nested_attributes_for :items, :reject_if => lambda { |i| i[:name].blank? }, :allow_destroy => true
+  has_many  :protocols, :dependent => :destroy
+  accepts_nested_attributes_for :protocols, :reject_if => lambda { |p| p[:revnum].blank? }, :allow_destroy => true
+  has_one :checkpoint, :dependent => :destroy
 
   validates :number, :presence => true, :uniqueness => true
 

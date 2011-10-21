@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111006195646) do
+ActiveRecord::Schema.define(:version => 20111021173632) do
 
   create_table "aircrafts", :force => true do |t|
     t.string   "registration", :limit => 10
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(:version => 20111006195646) do
     t.string   "model",        :limit => 50
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "checkpoints", :force => true do |t|
+    t.string   "number"
+    t.integer  "checkpointable_id"
+    t.string   "checkpointable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "part_id"
   end
 
   create_table "image_assignments", :force => true do |t|
@@ -69,6 +78,15 @@ ActiveRecord::Schema.define(:version => 20111006195646) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "protocols", :force => true do |t|
+    t.integer  "revnum"
+    t.string   "author"
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "part_id"
   end
 
   create_table "zones", :force => true do |t|
