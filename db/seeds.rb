@@ -14,9 +14,9 @@ Aircraft.all.each do |a|
     k.association_from_csv :zones, 'app/assets/seeds/zones.csv'
     k.zones.each do |z|
       puts "Importing images from csv for #{a.registration}, configuration #{k.number}, zone #{z.name} ..."
-      z.images_from_csv "app/assets/seeds/A330_TOE-TOG_#{z.name}.csv"
+      z.images_from_csv "app/assets/seeds/#{a.registration}.#{z.name}.images.csv"
       puts "Importing items, parts and locations for #{a.registration}, configuration #{k.number}, zone #{z.name} ..."
-      z.items_from_csv "app/assets/seeds/A330_TOE-TOG_#{z.name}_items.csv"
+      z.items_from_csv "app/assets/seeds/#{a.registration}.#{z.name}.items.csv"
     end
   end
 end
