@@ -1,0 +1,28 @@
+= title "Protocol Rev. ##{@protocol.revnum}", "Protocol Rev. ##{@protocol.revnum} on P/N |
+                                                    #{link_to @part.number, @part}" |
+
+-# TODO
+-# WARNING IF THERE ARE INSPECTIONS ALREADY BASED ON THIS PROTOCOL REVISION
+-# PROTOCOL SHOULD NOT BE CHANGED. MIGHT COMPROMISE STATE OF ASSOCIATED INSPECTIONS.
+-# NEW REVISION SHOULD BE DONE INSTEAD !!!
+
+=# render @part, { :group_title => 'Part' }
+= render :partial => 'details'
+.columns
+  .fix.left
+    - if @protocol.images.any?
+      = render :file => 'images/_images', :locals => { :images => @protocol.images }
+  .fix.right
+    .content
+      = render :file => 'checkpoints/_checkpoints', :locals => { :checkpoints => @protocol.checkpoints }
+
+
+.actions
+  -# TODO
+  -# ONLY ALLOW EDITING IF THERE ARE NO INSPECTIONS ASSOCIATED?
+  = link_to 'Back to Part', @part
+  |
+  = link_to 'Edit Protocol', edit_protocol_path(@protocol)
+  -if @protocol.current?
+    |
+    = link_to 'Destroy Protocol', @protocol, :confirm => 'Are you sure?', :method => :delete

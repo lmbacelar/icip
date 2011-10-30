@@ -1,0 +1,8 @@
+= title "Edit Protocol", "Edit Protocol on P/N #{link_to @part.number, @part}"
+
+= render 'form', { :target => @protocol }
+
+.actions
+  = link_to 'Show', @protocol
+  |
+  = link_to "Back to P/N #{@part.number}", @part

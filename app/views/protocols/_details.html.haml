@@ -1,0 +1,13 @@
+.group
+  .title Details
+  .content
+    %dl
+      %dt Revision Number
+      %dd= @protocol.revnum
+      %dt Date
+      %dd= I18n.l(@protocol.created_at, :format => :short_date)
+      %dt Author
+      %dd= @protocol.author
+      - if @protocol.notes
+        %dt Notes
+        %dd= @protocol.notes

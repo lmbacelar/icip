@@ -7,9 +7,9 @@ class Protocol < ActiveRecord::Base
   accepts_nested_attributes_for :images, :allow_destroy => true, :reject_if => lambda { |i| i[:file].blank? }
   has_many :checkpoints, :as => :checkpointable, :dependent => :destroy
   accepts_nested_attributes_for :checkpoints, :allow_destroy => true,
-                                              :reject_if => lambda { |c|  c[:revnum].blank? ||
-                                                                          c[:description].blank? ||
-                                                                          c[:pn].blank? }
+                                              :reject_if => lambda { |c|  c[:number].blank? ||
+                                                                          c[:description].blank? } # ||
+  #                                                                       c[:pn].blank? }
 
   validates :revnum, :uniqueness => { :scope => :part_id}
 
