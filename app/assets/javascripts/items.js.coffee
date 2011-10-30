@@ -46,15 +46,3 @@ jQuery ->
       $('#item_location_attributes_y2').val(y[1])
       drawBox(imageOffsetX, x[0], y[0], x[1], y[1])
       $('.item_location').show()
-
-  # Open Item based on mouse click on AC layout
-  #
-  # TODO:
-  # Find item based on clicked X, Y and X1, Y1, X2, Y2 of the item
-  # (X1 <= X <= X2) AND (Y1 <= Y <= Y2)
-  # Overlapping? returns more than one result
-  $('.ac_layout').click (e)->
-    offset = $(@).offset()
-    x = e.pageX - offset.left
-    y = e.pageY - offset.top
-    alert "x = #{x}\ty = #{y}"

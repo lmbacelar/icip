@@ -20,5 +20,5 @@ jQuery ->
   $('#items_table tr').mouseleave ->
     $('.item_location').hide()
 
-  $('.item_selector').dblclick (e) ->
+  $('.selector').dblclick (e) ->
     window.location = "#{window.location.href.slice(window.location.href.indexOf('/zones/'))}/items?image_id=#{$(@).attr('id')}&x=#{e.pageX - $(@).offset().left}&y=#{e.pageY - $(@).offset().top}"
