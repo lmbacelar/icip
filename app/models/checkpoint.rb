@@ -8,7 +8,7 @@ class Checkpoint < ActiveRecord::Base
                                                                       o[:y2].nil? }, :allow_destroy => true
 
   validates :number, :presence => true
-  validates :part, :presence => true
+#  validates :part, :presence => true
 
   scope :sort_natural, order("LPAD(number, 5, '0') ASC")
 end
