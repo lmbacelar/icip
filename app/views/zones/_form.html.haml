@@ -1,25 +1,27 @@
 = simple_nested_form_for target, :html => { :multipart => true } do |f|
   = f.error_messages
-  .group
-    .title Details
-    .inputs
-      = f.input :name, :input_html => { :size => 2 }
-      = f.input :description
-      = f.input :inspection_interval, :label => 'Inspection Int.', :input_html => { :size => 2 }
-    .clear
-
-  // TODO
-  // Move to partial.
-  // Can't do it now because of nested_form bug on haml partials
-  .group.images
-    .title Images
-    .content
-      = f.fields_for :images do |i|
-        = link_to File.basename(i.object.file_url.to_s), i.object.file_url.to_s, :target => '_blank'
-        = i.link_to_remove 'Remove'
-        or upload this
-        = i.file_field :file
-      = f.link_to_add 'Add image', :images
+  .columns
+    .fix.left
+      // TODO
+      // Move to partial.
+      // Can't do it now because of nested_form bug on haml partials
+      .group
+        .title Images
+        = f.fields_for :images do |i|
+          - if i.object.file_url.nil?
+            = i.file_field :file
+          - else
+            = image_tag i.object.file_url.to_s
+            =# link_to File.basename(i.object.file_url.to_s), i.object.file_url.to_s, :target => '_blank'
+          .content= i.link_to_remove 'Remove'
+        .content= f.link_to_add 'Add image', :images
+    .fix.right
+      .group
+        .title Details
+        .inputs
+          = f.input :name, :input_html => { :size => 2 }
+          = f.input :description, :input_html => { :size => 25 }
+          = f.input :inspection_interval, :label => 'Inspection Int.', :input_html => { :size => 2 }
 
   = f.submit
 
