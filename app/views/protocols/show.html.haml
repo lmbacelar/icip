@@ -6,16 +6,14 @@
 -# PROTOCOL SHOULD NOT BE CHANGED. MIGHT COMPROMISE STATE OF ASSOCIATED INSPECTIONS.
 -# NEW REVISION SHOULD BE DONE INSTEAD !!!
 
-=# render @part, { :group_title => 'Part' }
 = render :partial => 'details'
 .columns
   .fix.left
     - if @protocol.images.any?
-      = render :file => 'images/_images', :locals => { :images => @protocol.images }
+      = render :file => 'images/_images', :locals => { :images => @protocol.images, :image_type => :link_to_image }
   .fix.right
     .content
       = render :file => 'checkpoints/_checkpoints', :locals => { :checkpoints => @protocol.checkpoints }
-
 
 .actions
   -# TODO

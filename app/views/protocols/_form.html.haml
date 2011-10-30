@@ -19,8 +19,7 @@
           - if i.object.file_url.nil?
             = i.file_field :file
           - else
-            = image_tag i.object.file_url.to_s
-            =# link_to File.basename(i.object.file_url.to_s), i.object.file_url.to_s, :target => '_blank'
+            = link_to image_tag(i.object.file_url(:thumb).to_s), i.object.file_url.to_s, :target => '_blank'
           .content= i.link_to_remove 'Remove'
         .content= f.link_to_add 'Add image', :images
 
