@@ -7,7 +7,7 @@ class ProtocolsController < ApplicationController
 
   def new
     @protocol = @part.protocols.build
-    @protocol.number = 1 + ( @part.protocols.maximum(:number) || 0 )
+    @protocol.revnum = 1 + ( @part.protocols.maximum(:revnum) || -1 )
   end
 
   def create
