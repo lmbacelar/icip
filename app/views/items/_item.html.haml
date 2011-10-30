@@ -6,5 +6,6 @@
       %dd= @item.name
       %dt Kind
       %dd= @item.kind
-      %dt P/N
-      %dd= @item.part.try(:number)
+      - if @item.part
+        %dt P/N
+        %dd= link_to @item.part.number, @item.part
