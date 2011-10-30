@@ -11,9 +11,8 @@ class ProtocolsController < ApplicationController
   end
 
   def create
-    @protocol = @part.protocols.build(params[:protocol])
-    if @protocol.save
-      redirect_to @part, :notice  => "Successfully updated protocol."
+    if load_existing_images && @protocol.update_attributes(params[:protocol])
+      redirect_to @protocol, :notice  => "Successfully updated protocol."
     else
       render :action => 'new'
     end
@@ -23,7 +22,7 @@ class ProtocolsController < ApplicationController
   end
 
   def update
-    if @protocol.update_attributes(params[:protocol])
+    if load_existing_images && @protocol.update_attributes(params[:protocol])
       redirect_to @protocol, :notice  => "Successfully updated protocol."
     else
       render :action => 'edit'

@@ -44,13 +44,4 @@ private
     @konfiguration = @zone.konfiguration
     @aircraft = @konfiguration.aircraft
   end
-
-  def load_existing_images
-    params[:zone][:images_attributes].each do |k,v|
-      if v[:file] && img = Image.find_by_checksum(Image.checksum(v[:file].tempfile))
-        @zone.images << img
-        params[:zone][:images_attributes].delete(k)
-      end
-    end
-  end
 end
