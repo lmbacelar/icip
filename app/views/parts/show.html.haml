@@ -1,0 +1,19 @@
+= title "P/N #{@part.number}"
+
+-if @part.description
+  = render @part, { :group_title => 'Details' }
+
+-if @part.protocols.current
+  = render :file => 'protocols/_links', :locals => { :part => @part, :protocols => [@part.protocols.current], :group_title => 'Current Protocol' }
+
+-if @part.protocols.obsolete.try(:any?)
+  = render :file => 'protocols/_links', :locals => { :part => @part, :protocols => @part.protocols.obsolete, :group_title => 'Obsolete Protocols' }
+
+.actions
+  = link_to 'View All Parts', parts_path
+  |
+  = link_to 'Edit Part', edit_part_path(@part)
+  |
+  = link_to 'New Protocol', new_part_protocol_path(@part)
+  |
+  = link_to 'Destroy Part', @part, :confirm => 'Are you sure?', :method => :delete

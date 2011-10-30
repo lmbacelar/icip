@@ -1,0 +1,9 @@
+.group
+  .title= group_title
+  .content
+    %dl
+      %dt Number
+      %dd= @part.number
+      - if @part.description
+        %dt Description
+        %dd= @part.description

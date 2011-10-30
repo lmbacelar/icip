@@ -1,0 +1,30 @@
+#title= title 'Parts'
+
+#single_column
+  %table
+    %thead
+      %tr
+        %th Number
+        %th Description
+        %th Protocol Rev.
+        %th
+    %tfoot
+      %tr
+        %td
+        %td
+        %td
+        %td
+          %ul.icons
+            %li= icon_to 'New', new_part_path
+    %tbody
+      - @parts.each do |p|
+        %tr{:class => cycle('', 'alt')}
+          %td= p.number
+          %td= p.description
+          %td= p.protocols.current.try(:revnum)
+          %td
+            %ul.icons
+              %li= icon_to 'Show', p
+              %li= icon_to 'Edit', edit_part_path(p)
+              %li= icon_to 'Destroy', p, :confirm => 'Are you sure?', :method => :delete
+

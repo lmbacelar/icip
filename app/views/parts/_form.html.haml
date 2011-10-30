@@ -1,0 +1,9 @@
+= simple_form_for @part do |f|
+  = f.error_messages
+  .group
+    .title Details
+    .content
+      = f.input :number, :input_html => { :size => 12 }
+      = f.input :description
+  = f.submit
+
