@@ -1,4 +1,8 @@
 class Part < ActiveRecord::Base
+
+  extend  CsvSerialize::ClassMethods
+  CsvColumns = %w[number description]
+
   attr_accessible :number, :description
 
   has_many  :items, :dependent => :destroy

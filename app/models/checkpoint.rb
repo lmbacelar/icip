@@ -1,4 +1,8 @@
 class Checkpoint < ActiveRecord::Base
+
+  include CsvSerialize::InstanceMethods
+  CsvColumns = %w[number description part.number part.description location.image location.x1 location.y1 location.x2 location.y2]
+
   belongs_to :protocol
   belongs_to :part
   has_one :location, :as => :locatable, :dependent => :destroy
