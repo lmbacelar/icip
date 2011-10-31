@@ -33,7 +33,7 @@
           = f.fields_for :checkpoints, f.object.checkpoints.sort_natural do |c|
             = c.text_field :number, :label => false, :placeholder => "(#{:number})", :size => 1
             = c.text_field :description, :label => false, :placeholder => "(#{:description})", :size => 25
-            =# c.text_field :pn, :label => false, :placeholder => "(#{:pn})", :size => 20
+            = c.text_field :pn, :label => false, :placeholder => '(P/N)', :size => 20
             = c.link_to_remove 'Remove'
           = f.link_to_add 'Add Item', :checkpoints
 

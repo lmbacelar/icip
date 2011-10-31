@@ -15,4 +15,15 @@ class Checkpoint < ActiveRecord::Base
 #  validates :part, :presence => true
 
   scope :sort_natural, order("LPAD(number, 5, '0') ASC")
+
+  def pn
+    self.part.try(:number)
+  end
+
+  #
+  # TODO:
+  # Remove "orphan" part numbers
+  def pn=(n)
+    self.part_id = Part.find_or_create_by_number(:number => n).id
+  end
 end
