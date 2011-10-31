@@ -37,6 +37,7 @@ class ProtocolsController < ApplicationController
 private
   def load_resources_from_part
     @part = Part.find(params[:part_id])
+    @protocol = @part.protocols.build
   end
 
   def load_resources_from_protocol

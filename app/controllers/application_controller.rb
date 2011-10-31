@@ -6,10 +6,14 @@ class ApplicationController < ActionController::Base
   # Removes already existing images from params
   def load_existing_images
     target = controller_name.singularize
-    params[target][:images_attributes].each do |k,v|
-      if v[:file] && img = Image.find_by_checksum(Image.checksum(v[:file].tempfile))
-        instance_variable_get("@#{target}").images << img
-        params[target][:images_attributes].delete(k)
+    if params[target][:images_attributes].nil?
+      true
+    else
+      params[target][:images_attributes].each do |k,v|
+        if v[:file] && img = Image.find_by_checksum(Image.checksum(v[:file].tempfile))
+          instance_variable_get("@#{target}").images << img
+          params[target][:images_attributes].delete(k)
+        end
       end
     end
   end
