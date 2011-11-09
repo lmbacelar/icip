@@ -22,14 +22,14 @@ Aircraft.all.each do |a|
 end
 
 Part.all.each do |part|
-  p=part.protocols.build
-  p.images_from_csv "app/assets/seeds/#{part.number}.images.csv"
-  p.checkpoints_from_csv "app/assets/seeds/#{part.number}.images.csv"
-  p.save if p.images.any? && p.checkpoints.any?
-  # File exists?
-  # build new protocol
-  # Protocol.images_from_csv
-  # Protocol.checkpoints_from_csv
-  # protocol.save
+  p=part.protocols.build :revnum => 0
+  # if File.exist? "app/assets/seeds/#{part.number}.checkpoints.csv"
+  #   p.checkpoints_from_csv "app/assets/seeds/#{part.number}.checkpoints.csv"
+  # end
+  if File.exist? "app/assets/seeds/#{part.number}.images.csv"
+    puts "Importing images for P/N #{part.number} default protocol ..."
+    p.images_from_csv "app/assets/seeds/#{part.number}.images.csv"
+  end
+  p.save if p.images.any? || p.checkpoints.any?
 end
 puts 'Done seeding ...'
