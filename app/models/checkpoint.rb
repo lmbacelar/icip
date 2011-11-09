@@ -14,7 +14,8 @@ class Checkpoint < ActiveRecord::Base
   validates :number, :presence => true
 #  validates :part, :presence => true
 
-  scope :sort_natural, order("LPAD(number, 5, '0') ASC")
+#  scope :sort_natural, order("LPAD(number, 5, '0') ASC")
+  scope :sort_natural, order("LPAD(SUBSTRING(number from '[0-9]+'),5, '0'), COALESCE(SUBSTRING(number from '[^0-9]+'), '0')")
 
   def pn
     self.part.try(:number)
