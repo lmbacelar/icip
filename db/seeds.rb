@@ -22,14 +22,18 @@ Aircraft.all.each do |a|
 end
 
 Part.all.each do |part|
-  p=part.protocols.build :revnum => 0
-  # if File.exist? "app/assets/seeds/#{part.number}.checkpoints.csv"
-  #   p.checkpoints_from_csv "app/assets/seeds/#{part.number}.checkpoints.csv"
-  # end
-  if File.exist? "app/assets/seeds/#{part.number}.images.csv"
-    puts "Importing images for P/N #{part.number} default protocol ..."
-    p.images_from_csv "app/assets/seeds/#{part.number}.images.csv"
+  checkpoints_csv = "app/assets/seeds/#{part.number}.checkpoints.csv"
+  images_csv = "app/assets/seeds/#{part.number}.images.csv"
+  if File.exist?(checkpoints_csv) || File.exist?(images_csv)
+    p = part.protocols.create(:revnum => 0, :author => 'Vera Martinho')
+    if File.exist? checkpoints_csv
+      puts "Importing checkpoints for P/N #{part.number} protocol rev.#{p.revnum} ..."
+      p.checkpoints_from_csv checkpoints_csv
+    end
+    if File.exist? images_csv
+      puts "Importing images for P/N #{part.number} protocol rev.#{p.revnum} ..."
+      p.images_from_csv images_csv
+    end
   end
-  p.save if p.images.any? || p.checkpoints.any?
 end
 puts 'Done seeding ...'
