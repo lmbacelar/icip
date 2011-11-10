@@ -92,12 +92,32 @@ tbody
 // Main layout elements
 //
 #header
-  background: darken($pri_color, 40%)
-  color: white
-  padding: 4px 100px
-  border-bottom: solid 5px darken($pri_color, 60%)
+  background: darken($sec_color, 70%)
+  color: $back_color
+  padding: 4px 2%
+  //border-bottom: solid 5px darken($pri_color, 60%)
   h1
-    font-size: 2em
+    font-size: 1.6em
+
+#menu
+  margin: 0
+  @include gradient(darken($sec_color,70%), darken($sec_color, 30%))
+  height: 36px
+  display: block
+  ul
+    margin: 0 2%
+    padding: 0px
+  li, a
+    display: block
+    text-align: center
+    color: $back_color
+  li
+    float: left
+    margin: 10px 40px 0px 0px
+    font-weight: bold
+  a
+    color: $back_color
+
 
 #footer
   font-size: 0.7em
@@ -105,7 +125,7 @@ tbody
   text-align: right
 
 #main
-  margin: 2% 5%
+  margin: 2%
   border: solid 2px darken($pri_color, 40%)
   @include rounded-corners(10px)
   background: $back_color
