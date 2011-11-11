@@ -94,16 +94,24 @@ tbody
 #header
   background: darken($sec_color, 70%)
   color: $back_color
-  padding: 4px 2%
+  padding: 10px 2%
+  height: 50px
   //border-bottom: solid 5px darken($pri_color, 60%)
   h1
-    font-size: 1.6em
+    font-size: 2.2em
+    display: inline
+  h2
+    font-size: 1.2em
+    display: inline
+  img
+    float: right
 
 #menu
   margin: 0
-  @include gradient(darken($sec_color,70%), darken($sec_color, 30%))
+  @include gradient(darken($sec_color, 70%), darken($sec_color, 30%))
   height: 36px
   display: block
+  border-bottom: solid 2px darken($sec_color, 70%)
   ul
     margin: 0 2%
     padding: 0px
@@ -129,12 +137,12 @@ tbody
   border: solid 2px darken($pri_color, 40%)
   @include rounded-corners(10px)
   background: $back_color
-  padding: 20px 40px
+  padding: 10px 20px
 
 .actions
   clear: both
   border-top: solid 1px darken($pri_color, 40%)
-  margin: 20px 0px
+  margin: 10px 0px
   padding: 10px 0px
 
 .item_location
