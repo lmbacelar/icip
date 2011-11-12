@@ -1,4 +1,8 @@
 jQuery ->
+  $('#item_part_number').autocomplete
+    minLength: 3,
+    source: $('#item_part_number').data('autocomplete-source')
+
   # set vars based on form or show values
   if $('#item_location_attributes_x1').length
     x=[$('#item_location_attributes_x1').val(), $('#item_location_attributes_x2').val()]

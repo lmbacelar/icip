@@ -1,6 +1,10 @@
 class PartsController < ApplicationController
   def index
-    @parts = Part.all
+    @parts = Part.order(:number).where("number like ?", "%#{params[:term]}%")
+    respond_to do |format|
+      format.html
+      format.json { render json: @parts.map(&:number)}
+    end
   end
 
   def show

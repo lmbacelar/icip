@@ -5,7 +5,7 @@ class Item < ActiveRecord::Base
 
   Kinds = %w[Seat Lavatory Carpet Panel Sidewall Label]
 
-  attr_accessible :name, :kind, :part_id, :location, :location_attributes
+  attr_accessible :name, :kind, :part_number, :part_id, :location, :location_attributes
 
   belongs_to :zone
   belongs_to :part
@@ -23,11 +23,19 @@ class Item < ActiveRecord::Base
 
   scope :sort_natural, order("kind, LPAD(SUBSTRING(name from '[0-9]+'),5, '0'), SUBSTRING(name from '[^0-9]+')")
   scope :locatable, joins(:location)
+
   def self.on_image(image_id)
     locatable.joins(:image).where("images.id = ?", image_id)
   end
   def self.at_position(x,y)
     locatable.where("locations.x1 <= ? AND locations.x2 >= ? AND locations.y1 <= ? AND locations.y2 >= ?",
                     x, x, y, y)
+  end
+
+  def part_number
+    part.try(:number)
+  end
+  def part_number=(number)
+    self.part = Part.find_by_number(number) if number.present?
   end
 end
