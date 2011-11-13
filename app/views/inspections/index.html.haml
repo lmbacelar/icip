@@ -1,0 +1,8 @@
+#title= title 'Inspections'
+
+.columns
+  .var_left
+    = render :partial => 'inspections', :locals => { :inspections => Inspection.pending, :group_title => 'Pending Inspections' }
+  .var_right
+    = render :partial => 'inspections', :locals => { :inspections => Inspection.closed, :group_title => 'Closed Inspections' }
+

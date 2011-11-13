@@ -12,6 +12,7 @@ Icip::Application.routes.draw do
   resources :parts, :shallow => true do
     resources :protocols
   end
+  resources :inspections
 
 
 

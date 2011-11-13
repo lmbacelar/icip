@@ -3,6 +3,10 @@ class Item < ActiveRecord::Base
   include CsvSerialize::InstanceMethods
   CsvColumns = %w[name kind part.number part.description location.image location.x1 location.y1 location.x2 location.y2]
 
+  #
+  # TODO:
+  # Move kind to part. Its part related, not item related. Part is always the same kind
+  #
   Kinds = %w[Seat Lavatory Carpet Panel Sidewall Label]
 
   attr_accessible :name, :kind, :part_number, :part_id, :location, :location_attributes

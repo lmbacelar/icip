@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  action: MyString
+  comment: MyString
+  technician: MyString
+  inspection_id: 1
+  item_id: 1
+  checkpoint_id: 1
+  closing_id: 1
+
+two:
+  action: MyString
+  comment: MyString
+  technician: MyString
+  inspection_id: 1
+  item_id: 1
+  checkpoint_id: 1
+  closing_id: 1

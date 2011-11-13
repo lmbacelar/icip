@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  support_doc: MyString
+  comments: MyString
+  responsible: MyString
+
+two:
+  support_doc: MyString
+  comments: MyString
+  responsible: MyString

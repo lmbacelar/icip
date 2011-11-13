@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111029231920) do
+ActiveRecord::Schema.define(:version => 20111112122208) do
 
   create_table "aircrafts", :force => true do |t|
     t.string   "registration", :limit => 10
@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(:version => 20111029231920) do
     t.string   "description"
   end
 
+  create_table "closings", :force => true do |t|
+    t.string   "support_doc"
+    t.string   "comments"
+    t.string   "responsible"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "image_assignments", :force => true do |t|
     t.integer  "image_id"
     t.integer  "imageable_id"
@@ -44,6 +52,12 @@ ActiveRecord::Schema.define(:version => 20111029231920) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "checksum"
+  end
+
+  create_table "inspections", :force => true do |t|
+    t.integer  "zone_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "items", :force => true do |t|
@@ -88,6 +102,18 @@ ActiveRecord::Schema.define(:version => 20111029231920) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "part_id"
+  end
+
+  create_table "tasks", :force => true do |t|
+    t.string   "action"
+    t.string   "comment"
+    t.string   "technician"
+    t.integer  "inspection_id"
+    t.integer  "item_id"
+    t.integer  "checkpoint_id"
+    t.integer  "closing_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "zones", :force => true do |t|
