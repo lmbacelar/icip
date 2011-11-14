@@ -1,5 +1,5 @@
 class InspectionsController < ApplicationController
   def index
-    @inspections = Inspection.all
+    @inspections = Inspection.scoped
   end
 end
