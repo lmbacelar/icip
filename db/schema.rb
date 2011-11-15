@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111112122208) do
+ActiveRecord::Schema.define(:version => 20111115105350) do
 
   create_table "aircrafts", :force => true do |t|
     t.string   "registration", :limit => 10
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20111112122208) do
     t.integer  "zone_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "completed",  :default => false
   end
 
   create_table "items", :force => true do |t|
