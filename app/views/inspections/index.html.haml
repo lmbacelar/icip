@@ -1,8 +1,6 @@
 #title= title 'Inspections'
 
-.columns
-  .var_left
-    = render :partial => 'inspections', :locals => { :inspections => @inspections.pending, :group_title => 'Pending Inspections' }
-  .var_right
-    = render :partial => 'inspections', :locals => { :inspections => @inspections.closed, :group_title => 'Closed Inspections' }
+= render :partial => 'inspections', :locals => { :inspections => @inspections.scheduled, :group_title => 'Scheduled Inspections' }
+= render :partial => 'inspections', :locals => { :inspections => @inspections.pending, :group_title => 'Pending Inspections' }
+= render :partial => 'inspections', :locals => { :inspections => @inspections.closed, :group_title => 'Closed Inspections' }
 

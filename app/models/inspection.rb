@@ -3,9 +3,14 @@ class Inspection < ActiveRecord::Base
   has_many :tasks, :dependent => :destroy
   accepts_nested_attributes_for :tasks, :reject_if => lambda { |t| t[:action].blank? ||
                                                                    t[:technician] }, :allow_destroy => true
+  scope :scheduled, where('inspections.executed = FALSE')
+  scope :executed, where('inspections.executed = TRUE')
+  scope :pending, executed.joins(:tasks).merge(Task.pending)
+  #
+  # TODO:
+  # Inspections without findings (no tasks) should be closed as soon as marked executed.
+  # These are not included in this scope. Include them.
+  scope :closed, executed.joins(:tasks).merge(Task.closed)
 
-  scope :scheduled, where('inspections.completed = FALSE')
-  scope :completed, where('inspections.completed = TRUE')
-  scope :pending, joins(:tasks).merge(Task.pending)
-  scope :closed, joins(:tasks).merge(Task.closed)
+  scope :clean, executed.where('id NOT IN (SELECT inspection_id FROM tasks)')
 end
