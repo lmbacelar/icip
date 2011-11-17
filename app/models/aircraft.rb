@@ -8,6 +8,9 @@ class Aircraft < ActiveRecord::Base
 
   has_many  :konfigurations, :dependent => :destroy
   accepts_nested_attributes_for :konfigurations, :reject_if => lambda { |c| c[:number].blank? }, :allow_destroy => true
+  has_many :zones, :through => :konfigurations
+  has_many :inspections, :through => :zones
+  has_many :tasks, :through => :inspections
 
   validates :registration, :presence => true, :uniqueness => true
 
