@@ -7,7 +7,6 @@ class Konfiguration < ActiveRecord::Base
 
   belongs_to :aircraft
   has_many  :zones, :dependent => :destroy
-  has_many :tasks, :dependent => :destroy
   accepts_nested_attributes_for :zones, :reject_if => lambda { |z| z[:name].blank? }, :allow_destroy => true
 
   validates :number, :presence => true, :uniqueness => {:scope => :aircraft_id}
