@@ -1,6 +1,6 @@
 Icip::Application.routes.draw do
 
-  root :to => 'aircrafts#index'
+  root :to => 'inspections#index'
 
   resources :aircrafts, :shallow => true do
     resources :konfigurations, :shallow => true do
