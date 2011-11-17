@@ -1,6 +1,6 @@
 class Task < ActiveRecord::Base
 
-  Actions = %w[Clean Repair Replace]
+  Actions = %w[Repair Replace]
 
   belongs_to :inspection
   belongs_to :item

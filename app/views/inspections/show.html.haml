@@ -1,0 +1,19 @@
+= title "#{I18n.l(@inspection.execution_date, :format => :short_date) if @inspection.execution_date} Inspection on |
+                  #{link_to @aircraft.registration, @aircraft}, |
+                  #{link_to "Zone #{@zone.name}", @zone}" |
+
+
+.columns
+  .var.left
+    = render @aircraft, { :group_title => 'Aircraft' }
+  .var.right
+    = render @zone, { :group_title => 'Zone' }
+  - if @inspection.tasks.any?
+    = render :file => 'tasks/_tasks', :locals => { :tasks => @inspection.tasks }
+
+.actions
+  = link_to 'View Inspections', inspections_path
+  |
+  =# link_to 'Edit Aircraft', edit_aircraft_path(@aircraft)
+  |
+  =# link_to 'Destroy Aircraft', @aircraft, :confirm => 'Are you sure?', :method => :delete

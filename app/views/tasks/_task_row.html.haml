@@ -1,0 +1,9 @@
+%tr{:class => cycle('', 'alt')}
+  %td= task.item.name
+  %td= task.checkpoint.part.number
+  %td= task.checkpoint.description
+  %td= task.action
+  %td= task.technician
+  %td= I18n.l(task.closing.try(:updated_at), :format => :short_date) if task.closing.present?
+  %td= task.closing.try(:responsible)
+  %td

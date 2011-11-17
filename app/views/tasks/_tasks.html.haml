@@ -1,0 +1,26 @@
+.group
+  .title Tasks
+  .content
+    %table
+      %thead
+        %tr
+          %th Item
+          %th P/N
+          %th Description
+          %th Action
+          %th Technician
+          %th Closing Date
+          %th Responsible
+          %th
+      %tfoot
+        %tr
+          %td
+          %td
+          %td
+          %td
+          %td
+          %td
+          %td
+          %td
+      %tbody
+        = render :partial => 'tasks/task_row', :collection => tasks, :as => :task
