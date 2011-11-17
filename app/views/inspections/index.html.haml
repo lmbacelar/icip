@@ -1,6 +1,7 @@
 #title= title 'Inspections'
 
 = render :partial => 'inspections', :locals => { :inspections => @inspections.scheduled, :group_title => 'Scheduled Inspections' }
+= render :partial => 'inspections', :locals => { :inspections => @inspections.assigned, :group_title => 'Assigned Inspections' }
 = render :partial => 'inspections', :locals => { :inspections => @inspections.pending, :group_title => 'Pending Inspections' }
 = render :partial => 'inspections', :locals => { :inspections => @inspections.closed, :group_title => 'Closed Inspections' }
 
