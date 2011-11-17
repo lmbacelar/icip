@@ -1,4 +1,8 @@
 class InspectionsController < ApplicationController
+  before_filter do
+    Zone.schedule_inspections
+  end
+
   def index
     @inspections = Inspection.scoped
   end

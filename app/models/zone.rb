@@ -22,6 +22,17 @@ class Zone < ActiveRecord::Base
   scope :asc, order('name ASC')
   scope :desc, order('name DESC')
 
+  def schedule_inspection
+    if inspections.maximum(:execution_date).nil? ||
+       (inspections.maximum(:execution_date) <= Time.now - inspection_interval.days)
+      inspections.create if inspections.scheduled.empty?
+    end
+  end
+
+  def self.schedule_inspections
+    self.all.each { |z| z.schedule_inspection }
+  end
+
   def items_to_csv(fname)
     begin
       CSV.open(fname, 'w') do |csv|
