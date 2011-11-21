@@ -58,7 +58,6 @@ ActiveRecord::Schema.define(:version => 20111119114539) do
     t.integer  "zone_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "completed",      :default => false
     t.datetime "execution_date"
     t.string   "assigned_to"
   end
@@ -88,10 +87,10 @@ ActiveRecord::Schema.define(:version => 20111119114539) do
   end
 
   create_table "locations", :force => true do |t|
-    t.integer  "x1"
-    t.integer  "y1"
-    t.integer  "x2"
-    t.integer  "y2"
+    t.integer  "x1",         :default => 0
+    t.integer  "y1",         :default => 0
+    t.integer  "x2",         :default => 0
+    t.integer  "y2",         :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "image_id"
