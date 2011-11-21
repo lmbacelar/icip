@@ -5,7 +5,7 @@ class Part < ActiveRecord::Base
 
   attr_accessible :number, :kind, :description
 
-  Kinds = %w[Seat Lavatory Carpet Panel Sidewall Label]
+  Kinds = %w[Carpet Label Lavatory Panel Seat Sidewall Subpart]
 
   has_many  :items, :dependent => :destroy
   accepts_nested_attributes_for :items, :reject_if => lambda { |i| i[:name].blank? }, :allow_destroy => true
@@ -15,8 +15,6 @@ class Part < ActiveRecord::Base
 
   validates :number, :presence => true, :uniqueness => true
   validates :kind, :inclusion => { :in => Kinds }
-
-  default_scope order('number ASC')
 
   def to_s
     number
