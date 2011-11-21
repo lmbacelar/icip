@@ -47,12 +47,8 @@ class Protocol < ActiveRecord::Base
         csv << Checkpoint::CsvColumns
         # iterate children
         checkpoints.each do |c|
-          image_url = c.location.try(:image).try(:file_url)
           csv << [c.number, c.description,
-                  c.part.try(:number), c.part.try(:description),
-                  image_url && File.basename(image_url.to_s),
-                  c.location.try(:x1), c.location.try(:y1),
-                  c.location.try(:x2), c.location.try(:y2)]
+                  c.part.try(:number), c.part.try(:kind), c.part.try(:description)]
         end
       end
     rescue Errno::EISDIR
@@ -74,12 +70,10 @@ class Protocol < ActiveRecord::Base
       if header == Checkpoint::CsvColumns
         # import data
         lines.each do |line|
-          url = File.join(Rails.root, File.join(File.dirname(fname), line[4]))
           checkpoints.create(:number => line[0], :description => line[1],
-                             :part_id => Part.find_or_create_by_number(:number => line[2], :description => line[3]).id,
-                             :location => Location.create(:x1=>line[5], :y1 => line[6], :x2 => line[7], :y2 => line[8],
-                                                          :image => Image.find_or_create_by_checksum(:file => File.open(url),
-                                                                                                     :checksum => Image.checksum(url))))
+                             :part_id => Part.find_or_create_by_number(:number => line[2],
+                                                                       :kind => line[3],
+                                                                       :description => line[4]).id)
         end
       else
         puts "ERROR: Expecting ''#{Item::CsvColumns.join(',')}' on '#{fname}'. Skipping import of Checkpoints."
