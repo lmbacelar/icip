@@ -1,0 +1,35 @@
+#title= title 'Images'
+
+#single_column
+  %table
+    %thead
+      %tr
+        %th Filename
+        %th Type
+        %th Size
+        %th Locations
+        %th
+    %tfoot
+      %tr
+        %td
+        %td
+        %td
+        %td
+        %td
+    %tbody
+      - @images.each do |i|
+        %tr{:class => cycle('', 'alt')}
+          %td= File.basename(i.file_url, '.*')
+          %td= File.extname(i.file_url).gsub('.', '')
+          %td
+            - if i.file.size > 1.megabyte
+              = "#{i.file.size / 1.megabyte} MB"
+            - else
+              = "#{i.file.size / 1.kilobyte} kB"
+
+          %td= i.locations.count
+          %td
+            %ul.icons
+              %li= icon_to 'Show', i
+              %li= icon_to 'Destroy', i, :confirm => 'Are you sure?', :method => :delete
+

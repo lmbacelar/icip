@@ -3,7 +3,7 @@
 //   image_type = :link_to_image, displays fitted image, linked to original size image
 //   image_type = :none, displays fitted image
 .group
-  .title Images
+  .title= group_title
   - images.each do |i|
     - image_url = i.file_url(:fitted).to_s
     - case image_type
