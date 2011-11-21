@@ -19,6 +19,7 @@
         %li= link_to 'Inspections', inspections_url
         %li= link_to 'Aircrafts', aircrafts_url
         %li= link_to 'Parts', parts_url
+        %li= link_to 'Images', images_url
     #main
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
