@@ -1,6 +1,6 @@
 class PartsController < ApplicationController
   def index
-    @parts = Part.order(:number).where("number like ?", "%#{params[:term]}%")
+    @parts = Part.order(:kind, :number).where("number like ?", "%#{params[:term]}%")
     respond_to do |format|
       format.html
       format.json { render json: @parts.map(&:number)}
