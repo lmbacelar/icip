@@ -1,16 +1,12 @@
 class Checkpoint < ActiveRecord::Base
 
   include CsvSerialize::InstanceMethods
-  CsvColumns = %w[number description part.number part.description location.image location.x1 location.y1 location.x2 location.y2]
+  CsvColumns = %w[number description part.number part.kind part.description]
 
   belongs_to :protocol
   belongs_to :part
   has_one :location, :as => :locatable, :dependent => :destroy
   has_many :tasks, :dependent => :destroy
-  accepts_nested_attributes_for :location, :reject_if => lambda { |o| o[:x1].nil? ||
-                                                                      o[:y1].nil? ||
-                                                                      o[:x2].nil? ||
-                                                                      o[:y2].nil? }, :allow_destroy => true
 
   validates :number, :presence => true
   validates :part, :presence => true
