@@ -4,6 +4,8 @@
     %dl
       %dt Number
       %dd= @part.number
-      - if @part.description
+      %dt Kind
+      %dd= @part.kind
+      - unless @part.description.blank?
         %dt Description
         %dd= @part.description

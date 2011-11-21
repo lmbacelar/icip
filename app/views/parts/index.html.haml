@@ -5,11 +5,13 @@
     %thead
       %tr
         %th Number
+        %th Kind
         %th Description
         %th Protocol Rev.
         %th
     %tfoot
       %tr
+        %td
         %td
         %td
         %td
@@ -20,6 +22,7 @@
       - @parts.each do |p|
         %tr{:class => cycle('', 'alt')}
           %td= p.number
+          %td= p.kind
           %td= p.description
           %td= p.protocols.current.try(:revnum)
           %td

@@ -1,7 +1,6 @@
 = title "P/N #{@part.number}"
 
--if @part.description
-  = render @part, { :group_title => 'Details' }
+= render @part, { :group_title => 'Details' }
 
 -if @part.protocols.current
   = render :file => 'protocols/_links', :locals => { :part => @part, :protocols => [@part.protocols.current], :group_title => 'Current Protocol' }
