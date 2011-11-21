@@ -5,7 +5,9 @@
 .columns
   .fix.left
     .item_location
-    = render :file => 'images/_images', :locals => { :images => @zone.images, :image_type => :selector }
+    = render :file => 'images/_images', :locals => { :images => Array(@zone.images),
+                                                     :group_title => 'Images',
+                                                     :image_type => :selector }
 
   .fix.right
     = render @zone, { :group_title => 'Details' }
