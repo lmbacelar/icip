@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111117170454) do
+ActiveRecord::Schema.define(:version => 20111119114539) do
 
   create_table "aircrafts", :force => true do |t|
     t.string   "registration", :limit => 10
@@ -58,13 +58,13 @@ ActiveRecord::Schema.define(:version => 20111117170454) do
     t.integer  "zone_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "completed",      :default => false
     t.datetime "execution_date"
     t.string   "assigned_to"
   end
 
   create_table "items", :force => true do |t|
     t.string   "name"
-    t.string   "kind"
     t.integer  "zone_id"
     t.integer  "part_id"
     t.datetime "created_at"
@@ -79,15 +79,23 @@ ActiveRecord::Schema.define(:version => 20111117170454) do
     t.datetime "updated_at"
   end
 
+  create_table "location_assignments", :force => true do |t|
+    t.integer  "location_id"
+    t.integer  "locatable_id"
+    t.string   "locatable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "locations", :force => true do |t|
     t.integer  "x1"
     t.integer  "y1"
     t.integer  "x2"
     t.integer  "y2"
-    t.integer  "locatable_id"
-    t.string   "locatable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "image_id"
+    t.string   "name"
   end
 
   create_table "parts", :force => true do |t|
@@ -95,6 +103,7 @@ ActiveRecord::Schema.define(:version => 20111117170454) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "kind"
   end
 
   create_table "protocols", :force => true do |t|

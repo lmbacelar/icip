@@ -1,6 +1,6 @@
 %tr{:class => cycle('', 'alt')}
   %td= item.name
-  %td= item.kind
+  %td= item.part.try(:kind)
   %td= item.part.try(:number)
   %td{:name => 'image_id_' + item.name, :style => 'display:none'}= item.location.try(:image).try(:id)
   %td{:name => 'x1_' + item.name, :style => 'display:none'}= item.location.try(:x1)

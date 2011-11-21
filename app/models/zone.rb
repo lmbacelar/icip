@@ -40,11 +40,7 @@ class Zone < ActiveRecord::Base
         csv << Item::CsvColumns
         # iterate children
         items.each do |i|
-          csv << [i.name, i.kind,
-                  i.part.try(:number), i.part.try(:description),
-                  File.basename(i.location.try(:image).try(:file_url)),
-                  i.location.try(:x1), i.location.try(:y1),
-                  i.location.try(:x2), i.location.try(:y2)]
+          csv << [i.name, i.part.try(:number), i.part.try(:kind), i.part.try(:description)]
         end
       end
     rescue Errno::EISDIR
@@ -62,11 +58,10 @@ class Zone < ActiveRecord::Base
       if header == Item::CsvColumns
         # import data
         lines.each do |line|
-          url = File.join(Rails.root, File.join(File.dirname(fname), line[4]))
-          items.create(:name => line[0], :kind => line[1],
-                       :part_id => Part.find_or_create_by_number(:number => line[2], :description => line[3]).id,
-                       :location => Location.create(:x1=>line[5], :y1 => line[6], :x2 => line[7], :y2 => line[8],
-                                                    :image => Image.find_or_create_by_checksum(:file => File.open(url), :checksum => Image.checksum(url))))
+          items.create(:name => line[0],
+                       :part_id => Part.find_or_create_by_number(:number => line[1],
+                                                                 :kind => line[2],
+                                                                 :description => line[3]).id)
         end
       else
         puts "ERROR: Expecting ''#{Item::CsvColumns.join(',')}' on '#{fname}'. Skipping import of Items."

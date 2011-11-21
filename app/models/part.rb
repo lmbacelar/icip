@@ -1,9 +1,11 @@
 class Part < ActiveRecord::Base
 
   extend  CsvSerialize::ClassMethods
-  CsvColumns = %w[number description]
+  CsvColumns = %w[number kind description]
 
-  attr_accessible :number, :description
+  attr_accessible :number, :kind, :description
+
+  Kinds = %w[Seat Lavatory Carpet Panel Sidewall Label]
 
   has_many  :items, :dependent => :destroy
   accepts_nested_attributes_for :items, :reject_if => lambda { |i| i[:name].blank? }, :allow_destroy => true
@@ -12,6 +14,7 @@ class Part < ActiveRecord::Base
   has_one :checkpoint, :dependent => :destroy
 
   validates :number, :presence => true, :uniqueness => true
+  validates :kind, :inclusion => { :in => Kinds }
 
   default_scope order('number ASC')
 

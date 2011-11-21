@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  location_id: 1
+  locatable_id: 1
+  locatable_type: MyString
+
+two:
+  location_id: 1
+  locatable_id: 1
+  locatable_type: MyString

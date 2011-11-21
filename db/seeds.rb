@@ -36,4 +36,9 @@ Part.all.each do |part|
     end
   end
 end
+Image.all.each do |i|
+  puts "Importing locations from csv for image '#{File.basename(i.file_url, '.*')} ..."
+  i.association_from_csv :locations, "app/assets/seeds/#{File.basename(i.file_url, '.*')}.locations.csv"
+end
+
 puts 'Done seeding ...'
