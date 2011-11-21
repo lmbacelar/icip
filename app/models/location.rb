@@ -8,7 +8,11 @@ class Location < ActiveRecord::Base
   # has_one :image_assignment, :as => :imageable, :dependent => :destroy
   # has_one :image, :through => :image_assignment, :dependent => :destroy
 
-  # TODO: Add validation, presence of image, x1,y1,x2,y2 must be positive
+  validates :image, :presence => true
+  validates :x1, :inclusion => { :in => 0..1.0/0, :message => 'should be positive' }
+  validates :y1, :inclusion => { :in => 0..1.0/0, :message => 'should be positive' }
+  validates :x2, :inclusion => { :in => 0..1.0/0, :message => 'should be positive' }
+  validates :y2, :inclusion => { :in => 0..1.0/0, :message => 'should be positive' }
 
   def image_id
     image.try(:id)
