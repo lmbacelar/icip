@@ -1,0 +1,11 @@
+%tr{:class => cycle('', 'alt')}
+  %td= location.name
+  %td= location.x1
+  %td= location.y1
+  %td= location.x2
+  %td= location.y2
+  %td
+    %ul.icons
+      %li= icon_to 'Show', location
+      %li= icon_to 'Edit', edit_location_path(location)
+      %li= icon_to 'Destroy', location, :confirm => 'Are you sure?', :method => :delete

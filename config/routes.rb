@@ -13,6 +13,9 @@ Icip::Application.routes.draw do
     resources :protocols
   end
   resources :inspections
+  resources :images, :shallow => true do
+    resources :locations
+  end
 
 
 
