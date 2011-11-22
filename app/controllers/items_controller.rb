@@ -58,7 +58,7 @@ private
     @zone = @item.zone
     @konfiguration = @zone.konfiguration
     @aircraft = @konfiguration.aircraft
-    @location = @item.location || @item.build_location
+    @location = @item.location
   end
 
   def set_image_params
