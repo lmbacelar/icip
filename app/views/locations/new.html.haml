@@ -1,14 +1,7 @@
 = title 'New Location', "New Location on |
                         #{File.basename @image.file_url, '.*'}" |
 
-.columns
-  .fix.left
-    = render :file => 'images/_images', :locals => { :images => Array(@image),
-                                                     :group_title => 'Image',
-                                                     :image_type => :none }
-
-  .fix.right
-    = render 'form', { :target => [@image, @location] }
+= render 'form', { :target => [@image, @location] }
 
 .actions
   = link_to 'Back to Image', @image

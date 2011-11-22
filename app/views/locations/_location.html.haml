@@ -2,10 +2,9 @@
   .title= group_title
   .content
     %dl
-      -if @location.image
-        %dd{:id => 'image_id', :style => 'display: none'}= @location.image.id
-        %dt Image
-        %dd= @location.image.file_url.to_s
+      %dd{:id => 'image_id', :style => 'display: none'}= @location.image.id
+      %dt Image
+      %dd= File.basename @location.image.file_url.to_s
       %dt x1
       %dd{:id => 'x1'}= @location.x1
       %dt y1

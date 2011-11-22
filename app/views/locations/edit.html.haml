@@ -1,14 +1,7 @@
 = title 'Edit Location', "Edit Location on |
                          #{File.basename @image.file_url, '.*'}" |
 
-.columns
-  .fix.left
-    = render :file => 'images/_images', :locals => { :images => Array(@image),
-                                                     :group_title => 'Image',
-                                                     :image_type => :none }
-
-  .fix.right
-    = render 'form', { :target => @location }
+= render 'form', { :target => @location }
 
 .actions
   = link_to 'Show', @location

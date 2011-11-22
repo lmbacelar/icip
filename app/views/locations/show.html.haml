@@ -4,7 +4,7 @@
   .fix.left
     = render :file => 'images/_images', :locals => { :images => Array(@image),
                                                      :group_title => 'Image',
-                                                     :image_type => :none }
+                                                     :image_type => :locator }
 
   .fix.right
     = render @location, :group_title => 'Details'
