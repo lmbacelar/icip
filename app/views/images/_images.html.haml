@@ -1,15 +1,13 @@
-// Usage:
-//   image_type = :selector, displays fitted image, with class selector
-//   image_type = :link_to_image, displays fitted image, linked to original size image
-//   image_type = :none, displays fitted image
 .group
   .title= group_title
   - images.each do |i|
     - image_url = i.file_url(:fitted).to_s
     - case image_type
       - when :selector
-        %div{:id => i.id, :class => 'selector'}= image_tag image_url
+        .selector= image_tag image_url, data: { image_id: i.id }
+      - when :locator
+        .locator= image_tag image_url, data: { image_id: i.id }
       -when :link_to_image
-        %div{:id => i.id}= link_to image_tag(image_url), i.file_url.to_s, :target => '_blank'
+        = link_to image_tag(image_url), i.file_url.to_s, :target => '_blank'
       -when :none
-        %div{:id => i.id}= image_tag image_url
+        = image_tag image_url
