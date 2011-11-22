@@ -4,8 +4,6 @@
     %dl
       %dt Name
       %dd= @item.name
-      %dt Kind
-      %dd= @item.kind
-      - if @item.part
+      - unless @item.part.blank?
         %dt P/N
         %dd= link_to @item.part.number, @item.part
