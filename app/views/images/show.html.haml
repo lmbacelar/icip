@@ -7,7 +7,7 @@
                                                 :image_type => :link_to_image }
 
   .fix.right
-    = render :file => 'locations/_locations', :locals => { :locations => @locations,
+    = render :file => 'locations/_locations', :locals => { :locations => @locations.sort_natural,
                                                            :group_title => 'Locations' }
 
 .actions
