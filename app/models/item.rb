@@ -10,8 +10,6 @@ class Item < ActiveRecord::Base
   has_one :location_assignment, :as => :locatable, :dependent => :destroy
   has_one :location, :through => :location_assignment
   # has_one :location, :as => :locatable, :dependent => :destroy
-  # has_one :image_assignment, :through => :location
-  # has_one :image, :through => :image_assignment
 
   validates :name, :presence => true, :uniqueness => { :scope => :zone_id }
   validates :part, :presence => true
