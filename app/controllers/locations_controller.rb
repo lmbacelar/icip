@@ -2,9 +2,6 @@ class LocationsController < ApplicationController
   before_filter :load_resources_from_image, :only => [:new, :create]
   before_filter :load_resources_from_location, :except => [:new, :create]
 
-  def show
-  end
-
   def new
     @location = @image.locations.build
   end
