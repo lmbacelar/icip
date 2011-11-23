@@ -16,17 +16,9 @@ jQuery ->
   $('<div></div>').appendTo('.locator').addClass('location_box')
 
   # set vars based on form or show values
-  #
-  # TODO:
-  # Do this based on data attributes x1,x2,y1,y2, apssed on page.
-  #
-  if $('#location_x1').length
-    x=[$('#location_x1').val(), $('#location_x2').val()]
-    y=[$('#location_y1').val(), $('#location_y2').val()]
-  else if $('#x1').length
-    x=[$('#x1').text(), $('#x2').text()]
-    y=[$('#y1').text(), $('#y2').text()]
-    imageOffsetX=$("##{$('#image_id').text()}").position().top
+  d=$('#data_attributes').data()
+  x=[d.x1, d.x2]
+  y=[d.y1, d.y2]
 
   # show/hide helper on locator hover
   $('.locator').hover ->

@@ -1,6 +1,8 @@
 = title 'New Location', "New Location on |
                         #{File.basename @image.file_url, '.*'}" |
 
+= render 'location_data'
+
 = render 'form', { :target => [@image, @location] }
 
 .actions

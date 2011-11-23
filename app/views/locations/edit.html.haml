@@ -1,9 +1,9 @@
 = title 'Edit Location', "Edit Location on |
                          #{File.basename @image.file_url, '.*'}" |
 
+= render 'location_data'
+
 = render 'form', { :target => @location }
 
 .actions
-  = link_to 'Show', @location
-  |
   = link_to 'Back to Image', @image
