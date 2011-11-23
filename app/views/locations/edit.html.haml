@@ -7,3 +7,5 @@
 
 .actions
   = link_to 'Back to Image', @image
+  |
+  = link_to 'Destroy Location', @location, :confirm => 'Are you sure?', :method => :delete
