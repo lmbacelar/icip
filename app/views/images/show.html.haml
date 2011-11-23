@@ -4,7 +4,9 @@
   .fix.left
     = render :partial => 'images', :locals => { :images => Array(@image),
                                                 :group_title => 'Image',
-                                                :image_type => :link_to_image }
+                                                :image_type => :selector }
+    - @locations.each do |o|
+      = link_to o.name, edit_location_path(o), :data => { :location => o }, :class => 'location_link'
 
   .fix.right
     = render :file => 'locations/_locations', :locals => { :locations => @locations.sort_natural,
