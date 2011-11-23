@@ -4,9 +4,9 @@
     - image_url = i.file_url(:fitted).to_s
     - case image_type
       - when :selector
-        .selector= image_tag image_url, data: { image_id: i.id }
+        .selector= image_tag image_url
       - when :locator
-        .locator= image_tag image_url, data: { image_id: i.id }
+        .locator= image_tag image_url
       -when :link_to_image
         = link_to image_tag(image_url), i.file_url.to_s, :target => '_blank'
       -when :none
