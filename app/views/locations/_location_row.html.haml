@@ -6,6 +6,5 @@
   %td= location.y2
   %td
     %ul.icons
-      %li= icon_to 'Show', location
       %li= icon_to 'Edit', edit_location_path(location)
       %li= icon_to 'Destroy', location, :confirm => 'Are you sure?', :method => :delete
