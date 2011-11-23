@@ -146,13 +146,24 @@ tbody
   margin: 10px 0px
   padding: 10px 0px
 
-.location_box
-  border: 3px solid darken(yellow, 30%)
-  background-color: yellow
-  @include opaque(0.4)
+.location_box, .location_link
   position: absolute
-  left: 0px
-  top: 0px
+  @include opaque(0.4)
+
+.location_box
+  border: 3px solid darken($highlight_color, 30%)
+  background-color: $highlight_color
+
+.location_link
+  text-indent: -99999px
+  font-size: 0.01em
+  text-decoration: none
+  border: 3px solid darken($sec_color, 50%)
+  background-color: lighten($sec_color, 50%)
+  &:hover
+    border: 3px solid darken($highlight_color, 30%)
+    background-color: $highlight_color
+
 
 
 ////////////////////////////////////////////

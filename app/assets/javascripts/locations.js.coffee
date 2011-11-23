@@ -2,16 +2,16 @@ jQuery ->
 
   # helper functions
   sortNumbers = (a,b) -> a-b
-  drawBox = (el, x1, y1, x2, y2) ->
+  drawBox = (el, ref, x1, y1, x2, y2) ->
     # Force numeric addition
-    x1 = x1*1 + el.position().left*1
-    x2 = x2*1 + el.position().left*1
-    y1 = y1*1 + el.position().top*1
-    y2 = y2*1 + el.position().top*1
-    $('.location_box').css('left', "#{x1}px")
-    $('.location_box').css('top', "#{y1}px")
-    $('.location_box').css('width', "#{Math.abs(x2-x1-3)}px")
-    $('.location_box').css('height', "#{Math.abs(y2-y1-3)}px")
+    x1 = x1*1 + ref.position().left*1
+    x2 = x2*1 + ref.position().left*1
+    y1 = y1*1 + ref.position().top*1
+    y2 = y2*1 + ref.position().top*1
+    el.css('left', "#{x1}px")
+    el.css('top', "#{y1}px")
+    el.css('width', "#{Math.abs(x2-x1-3)}px")
+    el.css('height', "#{Math.abs(y2-y1-3)}px")
   # add location_box
   $('<div></div>').appendTo('.locator').addClass('location_box')
 
@@ -20,13 +20,12 @@ jQuery ->
   x=[d.location.x1, d.location.x2]
   y=[d.location.y1, d.location.y2]
 
+  drawBox $('.location_box'), $('.locator'), x[0], y[0], x[1], y[1]
+
   # show/hide helper on locator hover
   $('.locator').hover ->
     $('.locator_form').toggle()
     $('.locator_helper').toggle()
-
-  drawBox $('.locator'), x[0], y[0], x[1], y[1]
-
 
   # selectable events
   $('.locator').selectable
@@ -43,5 +42,5 @@ jQuery ->
       $('#location_y1').val(y[0])
       $('#location_x2').val(x[1])
       $('#location_y2').val(y[1])
-      drawBox $(@), x[0], y[0], x[1], y[1]
+      drawBox $('.location_box'), $(@), x[0], y[0], x[1], y[1]
       $('.location_box').show()
