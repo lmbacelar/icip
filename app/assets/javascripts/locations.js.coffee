@@ -17,8 +17,8 @@ jQuery ->
 
   # set vars based on form or show values
   d=$('#data_attributes').data()
-  x=[d.x1, d.x2]
-  y=[d.y1, d.y2]
+  x=[d.location.x1, d.location.x2]
+  y=[d.location.y1, d.location.y2]
 
   # show/hide helper on locator hover
   $('.locator').hover ->
