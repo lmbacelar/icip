@@ -3,4 +3,4 @@
   .content
     = f.input :name, :input_html => { :size => 4 }
     = f.input :part_number, :input_html => { :size => 20, data: {autocomplete_source: parts_path} }
-    =# f.association :part, :include_blank => false, :prompt => '(Select one)'
+    =# f.input :location, :input_html => { :size => 20, data: {autocomplete_source: locations_path} }
