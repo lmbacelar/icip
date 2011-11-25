@@ -1,16 +1,15 @@
 class ItemsController < ApplicationController
   before_filter :load_resources_from_zone, :only => [:index, :new, :create]
   before_filter :load_resources_from_item, :except => [:index, :new, :create]
-  before_filter :set_image_params, :only => [:create, :update]
 
-  def index
-    @item = @zone.items.on_image(params[:image_id]).at_position(params[:x], params[:y]).first
-    if @item
-      redirect_to @item
-    else
-      redirect_to :back
-    end
-  end
+##   def index
+##     @item = @zone.items.on_image(params[:image_id]).at_position(params[:x], params[:y]).first
+##     if @item
+##       redirect_to @item
+##     else
+##       redirect_to :back
+##     end
+##   end
 
   def show
   end
@@ -52,16 +51,10 @@ private
   end
 
   def load_resources_from_item
-    @image_id = 'test'
     @item = Item.find(params[:id])
     @zone = @item.zone
     @konfiguration = @zone.konfiguration
     @aircraft = @konfiguration.aircraft
     @location = @item.location
-  end
-
-  def set_image_params
-    image_id = params[:item][:location_attributes].delete(:image_id)
-    params[:item][:location_attributes].merge!( {:image => Image.find(image_id)} ) unless image_id.empty?
   end
 end
