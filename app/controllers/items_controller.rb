@@ -17,7 +17,6 @@ class ItemsController < ApplicationController
 
   def new
     @item = @zone.items.build
-    @location = @item.build_location
   end
 
   def create
