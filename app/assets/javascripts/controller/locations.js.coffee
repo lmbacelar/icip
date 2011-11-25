@@ -1,17 +1,7 @@
-jQuery ->
+# Access global objects through Application.
+window.Application ||= {}
 
-  # helper functions
-  sortNumbers = (a,b) -> a-b
-  drawBox = (el, ref, x1, y1, x2, y2) ->
-    # Force numeric addition
-    x1 = x1*1 + ref.position().left*1
-    x2 = x2*1 + ref.position().left*1
-    y1 = y1*1 + ref.position().top*1
-    y2 = y2*1 + ref.position().top*1
-    el.css('left', "#{x1}px")
-    el.css('top', "#{y1}px")
-    el.css('width', "#{Math.abs(x2-x1-3)}px")
-    el.css('height', "#{Math.abs(y2-y1-3)}px")
+jQuery ->
   # add location_box
   $('<div></div>').appendTo('.locator').addClass('location_box')
 
@@ -20,12 +10,8 @@ jQuery ->
   x=[d.location.x1, d.location.x2]
   y=[d.location.y1, d.location.y2]
 
-  drawBox $('.location_box'), $('.locator'), x[0], y[0], x[1], y[1]
-
-  # show/hide helper on locator hover
-  $('.locator').hover ->
-    $('.locator_form').toggle()
-    $('.locator_helper').toggle()
+  # draw location box on image location
+  Application.drawBox $('.location_box'), $('.locator'), x[0], y[0], x[1], y[1]
 
   # selectable events
   $('.locator').selectable
@@ -37,10 +23,10 @@ jQuery ->
     stop: (e) ->
       x[1]=e.originalEvent.pageX - $('.locator').offset().left*1
       y[1]=e.originalEvent.pageY - $('.locator').offset().top*1
-      x.sort(sortNumbers) && y.sort(sortNumbers)
+      x.sort(Application.sortNumbers) && y.sort(Application.sortNumbers)
       $('#location_x1').val(x[0])
       $('#location_y1').val(y[0])
       $('#location_x2').val(x[1])
       $('#location_y2').val(y[1])
-      drawBox $('.location_box'), $(@), x[0], y[0], x[1], y[1]
+      Application.drawBox $('.location_box'), $(@), x[0], y[0], x[1], y[1]
       $('.location_box').show()
