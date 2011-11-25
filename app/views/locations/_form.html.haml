@@ -17,9 +17,8 @@
             = f.input :x2, :input_html => { :size => 3 }
             = f.input :y2, :input_html => { :size => 3 }
         .content
-          .locator_helper{:style => 'display: none'}
+          .locator_helper
             %p
               %strong To set/reset coordinates:
-            %p
-              Click and drag mouse on image.
+              Drag on image.
     = f.submit
