@@ -1,14 +1,15 @@
 = simple_form_for target do |f|
   = f.error_messages
 
-
   .columns
     .fix.left
       .group
         .title Layout
         .item_location
         - @zone.images.each do |i|
-          .item_locator{:id => i.id}= image_tag i.file_url.to_s
+          .selector= image_tag i.file_url.to_s
+          - i.locations.each do |o|
+            .location_link{ :data => { :location => o.to_json }}= o.name
 
     .fix.right
       = render :partial => 'form_details', :locals => { :f => f }

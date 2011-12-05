@@ -5,15 +5,14 @@
 
 .columns
   .fix.left
-    .group
-      .title Layout
-      .item_location
-      - @zone.images.each do |i|
-        %div{:id => i.id}= image_tag i.file_url.to_s
+    = render :file => 'images/_images', :locals => { :images => Array(@item.image ? @item.image : @zone.images),
+                                                     :group_title => 'Location',
+                                                     :image_type => :selector }
+    - if @item.location
+      .location_box{ :data => { :location => @item.location.to_json }}
 
   .fix.right
     = render @item, { :group_title => 'Details' }
-    = render(@location, { :group_title => 'Location' }) unless @location.nil?
 
 .actions
   = link_to "Back to Zone #{@zone.name}", @zone

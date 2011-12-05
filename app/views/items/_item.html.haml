@@ -7,3 +7,6 @@
       - unless @item.part.blank?
         %dt P/N
         %dd= link_to @item.part.number, @item.part
+      - if @item.location
+        %dt Location
+        %dd= @item.image_location
