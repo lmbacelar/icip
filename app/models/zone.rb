@@ -11,6 +11,7 @@ class Zone < ActiveRecord::Base
   has_many :inspections, :dependent => :destroy
   has_many :image_assignments, :as => :imageable, :dependent => :destroy
   has_many :images, :through => :image_assignments, :dependent => :destroy
+  has_many :locations, :through => :images
   accepts_nested_attributes_for :items, :reject_if => lambda { |i| i[:name].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :images, :reject_if => lambda { |i| i[:file].blank? }, :allow_destroy => true
 
