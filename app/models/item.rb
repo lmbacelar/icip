@@ -1,9 +1,9 @@
 class Item < ActiveRecord::Base
 
   include CsvSerialize::InstanceMethods
-  CsvColumns = %w[name part.number part.kind part.description]
+  CsvColumns = %w[name part.number part.kind part.description location.name location.image.name]
 
-  attr_accessible :name, :kind, :part_number, :part_id, :image_location
+  attr_accessible :name, :kind, :part_number, :part_id, :image_location, :location
 
   belongs_to :zone
   belongs_to :part

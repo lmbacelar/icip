@@ -59,10 +59,18 @@ class Zone < ActiveRecord::Base
       if header == Item::CsvColumns
         # import data
         lines.each do |line|
-          items.create(:name => line[0],
-                       :part_id => Part.find_or_create_by_number(:number => line[1],
-                                                                 :kind => line[2],
-                                                                 :description => line[3]).id)
+          i = items.create(:name => line[0],
+                           :part_id => Part.find_or_create_by_number(:number => line[1],
+                                                                     :kind => line[2],
+                                                                     :description => line[3]).id)
+          # Associate location when possible
+          unless line[5].nil?
+            url = File.join(Rails.root, File.join(File.dirname(fname), line[5]))
+            i.location = Location.find_by_name_and_image_id(
+                                    line[4],
+                                    Image.find_or_create_by_checksum(
+                                      :file => File.open(url), :checksum => Image.checksum(url)).id)
+          end
         end
       else
         puts "ERROR: Expecting ''#{Item::CsvColumns.join(',')}' on '#{fname}'. Skipping import of Items."

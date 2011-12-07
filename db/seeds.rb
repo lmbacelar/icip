@@ -15,7 +15,15 @@ Aircraft.all.each do |a|
     k.zones.each do |z|
       puts "Importing images from csv for #{a.registration}, configuration #{k.number}, zone #{z.name} ..."
       z.images_from_csv "app/assets/seeds/#{a.registration}.#{z.name}.images.csv"
-      puts "Importing items, parts and locations for #{a.registration}, configuration #{k.number}, zone #{z.name} ..."
+      z.images.each do |i|
+        if i.locations.empty?
+          puts "Importing locations from csv for image '#{File.basename(i.file_url, '.*')} ..."
+          i.association_from_csv :locations, "app/assets/seeds/#{File.basename(i.file_url, '.*')}.locations.csv"
+        else
+          puts "Locations already loaded for image '#{File.basename(i.file_url, '.*')}. Skipping ..."
+        end
+      end
+      puts "Importing items, parts and associating locations for #{a.registration}, configuration #{k.number}, zone #{z.name} ..."
       z.items_from_csv "app/assets/seeds/#{a.registration}.#{z.name}.items.csv"
     end
   end
@@ -33,12 +41,16 @@ Part.all.each do |part|
     if File.exist? images_csv
       puts "Importing images for P/N #{part.number} protocol rev.#{p.revnum} ..."
       p.images_from_csv images_csv
+      p.images.each do |i|
+        if i.locations.empty?
+          puts "Importing locations from csv for image '#{File.basename(i.file_url, '.*')} ..."
+          i.association_from_csv :locations, "app/assets/seeds/#{File.basename(i.file_url, '.*')}.locations.csv"
+        else
+          puts "Locations already loaded for image '#{File.basename(i.file_url, '.*')}. Skipping ..."
+        end
+      end
     end
   end
-end
-Image.all.each do |i|
-  puts "Importing locations from csv for image '#{File.basename(i.file_url, '.*')} ..."
-  i.association_from_csv :locations, "app/assets/seeds/#{File.basename(i.file_url, '.*')}.locations.csv"
 end
 
 puts 'Done seeding ...'
