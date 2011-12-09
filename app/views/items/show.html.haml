@@ -9,7 +9,7 @@
                                                      :group_title => 'Location',
                                                      :image_type => :selector }
     - if @item.location
-      .location_box{ :data => { :location => @item.location.to_json }}
+      .location_box{ :data => { :location => @item.location.to_json(:except => [:created_at, :updated_at]) }}
 
   .fix.right
     = render @item, { :group_title => 'Details' }

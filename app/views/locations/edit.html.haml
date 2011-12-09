@@ -1,7 +1,7 @@
 = title 'Edit Location', "Edit Location on |
                          #{link_to File.basename(@image.file_url, '.*'), @image}" |
 
-= data_attributes :location => @location
+= data_attributes :location => @location.to_json(:only => [:x1, :y1, :x2, :y2])
 
 = render 'form', { :target => @location }
 
