@@ -4,10 +4,12 @@
 
 .columns
   .fix.left
-    .item_location
     = render :file => 'images/_images', :locals => { :images => Array(@zone.images),
                                                      :group_title => 'Images',
                                                      :image_type => :selector }
+    - @zone.items.locatable.each do |i|
+      = link_to i.name, edit_item_path(i), :class => 'location_link',
+                :data => { :location => i.location.to_json(:only => [:image_id, :x1, :y1, :x2, :y2]) }
 
   .fix.right
     = render @zone, { :group_title => 'Details' }
