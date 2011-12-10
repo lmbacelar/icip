@@ -1,4 +1,4 @@
-%tr{:class => cycle('', 'alt'), :data => item.location.to_json(:only => [:image_id, :x1, :y1, :x2, :y2])}
+%tr{:class => cycle('', 'alt')}
   %td= item.name
   %td= item.part.try(:kind)
   %td= item.part.try(:number)
