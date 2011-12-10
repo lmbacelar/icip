@@ -24,6 +24,12 @@
         %li= link_to 'Aircrafts', aircrafts_url
         %li= link_to 'Parts', parts_url
         %li= link_to 'Images', images_url
+        .user_nav
+          - if current_user
+            %li= link_to "Log Out #{current_user.email}", logout_path
+          - else
+            %li= link_to "Log In", login_path
+
     #main
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"

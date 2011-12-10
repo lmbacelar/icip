@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111119114539) do
+ActiveRecord::Schema.define(:version => 20111210195743) do
 
   create_table "aircrafts", :force => true do |t|
     t.string   "registration", :limit => 10
@@ -114,6 +114,12 @@ ActiveRecord::Schema.define(:version => 20111119114539) do
     t.integer  "part_id"
   end
 
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tasks", :force => true do |t|
     t.string   "action"
     t.string   "comment"
@@ -122,6 +128,22 @@ ActiveRecord::Schema.define(:version => 20111119114539) do
     t.integer  "item_id"
     t.integer  "checkpoint_id"
     t.integer  "closing_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_roles", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "email"
+    t.string   "tap_number"
+    t.string   "name"
+    t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

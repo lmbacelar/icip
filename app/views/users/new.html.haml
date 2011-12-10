@@ -1,0 +1,17 @@
+= title 'New User'
+
+= simple_form_for @user do |f|
+  = f.error_messages
+  .group
+    .title User Info
+    .content
+      = f.input :email, :input_html => { :size => 20 }
+      = f.input :tap_number, :input_html => { :size => 8 }
+      = f.input :name, :input_html => { :size => 20 }
+      = f.input :password, :input_html => { :size => 16 }
+      = f.input :password_confirmation, :input_html => { :size => 16 }
+  = f.submit
+
+.actions
+  = link_to 'Back to Home Page', root_url
+

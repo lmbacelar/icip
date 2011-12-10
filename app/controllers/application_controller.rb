@@ -1,5 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  helper_method :current_user
+
+private
+  # Returns current logged in user, if any
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
 
   # Takes params
   # Assigns already existing images to target

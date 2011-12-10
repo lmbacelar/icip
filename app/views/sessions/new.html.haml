@@ -1,0 +1,19 @@
+= title 'Log In'
+
+.columns
+  .fix.left.group
+    .title User Credentials
+    .simple_form
+      = form_tag sessions_path do
+        = label_tag :login, 'E-Mail or TAP Nr.'
+        .input= text_field_tag :login
+        = label_tag :password
+        .input= password_field_tag :password
+        = submit_tag 'Log In'
+        %br
+        %br
+
+.actions
+  = link_to 'Back to Home Page', root_url
+
+
