@@ -13,6 +13,8 @@ class Item < ActiveRecord::Base
 
   validates :name, :presence => true, :uniqueness => { :scope => :zone_id }
   validates :part, :presence => true
+  # TODO:
+  # Validate only one item per location on each zone (location uniqueness on scope zone_id)
 
   scope :sort_natural, joins(:part).order("parts.kind, LPAD(SUBSTRING(name from '[0-9]+'),5, '0'), SUBSTRING(name from '[^0-9]+')")
   scope :locatable, joins(:location)
