@@ -1,6 +1,6 @@
-class CreateUserRoles < ActiveRecord::Migration
+class CreateMemberships < ActiveRecord::Migration
   def change
-    create_table :user_roles do |t|
+    create_table :memberships do |t|
       t.integer :user_id
       t.integer :role_id
 

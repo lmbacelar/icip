@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111210195743) do
+ActiveRecord::Schema.define(:version => 20111211125159) do
 
   create_table "aircrafts", :force => true do |t|
     t.string   "registration", :limit => 10
@@ -97,6 +97,13 @@ ActiveRecord::Schema.define(:version => 20111210195743) do
     t.string   "name"
   end
 
+  create_table "memberships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "parts", :force => true do |t|
     t.string   "number"
     t.string   "description"
@@ -128,13 +135,6 @@ ActiveRecord::Schema.define(:version => 20111210195743) do
     t.integer  "item_id"
     t.integer  "checkpoint_id"
     t.integer  "closing_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "user_roles", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "role_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  has_many :memberships, :dependent => :destroy
+  has_many :roles, :through => :memberships
+
   validates  :email,  :presence => true,
                       :uniqueness => { :case_sensitive => false },
                       :length => { :within => 5..50 },
@@ -17,4 +20,15 @@ class User < ActiveRecord::Base
                         :length => { :within => 3..20 },
                         :presence => true
 
+  def role?(role_sym)
+    roles.any? { |r| r.name.underscore.to_sym == role_sym }
+  end
+
+  def role_list
+    roles.collect {|r| r.name}.join(', ')
+  end
+
+  def short_email
+    email[/(^.*)@/,1]
+  end
 end

@@ -1,0 +1,32 @@
+#title= title 'Users'
+
+#single_column
+  %table
+    %thead
+      %tr
+        %th E-Mail
+        %th TAP Nr.
+        %th Name
+        %th Roles
+        %th
+    %tfoot
+      %tr
+        %td
+        %td
+        %td
+        %td
+        %td
+          %ul.icons
+            %li= icon_to 'New', new_user_path
+    %tbody
+      - @users.each do |s|
+        %tr{:class => cycle('', 'alt')}
+          %td= s.email
+          %td= s.tap_number
+          %td= s.name
+          %td= s.role_list
+          %td
+            %ul.icons
+              %li= icon_to 'Edit', edit_user_path(s)
+              %li= icon_to 'Destroy', s, :confirm => 'Are you sure?', :method => :delete
+
