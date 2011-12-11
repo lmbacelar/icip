@@ -13,6 +13,7 @@
           %td
           %td
             %ul.icons
-              %li= icon_to 'New', new_aircraft_konfiguration_path(@aircraft)
+              - if can? :create, Konfiguration
+                %li= icon_to 'New', new_aircraft_konfiguration_path(@aircraft)
       %tbody
         = render :partial => 'konfigurations/konfiguration_row', :collection => konfigurations.newest, :as => :konfiguration

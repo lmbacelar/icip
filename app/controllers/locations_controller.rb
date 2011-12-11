@@ -1,14 +1,6 @@
-class LocationsController < ApplicationController
+class LocationsController < AuthorizedController
   before_filter :load_resources_from_image, :only => [:new, :create]
   before_filter :load_resources_from_location, :except => [:index, :new, :create]
-
-#   def index
-#     @locations = Location.order(:name).where("name like ?", "%#{params[:term]}%")
-#     respond_to do |format|
-#       format.html
-#       format.json { render json: @locations.map(&:name)}
-#     end
-#   end
 
   def new
     @location = @image.locations.build
@@ -45,7 +37,6 @@ private
   end
 
   def load_resources_from_location
-    @location = Location.find(params[:id])
     @image = @location.image
   end
 end

@@ -1,4 +1,4 @@
-class ZonesController < ApplicationController
+class ZonesController < AuthorizedController
   before_filter :load_resources_from_konfiguration, :only => [:new, :create]
   before_filter :load_resources_from_zone, :except => [:new, :create]
 
@@ -40,7 +40,6 @@ private
   end
 
   def load_resources_from_zone
-    @zone = Zone.find(params[:id])
     @konfiguration = @zone.konfiguration
     @aircraft = @konfiguration.aircraft
   end

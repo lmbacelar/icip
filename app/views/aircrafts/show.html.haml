@@ -9,8 +9,11 @@
 
 
 .actions
-  = link_to 'View All Aircrafts', aircrafts_path
-  |
-  = link_to 'Edit Aircraft', edit_aircraft_path(@aircraft)
-  |
-  = link_to 'Destroy Aircraft', @aircraft, :confirm => 'Are you sure?', :method => :delete
+  -if can? :read, Aircraft
+    = link_to 'View All Aircrafts', aircrafts_path
+  -if can? :update, @aircraft
+    |
+    = link_to 'Edit Aircraft', edit_aircraft_path(@aircraft)
+  -if can? :destroy, @aircraft
+    |
+    = link_to 'Destroy Aircraft', @aircraft, :confirm => 'Are you sure?', :method => :delete

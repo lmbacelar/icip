@@ -1,15 +1,6 @@
-class ItemsController < ApplicationController
+class ItemsController < AuthorizedController
   before_filter :load_resources_from_zone, :only => [:index, :new, :create]
   before_filter :load_resources_from_item, :except => [:index, :new, :create]
-
-##   def index
-##     @item = @zone.items.on_image(params[:image_id]).at_position(params[:x], params[:y]).first
-##     if @item
-##       redirect_to @item
-##     else
-##       redirect_to :back
-##     end
-##   end
 
   def show
   end
@@ -51,7 +42,6 @@ private
   end
 
   def load_resources_from_item
-    @item = Item.find(params[:id])
     @zone = @item.zone
     @konfiguration = @zone.konfiguration
     @aircraft = @konfiguration.aircraft

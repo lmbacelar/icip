@@ -15,7 +15,8 @@
         %td
         %td
           %ul.icons
-            %li= icon_to 'New', new_aircraft_path
+            - if can? :create, Aircraft
+              %li= icon_to 'New', new_aircraft_path
     %tbody
       - @aircrafts.each do |a|
         %tr{:class => cycle('', 'alt')}
@@ -24,7 +25,10 @@
           %td= a.model
           %td
             %ul.icons
-              %li= icon_to 'Show', a
-              %li= icon_to 'Edit', edit_aircraft_path(a)
-              %li= icon_to 'Destroy', a, :confirm => 'Are you sure?', :method => :delete
+              -if can? :read, a
+                %li= icon_to 'Show', a
+              -if can? :update, a
+                %li= icon_to 'Edit', edit_aircraft_path(a)
+              -if can? :destroy, a
+                %li= icon_to 'Destroy', a, :confirm => 'Are you sure?', :method => :delete
 

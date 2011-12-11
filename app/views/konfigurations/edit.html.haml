@@ -4,6 +4,8 @@
 = render 'form', { :target => @konfiguration }
 
 .actions
-  = link_to 'Show', @konfiguration
-  |
-  = link_to "Back to #{@aircraft.registration}", @aircraft
+  - if can? :read, @konfiguration
+    = link_to 'Show', @konfiguration
+  -if can? :read, @aircraft
+    |
+    = link_to "Back to #{@aircraft.registration}", @aircraft

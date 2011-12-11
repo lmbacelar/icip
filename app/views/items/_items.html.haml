@@ -15,6 +15,7 @@
           %td
           %td
             %ul.icons
-              %li= icon_to 'New', new_zone_item_path(@zone)
+              - if can? :create, Item
+                %li= icon_to 'New', new_zone_item_path(@zone)
       %tbody
         = render :partial => 'items/item_row', :collection => items.sort_natural, :as => :item

@@ -3,6 +3,8 @@
 = render 'form', { :target => @protocol }
 
 .actions
-  = link_to 'Show', @protocol
-  |
-  = link_to "Back to P/N #{@part.number}", @part
+  - if can? :read, @protocol
+    = link_to 'Show', @protocol
+  - if can? :read, @part
+    |
+    = link_to "Back to P/N #{@part.number}", @part

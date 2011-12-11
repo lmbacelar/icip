@@ -1,4 +1,4 @@
-class KonfigurationsController < ApplicationController
+class KonfigurationsController < AuthorizedController
   before_filter :load_resources_from_aircraft, :only => [:new, :create]
   before_filter :load_resources_from_konfiguration, :except => [:new, :create]
 
@@ -41,7 +41,6 @@ private
   end
 
   def load_resources_from_konfiguration
-    @konfiguration = Konfiguration.find(params[:id])
     @aircraft = @konfiguration.aircraft
   end
 end

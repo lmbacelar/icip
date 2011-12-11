@@ -3,5 +3,6 @@
 = render 'form'
 
 .actions
-  = link_to 'Back to Part List', parts_path
+  - if can? :read, Part
+    = link_to 'Back to Part List', parts_path
 

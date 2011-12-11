@@ -4,6 +4,9 @@
   %td= "#{zone.inspection_interval} days"
   %td
     %ul.icons
-      %li= icon_to 'Show', zone
-      %li= icon_to 'Edit', edit_zone_path(zone)
-      %li= icon_to 'Destroy', zone, :confirm => 'Are you sure?', :method => :delete
+      - if can? :read, zone
+        %li= icon_to 'Show', zone
+      - if can? :update, zone
+        %li= icon_to 'Edit', edit_zone_path(zone)
+      - if can? :destroy, zone
+        %li= icon_to 'Destroy', zone, :confirm => 'Are you sure?', :method => :delete

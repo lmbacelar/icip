@@ -3,6 +3,9 @@
   %td= konfiguration.description
   %td
     %ul.icons
-      %li= icon_to 'Show', konfiguration
-      %li= icon_to 'Edit', edit_konfiguration_path(konfiguration)
-      %li= icon_to 'Destroy', konfiguration, :confirm => 'Are you sure?', :method => :delete
+      - if can? :read, konfiguration
+        %li= icon_to 'Show', konfiguration
+      - if can? :update, konfiguration
+        %li= icon_to 'Edit', edit_konfiguration_path(konfiguration)
+      - if can? :destroy, konfiguration
+        %li= icon_to 'Destroy', konfiguration, :confirm => 'Are you sure?', :method => :delete

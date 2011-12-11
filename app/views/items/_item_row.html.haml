@@ -4,6 +4,9 @@
   %td= item.part.try(:number)
   %td
     %ul.icons
-      %li= icon_to 'Show', item
-      %li= icon_to 'Edit', edit_item_path(item)
-      %li= icon_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete
+      - if can? :read, item
+        %li= icon_to 'Show', item
+      - if can? :update, item
+        %li= icon_to 'Edit', edit_item_path(item)
+      - if can? :destroy, item
+        %li= icon_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete

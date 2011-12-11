@@ -1,4 +1,4 @@
-class ProtocolsController < ApplicationController
+class ProtocolsController < AuthorizedController
   before_filter :load_resources_from_part, :only => [:new, :create]
   before_filter :load_resources_from_protocol, :except => [:new, :create]
 
@@ -6,7 +6,6 @@ class ProtocolsController < ApplicationController
   end
 
   def new
-    @protocol = @part.protocols.build
     @protocol.revnum = 1 + ( @part.protocols.maximum(:revnum) || -1 )
   end
 
@@ -41,7 +40,6 @@ private
   end
 
   def load_resources_from_protocol
-    @protocol = Protocol.find(params[:id])
     @part = @protocol.part
   end
 end

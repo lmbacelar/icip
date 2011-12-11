@@ -8,6 +8,7 @@ gem 'simple_form'
 gem 'nested_form', :path => '~/git/nested_form'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'cancan'
 
 group :test do
   # Pretty printed test output

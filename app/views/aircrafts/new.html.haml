@@ -3,5 +3,6 @@
 = render 'form'
 
 .actions
-  = link_to 'Back to Aircraft List', aircrafts_path
+  - if can? :read, Aircraft
+    = link_to 'Back to Aircraft List', aircrafts_path
 

@@ -6,7 +6,9 @@
 = render 'form', { :target => @item }
 
 .actions
-  = link_to "Back to Zone #{@zone.name}", @zone
-  |
-  = link_to "Back to #{@aircraft.registration}", @aircraft
+  - if can? :read, @zone
+    = link_to "Back to Zone #{@zone.name}", @zone
+  - if can? :read, @aircraft
+    |
+    = link_to "Back to #{@aircraft.registration}", @aircraft
 

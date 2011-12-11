@@ -3,6 +3,8 @@
 = render 'form'
 
 .actions
-  = link_to 'Show', @aircraft
-  |
-  = link_to 'Back to Aircraft List', aircrafts_path
+  - if can? :read, @aircraft
+    = link_to 'Show', @aircraft
+  - if can? :read, Aircraft
+    |
+    = link_to 'Back to Aircraft List', aircrafts_path

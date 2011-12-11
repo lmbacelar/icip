@@ -17,7 +17,8 @@
         %td
         %td
           %ul.icons
-            %li= icon_to 'New', new_part_path
+            - if can? :create, Part
+              %li= icon_to 'New', new_part_path
     %tbody
       - @parts.each do |p|
         %tr{:class => cycle('', 'alt')}
@@ -27,7 +28,10 @@
           %td= p.protocols.current.try(:revnum)
           %td
             %ul.icons
-              %li= icon_to 'Show', p
-              %li= icon_to 'Edit', edit_part_path(p)
-              %li= icon_to 'Destroy', p, :confirm => 'Are you sure?', :method => :delete
+              - if can? :read, p
+                %li= icon_to 'Show', p
+              - if can? :update, p
+                %li= icon_to 'Edit', edit_part_path(p)
+              - if can? :destroy, p
+                %li= icon_to 'Destroy', p, :confirm => 'Are you sure?', :method => :delete
 

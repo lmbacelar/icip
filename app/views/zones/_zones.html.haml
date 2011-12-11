@@ -15,6 +15,7 @@
           %td
           %td
             %ul.icons
-              %li= icon_to 'New', new_konfiguration_zone_path(@konfiguration)
+              - if can? :create, Zone
+                %li= icon_to 'New', new_konfiguration_zone_path(@konfiguration)
       %tbody
         = render :partial => 'zones/zone_row', :collection => zones.asc, :as => :zone

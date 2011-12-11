@@ -20,11 +20,16 @@
       = image_tag 'tap_me_black.png'
     #menu
       %ul
-        %li= link_to 'Inspections', inspections_url
-        %li= link_to 'Aircrafts', aircrafts_url
-        %li= link_to 'Parts', parts_url
-        %li= link_to 'Images', images_url
-        %li= link_to 'Users', users_url
+        -if can?(:read, Inspection)
+          %li= link_to 'Inspections', inspections_url
+        -if can?(:read, Aircraft)
+          %li= link_to 'Aircrafts', aircrafts_url
+        -if can?(:read, Part)
+          %li= link_to 'Parts', parts_url
+        -if can?(:read, Image)
+          %li= link_to 'Images', images_url
+        -if can?(:read, User)
+          %li= link_to 'Users', users_url
         .user_nav
           - if current_user
             %li= link_to "Log Out #{current_user.short_email}", logout_path

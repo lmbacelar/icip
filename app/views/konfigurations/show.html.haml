@@ -9,9 +9,12 @@
       = render :file => 'zones/_zones', :locals => { :zones => @konfiguration.zones }
 
 .actions
-  = link_to "Back to #{@aircraft.registration}", @aircraft
-  |
-  = link_to 'Edit Configuration', edit_konfiguration_path(@konfiguration)
-  |
-  = link_to 'Destroy Configuration', @konfiguration, :confirm => 'Are you sure?', :method => :delete
+  - if can? :read, @aircraft
+    = link_to "Back to #{@aircraft.registration}", @aircraft
+  - if can? :update, @konfiguration
+    |
+    = link_to 'Edit Configuration', edit_konfiguration_path(@konfiguration)
+  - if can? :destroy, @konfiguration
+    |
+    = link_to 'Destroy Configuration', @konfiguration, :confirm => 'Are you sure?', :method => :delete
 

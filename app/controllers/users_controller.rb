@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < AuthorizedController
   force_ssl :only => :new
 
   def index

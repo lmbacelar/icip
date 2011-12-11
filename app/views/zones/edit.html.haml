@@ -5,7 +5,9 @@
 = render 'form', { :target => @zone }
 
 .actions
-  = link_to "Back to Configuration ##{@konfiguration.number}", @konfiguration
-  |
-  = link_to "Back to #{@aircraft.registration}", @aircraft
+  - if can? :read, @konfiguration
+    = link_to "Back to Configuration ##{@konfiguration.number}", @konfiguration
+  - if can? :read, @aircraft
+    |
+    = link_to "Back to #{@aircraft.registration}", @aircraft
 

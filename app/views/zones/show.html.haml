@@ -16,11 +16,15 @@
     = render :file => 'items/_items', :locals => { :items => @zone.items }
 
 .actions
-  = link_to "Back to Configuration ##{@konfiguration.number}", @konfiguration
-  |
-  = link_to "Back to #{@aircraft.registration}", @aircraft
-  |
-  = link_to 'Edit Zone', edit_zone_path(@zone)
-  |
-  = link_to 'Destroy Zone', @zone, :confirm => 'Are you sure?', :method => :delete
+  - if can? :read, @konfiguration
+    = link_to "Back to Configuration ##{@konfiguration.number}", @konfiguration
+  - if can? :read, @aircraft
+    |
+    = link_to "Back to #{@aircraft.registration}", @aircraft
+  - if can? :update, @zone
+    |
+    = link_to 'Edit Zone', edit_zone_path(@zone)
+  - if can? :destroy, @zone
+    |
+    = link_to 'Destroy Zone', @zone, :confirm => 'Are you sure?', :method => :delete
 

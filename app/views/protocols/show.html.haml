@@ -10,17 +10,21 @@
 .columns
   .fix.left
     - if @protocol.images.any?
-      = render :file => 'images/_images', :locals => { :images => @protocol.images, :image_type => :link_to_image }
+      = render :file => 'images/_images', :locals => { :images => @protocol.images,
+                                                       :group_title => 'Images',
+                                                       :image_type => :link_to_image }
   .fix.right
     .content
       = render :file => 'checkpoints/_checkpoints', :locals => { :checkpoints => @protocol.checkpoints }
 
 .actions
-  -# TODO
-  -# ONLY ALLOW EDITING IF THERE ARE NO INSPECTIONS ASSOCIATED?
-  = link_to 'Back to Part', @part
-  |
-  = link_to 'Edit Protocol', edit_protocol_path(@protocol)
-  -if @protocol.current?
+  - if can? :read, @part
+    = link_to 'Back to Part', @part
+  - if can? :update, @protocol
+    -# TODO
+    -# ONLY ALLOW EDITING IF THERE ARE NO INSPECTIONS ASSOCIATED?
+    |
+    = link_to 'Edit Protocol', edit_protocol_path(@protocol)
+  -if @protocol.current? && can?(:destroy, @protocol)
     |
     = link_to 'Destroy Protocol', @protocol, :confirm => 'Are you sure?', :method => :delete
