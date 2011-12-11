@@ -5,7 +5,7 @@ Icip::Application.routes.draw do
   resources :users
   resources :sessions
 
-  root :to => 'inspections#index'
+  root :to => 'sessions#new'
 
   resources :aircrafts, :shallow => true do
     resources :konfigurations, :shallow => true do
