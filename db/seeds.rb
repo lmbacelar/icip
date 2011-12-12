@@ -22,6 +22,16 @@ User.create(:email => 'technician@icip.com',
             :name => 'Technician',
             :password => 'technician',
             :password_confirmation => 'technician').roles << Role.find_by_name(:technician)
+User.create(:email => 'lbacelar@tap.pt',
+            :tap_number => '258756',
+            :name => 'Luis Bacelar',
+            :password => 'admin',
+            :password_confirmation => 'admin').roles << Role.find_by_name(:admin)
+User.create(:email => 'vmmartinho@tap.pt',
+            :tap_number => '308007',
+            :name => 'Vera Martinho',
+            :password => 'engineer',
+            :password_confirmation => 'engineer').roles << Role.find_by_name(:engineer)
 # Loading Aircrafts
 puts 'IMPORTING Aircrafts from csv ...'
 Aircraft.from_csv 'db/seeds/aircrafts.csv'
@@ -53,7 +63,7 @@ Part.all.each do |part|
   checkpoints_csv = "db/seeds/#{part.number}.checkpoints.csv"
   images_csv = "db/seeds/#{part.number}.images.csv"
   if File.exist?(checkpoints_csv) || File.exist?(images_csv)
-    p = part.protocols.create(:revnum => 0, :author => 'Vera Martinho')
+    p = part.protocols.create(:revnum => 0, :author => User.find_by_tap_number('308007'))
     if File.exist? checkpoints_csv
       puts "IMPORTING Checkpoints for P/N #{part.number} Protocol Rev.#{p.revnum} ..."
       p.checkpoints_from_csv checkpoints_csv
