@@ -6,6 +6,7 @@ class Task < ActiveRecord::Base
   belongs_to :item
   belongs_to :checkpoint
   belongs_to :closing
+  belongs_to :technician, :class_name => 'User'
 
   validates :technician, :presence => true
   validates :action, :inclusion => { :in => Actions }

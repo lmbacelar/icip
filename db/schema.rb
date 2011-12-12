@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20111211125159) do
   create_table "closings", :force => true do |t|
     t.string   "support_doc"
     t.string   "comments"
-    t.string   "responsible"
+    t.integer  "engineer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(:version => 20111211125159) do
 
   create_table "protocols", :force => true do |t|
     t.integer  "revnum"
-    t.string   "author"
+    t.integer  "author_id"
     t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -130,7 +130,7 @@ ActiveRecord::Schema.define(:version => 20111211125159) do
   create_table "tasks", :force => true do |t|
     t.string   "action"
     t.string   "comment"
-    t.string   "technician"
+    t.integer  "technician_id"
     t.integer  "inspection_id"
     t.integer  "item_id"
     t.integer  "checkpoint_id"

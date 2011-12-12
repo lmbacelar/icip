@@ -3,7 +3,7 @@ class CreateClosings < ActiveRecord::Migration
     create_table :closings do |t|
       t.string :support_doc
       t.string :comments
-      t.string :responsible
+      t.integer :engineer_id
 
       t.timestamps
     end

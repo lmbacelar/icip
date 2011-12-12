@@ -5,6 +5,7 @@ class Protocol < ActiveRecord::Base
   attr_accessible :revnum, :notes, :author, :images_attributes, :images_attributes, :checkpoints_attributes
 
   belongs_to :part
+  belongs_to :author, :class_name => 'User'
   has_many :image_assignments, :as => :imageable, :dependent => :destroy
   has_many :images, :through => :image_assignments, :dependent => :destroy
   accepts_nested_attributes_for :images, :allow_destroy => true, :reject_if => lambda { |i| i[:file].blank? }
