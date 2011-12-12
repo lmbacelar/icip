@@ -1,7 +1,30 @@
 #title= title 'Inspections'
 
-= render :partial => 'inspections', :locals => { :inspections => @inspections.scheduled, :group_title => 'Scheduled Inspections' }
-= render :partial => 'inspections', :locals => { :inspections => @inspections.assigned, :group_title => 'Assigned Inspections' }
-= render :partial => 'inspections', :locals => { :inspections => @inspections.pending, :group_title => 'Pending Inspections' }
-= render :partial => 'inspections', :locals => { :inspections => @inspections.closed, :group_title => 'Closed Inspections' }
-
+%table
+  %thead
+    %tr
+      %th State
+      %th Date Open
+      %th Aircraft
+      %th
+  %tfoot
+    %tr
+      %td
+      %td
+      %td
+      %td
+      %td
+  %tbody
+    - @inspections.each do |i|
+      %tr{:class => cycle('', 'alt')}
+        %td= i.state.capitalize
+        %td= I18n.l i.created_at, :format => :short_date
+        %td= i.zone.name
+        %td
+          %ul.icons
+            - if can? :read, i
+              %li= icon_to 'Show', i
+            -# if can? :update, i
+              %li= icon_to 'Edit', edit_inspection_path(i)
+            - if can? :destroy, i
+              %li= icon_to 'Destroy', i, :confirm => 'Are you sure?', :method => :delete
