@@ -3,13 +3,11 @@
 #
 
 pt:
-
   date:
     formats:
       default: "%d/%m/%Y"
       short: "%d de %B"
       long: "%d de %B de %Y"
-
     day_names:
       - Domingo
       - Segunda
@@ -26,7 +24,6 @@ pt:
       - Qui
       - Sex
       - Sáb
-
     month_names:
       - ~
       - Janeiro
@@ -59,7 +56,6 @@ pt:
       - :day
       - :month
       - :year
-
   time:
     formats:
       default: "%A, %d de %B de %Y, %H:%Mh"
@@ -231,3 +227,8 @@ pt:
       full_messages:
         format: "%{attribute} %{message}"
 
+  views:
+    pagination:
+      previous: "&lt;"
+      next: "&gt;"
+      truncate: ".."

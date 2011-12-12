@@ -15,14 +15,13 @@ Icip::Application.routes.draw do
     end
   end
   resources :parts, :shallow => true do
+    get 'page/:page', :action => :index, :on => :collection
     resources :protocols
   end
   resources :inspections
   resources :images, :shallow => true do
     resources :locations
   end
-
-
 
 
   # The priority is based upon order of creation:
