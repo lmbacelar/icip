@@ -1,6 +1,5 @@
 #title= title 'Parts'
 
-= paginate @parts, :window => 10
 %br
 
 #single_column
@@ -14,10 +13,7 @@
         %th
     %tfoot
       %tr
-        %td
-        %td
-        %td
-        %td
+        %td{:colspan => 4}= paginate @parts, :window => 10
         %td
           %ul.icons
             - if can? :create, Part
