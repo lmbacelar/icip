@@ -14,13 +14,6 @@
           %th
       %tfoot
         %tr
-          %td
-          %td
-          %td
-          %td
-          %td
-          %td
-          %td
-          %td
+          %td{colspan => 8}
       %tbody
         = render :partial => 'tasks/task_row', :collection => tasks, :as => :task

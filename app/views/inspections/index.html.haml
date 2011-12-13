@@ -9,11 +9,7 @@
       %th
   %tfoot
     %tr
-      %td
-      %td
-      %td
-      %td
-      %td
+      %td{:colspan => 5}
   %tbody
     - @inspections.each do |i|
       %tr{:class => cycle('', 'alt')}
