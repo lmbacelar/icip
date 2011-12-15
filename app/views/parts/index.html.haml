@@ -1,36 +1,37 @@
 #title= title 'Parts'
 
-%br
-
-#single_column
-  %table
-    %thead
-      %tr
-        %th Number
-        %th Kind
-        %th Description
-        %th Protocol Rev.
-        %th
-    %tfoot
-      %tr
-        %td{:colspan => 4}= paginate @parts
-        %td
-          %ul.icons
-            - if can? :create, Part
-              %li= icon_to 'New', new_part_path
-    %tbody
-      - @parts.each do |p|
-        %tr{:class => cycle('', 'alt')}
-          %td= p.number
-          %td= p.kind
-          %td= p.description
-          %td= p.protocols.current.try(:revnum)
+= render :file => 'shared/search_form', :locals => { :target => parts_path }
+- if @parts.empty?
+  = render :file => 'shared/no_search_results', :locals => { :search => params[:query] }
+- else
+  #single_column
+    %table
+      %thead
+        %tr
+          %th Number
+          %th Kind
+          %th Description
+          %th Protocol Rev.
+          %th
+      %tfoot
+        %tr
+          %td{:colspan => 4}= paginate @parts
           %td
             %ul.icons
-              - if can? :read, p
-                %li= icon_to 'Show', p
-              - if can? :update, p
-                %li= icon_to 'Edit', edit_part_path(p)
-              - if can? :destroy, p
-                %li= icon_to 'Destroy', p, :confirm => 'Are you sure?', :method => :delete
-
+              - if can? :create, Part
+                %li= icon_to 'New', new_part_path
+      %tbody
+        - @parts.each do |p|
+          %tr{:class => cycle('', 'alt')}
+            %td= p.number
+            %td= p.kind
+            %td= p.description
+            %td= p.current_protocol_rev
+            %td
+              %ul.icons
+                - if can? :read, p
+                  %li= icon_to 'Show', p
+                - if can? :update, p
+                  %li= icon_to 'Edit', edit_part_path(p)
+                - if can? :destroy, p
+                  %li= icon_to 'Destroy', p, :confirm => 'Are you sure?', :method => :delete
