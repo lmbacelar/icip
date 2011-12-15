@@ -4,12 +4,15 @@ gem 'rails', '3.1.0'
 gem 'pg'
 gem 'jquery-rails'
 gem 'haml-rails'
+gem 'cancan'
 gem 'simple_form'
 gem 'nested_form', :path => '~/git/nested_form'
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'cancan'
+gem 'tire'
 gem 'kaminari'
+# This is only needed to rebuild indexes with tire gem
+gem 'will_paginate'
 
 group :test do
   # Pretty printed test output
