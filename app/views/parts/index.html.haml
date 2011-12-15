@@ -13,7 +13,7 @@
         %th
     %tfoot
       %tr
-        %td{:colspan => 4}= paginate @parts, :window => 10
+        %td{:colspan => 4}= paginate @parts
         %td
           %ul.icons
             - if can? :create, Part
