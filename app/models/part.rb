@@ -29,33 +29,42 @@ class Part < ActiveRecord::Base
 
   mapping do
     indexes :id, type: 'integer'
-    indexes :number
+    indexes :number, boost: 5, index: 'not_analyzed'
     indexes :description
-    indexes :kind
+    indexes :kind, boost: 10, index: 'not_analyzed'
+    indexes :created_at, type: 'date', index: 'no'
+    indexes :updated_at, type: 'date', index: 'no'
     indexes :current_protocol_rev, type: 'integer'
   end
 
-  def self.search(params)
+  def self.search(params = {})
     tire.search(:page => params[:page], :per_page => Kaminari.config.default_per_page) do |s|
       if params[:term].present?
         # autocomplete-ui part number
-        s.query { string "number:*#{params[:term]}*" }
+        s.filter :prefix, 'number' => params[:term]
+        s.filter :not, :term => { :kind => 'Subpart' }
+        s.sort { by ['kind', 'number'] }
       else
         # regular search
         s.query { string params[:query] } if params[:query].present?
+        # TODO:
+        #
+        # Allow sorting by something passed on params, and sort on relevance
+        s.sort { by ['kind', 'number'] }
       end
+      #raise s.to_curl
     end
   end
 
   def to_indexed_json
-    to_json(methods: [:current_protocol])
-  end
-
-  def paginate
-    page
+    to_json(methods: [:current_protocol_rev])
   end
 
   def current_protocol_rev
     protocols.current.try(:revnum)
+  end
+
+  def self.paginate(options = {})
+    page(options[:page]).per(options[:per_page])
   end
 end
