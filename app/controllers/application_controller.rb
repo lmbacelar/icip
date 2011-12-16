@@ -24,4 +24,20 @@ private
       end
     end
   end
+
+  # Rescue from incorrect search
+  #
+  # TODO:
+  # Put this on a class or module.
+  # Load only on SearcheableController.
+  rescue_from Tire::Search::SearchRequestFailed do |error|
+    # Indicate incorrect query to the user
+    if error.message =~ /SearchParseException/ && params[:query]
+      flash[:error] = "Sorry, your query '#{params[:query]}' is invalid..."
+    else
+      # ... handle other possible situations ...
+    end
+    redirect_to :back
+  end
+
 end
