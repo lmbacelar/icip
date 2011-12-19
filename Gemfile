@@ -11,8 +11,6 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'tire'
 gem 'kaminari'
-# This is only needed to rebuild indexes with tire gem
-gem 'will_paginate'
 
 group :test do
   # Pretty printed test output
