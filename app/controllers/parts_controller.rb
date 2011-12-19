@@ -1,5 +1,6 @@
 class PartsController < AuthorizedController
   def index
+    params[:preset] ||= Part::SearchPresets.first[1] # if defined? Part::SearchPresets
     @parts = Part.search(params)
     respond_to do |format|
       format.html
