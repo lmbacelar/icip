@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(:version => 20111211125159) do
     t.datetime "updated_at"
   end
 
-  create_table "tasks", :force => true do |t|
+  create_table "tascs", :force => true do |t|
     t.string   "action"
     t.string   "comment"
     t.integer  "technician_id"

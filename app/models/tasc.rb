@@ -1,4 +1,4 @@
-class Task < ActiveRecord::Base
+class Tasc < ActiveRecord::Base
 
   Actions = %w[Repair Replace]
 
@@ -14,6 +14,6 @@ class Task < ActiveRecord::Base
   validates :item, :presence => true
   validates :checkpoint, :presence => true
 
-  scope :pending, where('tasks.closing_id IS NULL')
-  scope :closed, where('tasks.closing_id IS NOT NULL')
+  scope :pending, where('tascs.closing_id IS NULL')
+  scope :closed, where('tascs.closing_id IS NOT NULL')
 end

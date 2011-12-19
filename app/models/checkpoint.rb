@@ -6,7 +6,7 @@ class Checkpoint < ActiveRecord::Base
   belongs_to :protocol
   belongs_to :part
   has_one :location, :as => :locatable, :dependent => :destroy
-  has_many :tasks, :dependent => :destroy
+  has_many :tascs, :dependent => :destroy
 
   validates :number, :presence => true
   validates :part, :presence => true
