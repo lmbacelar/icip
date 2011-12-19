@@ -6,6 +6,7 @@
       %th State
       %th Date Open
       %th Aircraft
+      %th Zone
       %th
   %tfoot
     %tr
@@ -15,6 +16,7 @@
       %tr{:class => cycle('', 'alt')}
         %td= i.state.capitalize
         %td= I18n.l i.created_at, :format => :short_date
+        %td= i.zone.konfiguration.aircraft.registration
         %td= i.zone.name
         %td
           %ul.icons
