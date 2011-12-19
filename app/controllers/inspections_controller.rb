@@ -4,6 +4,8 @@ class InspectionsController < AuthorizedController
 #   end
 
   def index
+    params[:preset] ||= Inspection::SearchPresets.first[1] # if defined? Inspection::SearchPresets
+    @inspections = Inspection.search(params)
   end
 
   def show

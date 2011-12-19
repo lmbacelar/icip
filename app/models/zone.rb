@@ -20,9 +20,6 @@ class Zone < ActiveRecord::Base
                                                                         :greater_than => 0,
                                                                         :less_than => 366 }
 
-  scope :asc, order('name ASC')
-  scope :desc, order('name DESC')
-
   def schedule_inspection
     if inspections.maximum(:execution_date).nil? ||
        (inspections.maximum(:execution_date) <= Time.now - inspection_interval.days)

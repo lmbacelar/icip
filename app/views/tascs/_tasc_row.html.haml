@@ -3,7 +3,7 @@
   %td= tasc.checkpoint.part.number
   %td= tasc.checkpoint.description
   %td= tasc.action
-  %td= tasc.technician
+  %td= tasc.technician.name
   %td= I18n.l(tasc.closing.try(:updated_at), :format => :short_date) if tasc.closing.present?
   %td= tasc.closing.try(:responsible)
   %td

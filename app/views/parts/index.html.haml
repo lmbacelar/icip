@@ -1,6 +1,6 @@
 #title= title 'Parts'
 
-= render :file => 'shared/search_form', :locals => { :target => parts_path }
+= render :file => 'shared/search_form', :locals => { :object_class => Part, :target => parts_path }
 - if @parts.empty?
   = render :file => 'shared/no_search_results', :locals => { :search => params[:query] }
 - else

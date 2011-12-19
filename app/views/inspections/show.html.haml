@@ -8,8 +8,8 @@
     = render @aircraft, { :group_title => 'Aircraft' }
   .var.right
     = render @zone, { :group_title => 'Zone' }
-  - if @inspection.tasks.any?
-    = render :file => 'tasks/_tasks', :locals => { :tasks => @inspection.tasks }
+  - if @inspection.tascs.any?
+    = render :file => 'tascs/_tascs', :locals => { :tascs => @inspection.tascs }
 
 .actions
   = link_to 'View Inspections', inspections_path
