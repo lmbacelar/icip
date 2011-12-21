@@ -8,12 +8,13 @@
           %th Item
           %th P/N
           %th Description
+          %th ETR
           %th Technician
           %th Closing Date
           %th Responsible
           %th
       %tfoot
         %tr
-          %td{:colspan => 8}
+          %td{:colspan => 9}
       %tbody
         = render :partial => 'tascs/tasc_row', :collection => tascs, :as => :tasc

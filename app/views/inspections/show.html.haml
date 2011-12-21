@@ -4,11 +4,11 @@
 
 
 .columns
-  = render @inspection, { :group_title => 'Details' }
   .var.left
     = render @aircraft, { :group_title => 'Aircraft' }
   .var.right
     = render @zone, { :group_title => 'Zone' }
+  = render @inspection, { :group_title => 'Details' }
   - if @inspection.tascs.any?
     = render :file => 'tascs/_tascs', :locals => { :tascs => @inspection.tascs }
 
