@@ -2,7 +2,8 @@
 
 = render :file => 'shared/search_form', :locals => { :object_class => Inspection, :target => inspections_path }
 - if @inspections.empty?
-  = render :file => 'shared/no_search_results', :locals => { :search => params[:query] }
+  = render :file => 'shared/no_search_results', :locals => {  :search => params[:query],
+                                                              :preset => params[:preset] }
 - else
   #single_column
     %table
@@ -15,7 +16,7 @@
           %th
       %tfoot
         %tr
-          %td{:colspan => 5}
+          %td{:colspan => 5}= paginate @inspections
       %tbody
         - @inspections.each do |i|
           %tr{:class => cycle('', 'alt')}
