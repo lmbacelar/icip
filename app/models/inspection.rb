@@ -1,5 +1,6 @@
 class Inspection < ActiveRecord::Base
   belongs_to :zone
+  belongs_to :technician, :class_name => 'User'
   has_one :konfiguration, :through => :zone
   has_one :aircraft, :through => :konfiguration
   has_many :tascs, :dependent => :destroy
@@ -54,8 +55,8 @@ class Inspection < ActiveRecord::Base
   mapping do
     indexes :id, type: 'integer'
     indexes :state
-    indexes :aircraft_registration
-    indexes :zone_name
+    indexes :aircraft_registration, index: 'not_analyzed'
+    indexes :zone_name, index: 'not_analyzed'
     indexes :created_at, type: 'date'
     indexes :updated_at, type: 'date'
   end
