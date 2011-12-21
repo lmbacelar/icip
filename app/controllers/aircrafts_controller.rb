@@ -1,6 +1,6 @@
 class AircraftsController < AuthorizedController
   def index
-    @aircrafts = Aircraft.all
+    @aircrafts = Aircraft.order :registration
   end
 
   def show
