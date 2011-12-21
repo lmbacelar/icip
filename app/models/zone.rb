@@ -23,7 +23,7 @@ class Zone < ActiveRecord::Base
   def schedule_inspection
     if inspections.maximum(:execution_date).nil? ||
        (inspections.maximum(:execution_date) <= Time.now - inspection_interval.days)
-      inspections.create if inspections.scheduled.empty?
+      inspections.create if inspections.unassigned.empty?
     end
   end
 
