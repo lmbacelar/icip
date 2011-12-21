@@ -4,6 +4,7 @@
 
 
 .columns
+  = render @inspection, { :group_title => 'Details' }
   .var.left
     = render @aircraft, { :group_title => 'Aircraft' }
   .var.right
