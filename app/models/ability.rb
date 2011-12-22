@@ -9,6 +9,9 @@ class Ability
     else
       if user.role? :technician
         can :read, [Inspection, Protocol, Checkpoint, Tasc, Closing]
+        can [:read, :update], Inspection do |insp|
+          insp.try(:technician) == user
+        end
         can :manage, [Tasc] do |tasc|
           tasc.try(:technician) == user
         end

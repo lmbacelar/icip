@@ -1,20 +1,24 @@
-= title "#{I18n.l(@inspection.execution_date, :format => :short_date) if @inspection.execution_date} Inspection on |
-                  #{link_to @aircraft.registration, @aircraft}, |
-                  #{link_to "Zone #{@zone.name}", @zone}" |
-
+= title "Inspection on #{@aircraft.registration}, Zone £{@zone.name}", |
+          "#{I18n.l(@inspection.execution_date, :format => :short_date) if @inspection.execution_date} Inspection on |
+           #{link_to @aircraft.registration, @aircraft}, |
+           #{link_to "Zone #{@zone.name}", @zone}" |
 
 .columns
-  .var.left
-    = render @aircraft, { :group_title => 'Aircraft' }
-  .var.right
-    = render @zone, { :group_title => 'Zone' }
-  = render @inspection, { :group_title => 'Details' }
-  - if @inspection.tascs.any?
-    = render :file => 'tascs/_tascs', :locals => { :tascs => @inspection.tascs }
+  .fix.left
+    = render :file => 'images/_images', :locals => { :images => Array(@zone.images),
+                                                     :group_title => 'Zone',
+                                                     :image_type => :selector }
+  .fix.right
+    = render @inspection, { :group_title => 'Details' }
+    - if @inspection.tascs.any?
+      = render :file => 'tascs/_tascs', :locals => { :tascs => @inspection.tascs }
 
 .actions
-  = link_to 'View Inspections', inspections_path
-  |
-  =# link_to 'Edit Aircraft', edit_aircraft_path(@aircraft)
-  |
-  =# link_to 'Destroy Aircraft', @aircraft, :confirm => 'Are you sure?', :method => :delete
+  -if can? :read, Inspection
+    = link_to 'View Inspections', inspections_path
+  -if can? :update, @inspection
+    |
+    = link_to 'Edit Inspection', edit_inspection_path(@inspection)
+  -if can? :destroy, @inspection
+    |
+    = link_to 'Destroy Inspection', @inspection, :confirm => 'Are you sure?', :method => :delete

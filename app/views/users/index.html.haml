@@ -17,7 +17,8 @@
         %td
         %td
           %ul.icons
-            %li= icon_to 'New', new_user_path
+            - if can? :create, User
+              %li= icon_to 'New', new_user_path
     %tbody
       - @users.each do |s|
         %tr{:class => cycle('', 'alt')}
@@ -27,6 +28,8 @@
           %td= s.role_list
           %td
             %ul.icons
-              %li= icon_to 'Edit', edit_user_path(s)
-              %li= icon_to 'Destroy', s, :confirm => 'Are you sure?', :method => :delete
+              - if can? :update, s
+                %li= icon_to 'Edit', edit_user_path(s)
+              - if can? :destroy, s
+                %li= icon_to 'Destroy', s, :confirm => 'Are you sure?', :method => :delete
 

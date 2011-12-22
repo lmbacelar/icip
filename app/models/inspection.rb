@@ -6,15 +6,15 @@ class Inspection < ActiveRecord::Base
   has_many :tascs, :dependent => :destroy
   accepts_nested_attributes_for :tascs, :reject_if => lambda { |a| a[:action].blank? ||
                                                                    a[:technician] }, :allow_destroy => true
-  scope :unassigned, where('inspections.assigned_to IS NULL')
-  scope :assigned, where('inspections.assigned_to IS NOT NULL AND inspections.execution_date IS NULL')
+  scope :unassigned, where('inspections.technician_id IS NULL')
+  scope :assigned, where('inspections.technician_id IS NOT NULL AND inspections.execution_date IS NULL')
   scope :executed, where('inspections.execution_date IS NOT NULL')
   scope :pending, executed.joins(:tascs).merge(Tasc.pending)
   scope :clean, executed.where('id NOT IN (SELECT inspection_id FROM tascs)')
   scope :closed, clean + executed.joins(:tascs).merge(Tasc.closed)
 
   def state
-    if self.assigned_to.nil?
+    if self.technician.nil?
       :unassigned
     elsif self.execution_date.nil?
       :assigned
@@ -30,7 +30,8 @@ class Inspection < ActiveRecord::Base
   end
 
   def executed=(execd)
-    if execd
+    execd.downcase if execd.is_a? String
+    if [true, 1, '1', 't', 'T', 'true'].include? execd
       self.execution_date = Time.zone.now
     else
       self.execution_date = nil

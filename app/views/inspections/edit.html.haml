@@ -1,0 +1,13 @@
+= title "Edit Inspection on #{@aircraft.registration}, Zone £{@zone.name}", |
+          "Edit #{I18n.l(@inspection.execution_date, :format => :short_date) if @inspection.execution_date} Inspection on |
+           #{link_to @aircraft.registration, @aircraft}, |
+           #{link_to "Zone #{@zone.name}", @zone}" |
+
+= render 'form'
+
+.actions
+  - if can? :read, @inspection
+    = link_to 'Show', @inspection
+  - if can? :read, Inspection
+    |
+    = link_to 'Back to Inspection List', inspections_path

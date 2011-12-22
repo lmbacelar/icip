@@ -1,7 +1,7 @@
 #search_no_match
   Your search -
   %strong= preset if preset
-  = ' AND ' if preset && search
+  = ' AND ' unless preset.nil? || search.nil? || preset.empty? || search.empty?
   %strong= search
   \- did not match any parts.
 %br

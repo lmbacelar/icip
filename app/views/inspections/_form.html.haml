@@ -1,0 +1,37 @@
+= simple_nested_form_for @inspection do |f|
+  = f.error_messages
+
+  .columns
+    .fix.left
+      = render file: 'images/_images', locals: { images: Array(@zone.images),
+                                                 group_title: 'Zone',
+                                                 image_type: :selector }
+    .fix.right
+      - unless current_user.role? :technician
+        .group
+          .title Assignment
+          .content
+            = f.association :technician,  label: 'Assigned to', collection: Role.find_by_name(:technician).users,
+                                          prompt: '(Select technician)'
+      - case @inspection.state
+      - when :assigned
+        .group
+          .title Tasks
+          .content
+            = f.fields_for :tascs, f.object.tascs do |a|
+              = a.select :action, Tasc::Actions, size: 1, prompt: '(Action)'
+              = a.collection_select :item_id, Item.all, :id, :name, prompt: '(Item)'
+              = a.collection_select :checkpoint_id, Protocol.first.checkpoints, :id, :number, prompt: '(Checkpoint)'
+              = a.select :etr, Tasc::Etrs, size: 1, prompt: '(ETR)'
+              = a.text_field :comment, label: false, placeholder: :comment, size: 25
+              = a.hidden_field :technician_id, value: current_user.id
+              = a.link_to_remove 'Remove'
+            = f.link_to_add 'Add Task', :tascs
+        .group
+          .title Conclusion
+          .content
+            = f.input :executed, as: :select, include_blank: false
+      - when :pending
+      - when :closed
+    = f.submit
+
