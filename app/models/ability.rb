@@ -8,9 +8,9 @@ class Ability
       can :manage, :all
     else
       if user.role? :technician
-        can :read, [Inspection, Protocol, Checkpoint, Task, Closing]
-        can :manage, [Task] do |task|
-          task.try(:technician) == user
+        can :read, [Inspection, Protocol, Checkpoint, Tasc, Closing]
+        can :manage, [Tasc] do |tasc|
+          tasc.try(:technician) == user
         end
       end
       if user.role? :engineer
@@ -18,7 +18,7 @@ class Ability
         can [:create, :read, :update], Part
         can [:create, :read, :update], Inspection
         can [:create, :read, :update], [Protocol, Checkpoint]
-        can :manage, [Task, Closing]
+        can :manage, [Tasc, Closing]
       end
     end
   end
