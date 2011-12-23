@@ -1,10 +1,16 @@
 %tr{:class => cycle('', 'alt')}
   %td= tasc.action
   %td= tasc.item.name
-  %td= tasc.checkpoint.part.number
   %td= tasc.checkpoint.description
   %td= tasc.etr
   %td= tasc.technician.name
   %td= I18n.l(tasc.closing.try(:updated_at), :format => :short_date) if tasc.closing.present?
   %td= tasc.closing.try(:responsible)
   %td
+    %ul.icons
+      -# if can? :read, tasc
+        %li= icon_to 'Show', tasc
+      -# if can? :update, tasc
+        %li= icon_to 'Edit', edit_zone_path(tasc)
+      - if can? :destroy, tasc
+        %li= icon_to 'Destroy', tasc, :confirm => 'Are you sure?', :method => :delete

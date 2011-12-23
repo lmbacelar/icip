@@ -1,25 +1,30 @@
 Icip::Application.routes.draw do
 
-  get 'login' => 'sessions#new', :as => 'login'
-  get 'logout' => 'sessions#destroy', :as => 'logout'
+  get 'login' => 'sessions#new', as: 'login'
+  get 'logout' => 'sessions#destroy', as: 'logout'
   resources :users
   resources :sessions
 
-  root :to => 'sessions#new'
+  root to: 'sessions#new'
 
-  resources :aircrafts, :shallow => true do
-    resources :konfigurations, :shallow => true do
-      resources :zones, :shallow => true do
+  resources :aircrafts, shallow: true do
+    resources :konfigurations, shallow: true do
+      resources :zones, shallow: true do
         resources :items
       end
     end
   end
-  resources :parts, :shallow => true do
-    get 'page/:page', :action => :index, :on => :collection
+  resources :parts, shallow: true do
+    get 'page/:page', action: :index, on: :collection
     resources :protocols
   end
+
   resources :inspections
-  resources :images, :shallow => true do
+  get 'inspections/:inspection_id/items/:item_id/tascs/new' => 'tascs#new', as: :inspection_item_tascs
+  post 'inspections/:inspection_id/items/:item_id/tascs/new' => 'tascs#create', as: :inspection_item_tascs
+  delete 'tascs/:id' => 'tascs#destroy', as: :tasc
+
+  resources :images, shallow: true do
     resources :locations
   end
 

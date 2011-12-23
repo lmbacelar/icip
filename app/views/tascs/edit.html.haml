@@ -1,0 +1,13 @@
+= title 'Edit Task', "Edit Task on |
+                              #{link_to @inspection.aircraft.registration, @inspection.aircraft}, |
+                              Zone #{link_to "Zone #{@inspection.zone.name}", @inspection.zone}, |
+                              #{link_to "Item #{@item.name}", @item}" |
+
+= render 'form'
+
+.actions
+  - if can? :read, @tasc
+    = link_to 'Show', @tasc
+  -if can? :read, @inspection
+    |
+    = link_to "Back to #{@inspection.aircraft.registration} Inspection", @inspection

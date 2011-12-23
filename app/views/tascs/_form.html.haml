@@ -1,0 +1,18 @@
+= simple_form_for [@inspection, @item, @tasc] do |f|
+  = f.error_messages
+  .columns
+    .fix.left
+      = render file: 'images/_images', locals: { images: Array(@item.part.protocols.current.images),
+                                                 group_title: 'Inspection Protocol',
+                                                 image_type: :selector }
+    .fix.right
+      .group
+        .title Details
+        .inputs
+          = f.association :checkpoint, collection: @item.part.protocols.current.checkpoints.sort_natural, prompt: '(Select one)'
+          = f.input :action, collection: Tasc::Actions, prompt: '(Select one)'
+          = f.input :etr, collection: Tasc::Etrs, label: 'ETR', prompt: '(Select one)'
+          = f.input :comment
+        .clear
+      = f.submit
+
