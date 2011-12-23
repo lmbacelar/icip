@@ -13,6 +13,10 @@ class Checkpoint < ActiveRecord::Base
 
   scope :sort_natural, order("LPAD(SUBSTRING(number from '[0-9]+'),5, '0'), COALESCE(SUBSTRING(number from '[^0-9]+'), '0')")
 
+  def to_s
+    "#{number} - #{description}"
+  end
+
   def pn
     self.part.try(:number)
   end
