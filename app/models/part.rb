@@ -31,10 +31,10 @@ class Part < ActiveRecord::Base
   #
   #   Preset searches: { search_text => elasticsearch query }
   SearchPresets = [ [ 'All parts, no subparts', '-Subpart' ],
-                    [ 'Just Seats', 'kind:Seat'],
-                    [ 'Just Lavatories', 'kind:Lavatory'],
+                    [ 'Seats', 'kind:Seat'],
+                    [ 'Lavatories', 'kind:Lavatory'],
                     [ 'Carpets, Labels and Panels', 'kind:Carpet OR kind:Label OR kind:Panel'],
-                    [ 'Just Subparts', 'kind:Subpart'],
+                    [ 'Subparts', 'kind:Subpart'],
                     [ 'All', '*'] ]
   #
   #   Index mappings
