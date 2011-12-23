@@ -8,13 +8,14 @@ class Ability
       can :manage, :all
     else
       if user.role? :technician
-        can :read, [Inspection, Protocol, Checkpoint, Tasc, Closing]
+        can [:read, :update], User do |u|
+          u == user
+        end
+        can :read, [Protocol, Checkpoint, Tasc, Closing]
         can [:read, :update], Inspection do |insp|
-          insp.try(:technician) == user
+          insp.technician_id == user.id && insp.execution_date.nil?
         end
-        can :manage, [Tasc] do |tasc|
-          tasc.try(:technician) == user
-        end
+        can :manage, [Tasc]
       end
       if user.role? :engineer
         can :read, [Aircraft, Konfiguration, Zone, Item]
