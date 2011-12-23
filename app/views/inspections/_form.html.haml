@@ -6,6 +6,12 @@
       = render file: 'images/_images', locals: { images: Array(@zone.images),
                                                  group_title: 'Zone',
                                                  image_type: :selector }
+      - @zone.items.locatable.each do |i|
+        -# TODO:
+        -#   Add Task links to all items with no tasks
+        -#   Edit Task links to all items with tasks
+        = link_to i.name, inspection_item_tascs_path(@inspection, i), :class => 'location_link',
+                  :data => { :location => i.location.to_json(:only => [:image_id, :x1, :y1, :x2, :y2]) }
     .fix.right
       - unless current_user.role? :technician
         .group
@@ -15,18 +21,7 @@
                                           prompt: '(Select technician)'
       - case @inspection.state
       - when :assigned
-        .group
-          .title Tasks
-          .content
-            = f.fields_for :tascs, f.object.tascs do |a|
-              = a.select :action, Tasc::Actions, size: 1, prompt: '(Action)'
-              = a.collection_select :item_id, Item.all, :id, :name, prompt: '(Item)'
-              = a.collection_select :checkpoint_id, Protocol.first.checkpoints, :id, :number, prompt: '(Checkpoint)'
-              = a.select :etr, Tasc::Etrs, size: 1, prompt: '(ETR)'
-              = a.text_field :comment, label: false, placeholder: :comment, size: 25
-              = a.hidden_field :technician_id, value: current_user.id
-              = a.link_to_remove 'Remove'
-            = f.link_to_add 'Add Task', :tascs
+        = render :file => 'tascs/_tascs', :locals => { :tascs => @inspection.tascs }
         .group
           .title Conclusion
           .content
