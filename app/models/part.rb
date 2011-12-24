@@ -68,7 +68,7 @@ class Part < ActiveRecord::Base
         # TODO:
         #
         # Allow sorting by something passed on params, and sort on relevance
-        sort { by ['kind', 'number'] }
+        sort { by [:kind, :number] }
       end
       #raise s.to_curl
     end
