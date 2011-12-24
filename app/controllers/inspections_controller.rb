@@ -1,11 +1,12 @@
 class InspectionsController < AuthorizedController
   before_filter :load_resources_from_inspection, :only => [:show, :edit]
-#   before_filter do
-#     Zone.schedule_inspections
-#   end
+  before_filter do
+    Zone.order('zones.id DESC').schedule_inspections
+  end
 
   def index
     params[:preset] ||= Inspection::SearchPresets.first[1] # if defined? Inspection::SearchPresets
+    params[:current_user_id] ||= current_user.id if cannot? :read, Inspection.new
     @inspections = Inspection.search(params)
   end
 
@@ -17,7 +18,7 @@ class InspectionsController < AuthorizedController
 
   def update
     if @inspection.update_attributes(params[:inspection])
-      redirect_to @inspection, :notice  => "Successfully updated inspection."
+      redirect_to inspections_url, :notice  => "Successfully updated inspection."
     else
       render :action => 'edit'
     end

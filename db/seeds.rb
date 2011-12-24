@@ -25,13 +25,18 @@ User.create(:email => 'technician@icip.com',
 User.create(:email => 'lbacelar@tap.pt',
             :tap_number => '258756',
             :name => 'Luis Bacelar',
-            :password => 'admin',
-            :password_confirmation => 'admin').roles << Role.find_by_name(:admin)
+            :password => 'lbacelar',
+            :password_confirmation => 'lbacelar').roles << Role.find_by_name(:admin)
 User.create(:email => 'vmmartinho@tap.pt',
             :tap_number => '308007',
             :name => 'Vera Martinho',
-            :password => 'engineer',
-            :password_confirmation => 'engineer').roles << Role.find_by_name(:engineer)
+            :password => 'vmmartinho',
+            :password_confirmation => 'vmmartinho').roles << Role.find_by_name(:engineer)
+User.create(:email => 'toze@tap.pt',
+            :tap_number => '000003',
+            :name => 'ToZe',
+            :password => 'toze',
+            :password_confirmation => 'toze').roles << Role.find_by_name(:technician)
 # Loading Aircrafts
 puts 'IMPORTING Aircrafts from csv ...'
 Aircraft.from_csv 'db/seeds/aircrafts.csv'

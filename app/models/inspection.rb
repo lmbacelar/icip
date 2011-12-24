@@ -46,20 +46,22 @@ class Inspection < ActiveRecord::Base
   include Tire::Model::Callbacks
   #
   #   Preset searches: { search_text => elasticsearch query }
-  SearchPresets = [ [ 'Unassigned', 'state:Unassigned'],
+  SearchPresets = [ [ 'All', '*'],
+                    [ 'Unassigned', 'state:Unassigned'],
                     [ 'Assigned', 'state:Assigned'],
                     [ 'Pending', 'state:Pending'],
-                    [ 'Closed', 'state:Closed'],
-                    [ 'All', '*'] ]
+                    [ 'Closed', 'state:Closed'] ]
   #
   #   Index mappings
   mapping do
     indexes :id, type: 'integer'
     indexes :state
+    indexes :executed
     indexes :aircraft_registration, index: 'not_analyzed'
     indexes :zone_name, index: 'not_analyzed'
     indexes :created_at, type: 'date'
     indexes :updated_at, type: 'date'
+    indexes :technician_id, type: 'integer'
   end
   #
   #   Search mappings, handling:
@@ -67,6 +69,7 @@ class Inspection < ActiveRecord::Base
   def self.search(params = {})
     tire.search(:page => params[:page], :per_page => Kaminari.config.default_per_page) do
       # regular search
+      filter :term, :technician_id => params[:current_user_id] if params[:current_user_id]
       query do
         boolean do
           must { string params[:preset] } if params[:preset].present?
@@ -76,14 +79,14 @@ class Inspection < ActiveRecord::Base
       # TODO:
       #
       # Allow sorting by something passed on params, and sort on relevance
-      sort { by ['state', 'created_at', 'aircraft_registration', 'zone_name'] }
+      sort { by [{:updated_at => {:order => :desc}}, :aircraft_registration, :state] }
       #raise s.to_curl
     end
   end
   #
   #   Indexed methods. These are passible of showing / searching.
   def to_indexed_json
-    to_json(methods: [:state, :aircraft_registration, :zone_name])
+    to_json(methods: [:state, :executed, :aircraft_registration, :zone_name])
   end
   #
   #     Gets aircraft.registration
