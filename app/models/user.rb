@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   has_many :memberships, :dependent => :destroy
   has_many :roles, :through => :memberships
+  has_many :inspections, :dependent => :destroy, :foreign_key => :technician_id
 
   validates  :email,  :presence => true,
                       :uniqueness => { :case_sensitive => false },
