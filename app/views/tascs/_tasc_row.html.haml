@@ -5,7 +5,7 @@
   %td= tasc.etr
   %td= tasc.technician.name
   %td= I18n.l(tasc.closing.try(:updated_at), :format => :short_date) if tasc.closing.present?
-  %td= tasc.closing.try(:responsible)
+  %td= tasc.closing.try(:engineer).try(:name)
   %td
     %ul.icons
       -# if can? :read, tasc
