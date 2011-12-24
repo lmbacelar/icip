@@ -9,9 +9,9 @@
     %table
       %thead
         %tr
-          %th State
           %th Date Open
           %th Aircraft
+          %th State
           %th Zone
           %th
       %tfoot
@@ -20,9 +20,9 @@
       %tbody
         - @inspections.each do |i|
           %tr{:class => cycle('', 'alt')}
-            %td= i.state.capitalize
             %td= I18n.l i.created_at.to_time, :format => :short_date
             %td= i.aircraft_registration
+            %td= i.state.capitalize
             %td= i.zone_name
             %td
               %ul.icons
