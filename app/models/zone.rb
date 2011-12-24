@@ -21,9 +21,15 @@ class Zone < ActiveRecord::Base
                                                                         :less_than => 366 }
 
   def schedule_inspection
-    if inspections.maximum(:execution_date).nil? ||
-       inspections.maximum(:execution_date) <= Time.now - inspection_interval.days
-      inspections.create if inspections.unassigned.empty?
+    # Will not schedule if there is already an
+    # unassigned or assigned inspection for this zone.
+    # Will schedule if there are no inspections or if
+    # Inspection is overdue according to inspection_interval
+    # and last inspection execution_date
+    if inspections.unassigned.all.empty? && inspections.assigned.all.empty?
+      if inspections.all.empty? || inspections.maximum(:execution_date) < Time.now - inspection_interval.days
+        inspections.create
+      end
     end
   end
 
