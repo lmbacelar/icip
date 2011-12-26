@@ -5,11 +5,11 @@ class Checkpoint < ActiveRecord::Base
 
   belongs_to :protocol
   belongs_to :part
-  has_one :location, :as => :locatable, :dependent => :destroy
-  has_many :tascs, :dependent => :destroy
+  has_one :location, as: :locatable, dependent: :destroy
+  has_many :tascs, dependent: :destroy
 
-  validates :number, :presence => true
-  validates :part, :presence => true
+  validates :number, presence: true
+  validates :part, presence: true
 
   scope :sort_natural, order("LPAD(SUBSTRING(number from '[0-9]+'),5, '0'), COALESCE(SUBSTRING(number from '[^0-9]+'), '0')")
 
@@ -25,6 +25,6 @@ class Checkpoint < ActiveRecord::Base
   # TODO:
   # Remove "orphan" part numbers
   def pn=(n)
-    self.part_id = Part.find_or_create_by_number(:number => n).id
+    self.part_id = Part.find_or_create_by_number(number: n).id
   end
 end

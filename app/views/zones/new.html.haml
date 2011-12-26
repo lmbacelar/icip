@@ -2,7 +2,7 @@
                      #{link_to @aircraft.registration, @aircraft}, |
                      #{link_to "Configuration ##{@konfiguration.number}", @konfiguration}" |
 
-= render 'form', { :target => [@konfiguration, @zone] }
+= render 'form', { target: [@konfiguration, @zone] }
 
 .actions
   - if can? :read, @konfiguration

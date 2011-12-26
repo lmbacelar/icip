@@ -18,13 +18,13 @@
           %td
       %tbody
         - inspections.each do |i|
-          %tr{:class => cycle('', 'alt')}
+          %tr{class: cycle('', 'alt')}
             %td= i.zone.konfiguration.aircraft.registration
             %td= i.zone.konfiguration.number
             %td= i.zone.name
-            %td= I18n.l i.created_at, :format => :short_date
+            %td= I18n.l i.created_at, format: :short_date
             %td
               %ul.icons
                 %li= icon_to 'Show', i
                 %li=# icon_to 'Edit', edit_inspection_path(i)
-                %li= icon_to 'Destroy', i, :confirm => 'Are you sure?', :method => :delete
+                %li= icon_to 'Destroy', i, confirm: 'Are you sure?', method: :delete

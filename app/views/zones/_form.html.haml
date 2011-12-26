@@ -1,4 +1,4 @@
-= simple_nested_form_for target, :html => { :multipart => true } do |f|
+= simple_nested_form_for target, html: { multipart: true } do |f|
   = f.error_messages
   .columns
     .fix.left
@@ -11,16 +11,16 @@
           - if i.object.file_url.nil?
             = i.file_field :file
           - else
-            = link_to image_tag(i.object.file_url(:thumb).to_s), i.object.file_url.to_s, :target => '_blank'
+            = link_to image_tag(i.object.file_url(:thumb).to_s), i.object.file_url.to_s, target: '_blank'
           .content= i.link_to_remove 'Remove'
         .content= f.link_to_add 'Add image', :images
     .fix.right
       .group
         .title Details
         .inputs
-          = f.input :name, :input_html => { :size => 2 }
-          = f.input :description, :input_html => { :size => 25 }
-          = f.input :inspection_interval, :label => 'Inspection Int.', :input_html => { :size => 2 }
+          = f.input :name, input_html: { size: 2 }
+          = f.input :description, input_html: { size: 25 }
+          = f.input :inspection_interval, label: 'Inspection Int.', input_html: { size: 2 }
 
   = f.submit
 

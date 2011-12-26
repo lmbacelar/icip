@@ -1,7 +1,7 @@
 .group
   .title Items
   .content
-    %table{:id => 'items_table'}
+    %table{id: 'items_table'}
       %thead
         %tr
           %th Name
@@ -10,10 +10,10 @@
           %th
       %tfoot
         %tr
-          %td{:colspan => 3}
+          %td{colspan: 3}
           %td
             %ul.icons
               - if can? :create, Item
                 %li= icon_to 'New', new_zone_item_path(@zone)
       %tbody
-        = render :partial => 'items/item_row', :collection => items.sort_natural, :as => :item
+        = render partial: 'items/item_row', collection: items.sort_natural, as: :item

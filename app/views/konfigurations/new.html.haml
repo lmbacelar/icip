@@ -1,7 +1,7 @@
 = title 'New Configuration', "New Configuration on |
                               #{link_to @aircraft.registration, @aircraft}" |
 
-= render 'form', { :target => [@aircraft, @konfiguration] }
+= render 'form', { target: [@aircraft, @konfiguration] }
 
 .actions
   - if can? :read, @aircraft

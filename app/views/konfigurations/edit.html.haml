@@ -1,7 +1,7 @@
 = title 'Edit Configuration', "Edit Configuration on |
                                #{link_to @aircraft.registration, @aircraft}" |
 
-= render 'form', { :target => @konfiguration }
+= render 'form', { target: @konfiguration }
 
 .actions
   - if can? :read, @konfiguration

@@ -9,10 +9,10 @@
           %th
       %tfoot
         %tr
-          %td{:colspan =>2}
+          %td{colspan: 2}
           %td
             %ul.icons
               - if can? :create, Konfiguration
                 %li= icon_to 'New', new_aircraft_konfiguration_path(@aircraft)
       %tbody
-        = render :partial => 'konfigurations/konfiguration_row', :collection => konfigurations.newest, :as => :konfiguration
+        = render partial: 'konfigurations/konfiguration_row', collection: konfigurations.newest, as: :konfiguration

@@ -1,12 +1,12 @@
-= simple_nested_form_for target, :html => { :multipart => true } do |f|
+= simple_nested_form_for target, html: { multipart: true } do |f|
   = f.error_messages
 
   .group
     .title Details
     .inputs
-      = f.input :revnum, :input_html => { :readonly => true, :size => 3 }
-      = f.input :author, :input_html => { :size => 20 }
-      = f.input :notes, :as => :string, :input_html => { :size => 80 }
+      = f.input :revnum, input_html: { readonly: true, size: 3 }
+      = f.association :author, include_blank: false, input_html: { readonly: true }
+      = f.input :notes, as: :string, input_html: { size: 80 }
 
   .columns
     .fix.left
@@ -19,7 +19,7 @@
           - if i.object.file_url.nil?
             = i.file_field :file
           - else
-            = link_to image_tag(i.object.file_url(:thumb).to_s), i.object.file_url.to_s, :target => '_blank'
+            = link_to image_tag(i.object.file_url(:thumb).to_s), i.object.file_url.to_s, target: '_blank'
           .content= i.link_to_remove 'Remove'
         .content= f.link_to_add 'Add image', :images
 
@@ -31,9 +31,9 @@
         .title Checkpoints
         .content
           = f.fields_for :checkpoints, f.object.checkpoints.sort_natural do |c|
-            = c.text_field :number, :label => false, :placeholder => "(#{:number})", :size => 1
-            = c.text_field :description, :label => false, :placeholder => "(#{:description})", :size => 25
-            = c.text_field :pn, :label => false, :placeholder => '(P/N)', :size => 20
+            = c.text_field :number, label: false, placeholder: "(#{:number})", size: 1
+            = c.text_field :description, label: false, placeholder: "(#{:description})", size: 25
+            = c.text_field :pn, label: false, placeholder: '(P/N)', size: 20
             = c.link_to_remove 'Remove'
           = f.link_to_add 'Add Item', :checkpoints
 

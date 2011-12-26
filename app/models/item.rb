@@ -7,12 +7,12 @@ class Item < ActiveRecord::Base
 
   belongs_to :zone
   belongs_to :part
-  has_one :location_assignment, :as => :locatable, :dependent => :destroy
-  has_one :location, :through => :location_assignment
-  has_one :image, :through => :location
+  has_one :location_assignment, as: :locatable, dependent: :destroy
+  has_one :location, through: :location_assignment
+  has_one :image, through: :location
 
-  validates :name, :presence => true, :uniqueness => { :scope => :zone_id }
-  validates :part, :presence => true
+  validates :name, presence: true, uniqueness: { scope: :zone_id }
+  validates :part, presence: true
   # TODO:
   # Validate only one item per location on each zone (location uniqueness on scope zone_id)
 

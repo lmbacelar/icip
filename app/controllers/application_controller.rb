@@ -35,7 +35,7 @@ private
     if error.message =~ /SearchParseException/ && params[:query]
       flash[:error] = "Sorry, your query '#{params[:query]}' is invalid..."
     else
-      flash[:error] = "Unexpected error on Tire Search... Could not return your results..."
+      flash[:error] = 'Unexpected error on Tire Search... Could not return your results...'
       # ... handle other possible situations ...
     end
     redirect_to root_url

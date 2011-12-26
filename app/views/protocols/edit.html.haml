@@ -1,6 +1,6 @@
 = title "Edit Protocol", "Edit Protocol on P/N #{link_to @part.number, @part}"
 
-= render 'form', { :target => @protocol }
+= render 'form', { target: @protocol }
 
 .actions
   - if can? :read, @protocol

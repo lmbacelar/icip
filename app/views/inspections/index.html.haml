@@ -1,9 +1,9 @@
 #title= title 'Inspections'
 
-= render :file => 'shared/search_form', :locals => { :object_class => Inspection, :target => inspections_path }
+= render file: 'shared/search_form', locals: { object_class: Inspection, target: inspections_path }
 - if @inspections.empty?
-  = render :file => 'shared/no_search_results', :locals => {  :search => params[:query],
-                                                              :preset => params[:preset] }
+  = render file: 'shared/no_search_results', locals: { search: params[:query],
+                                                       preset: params[:preset] }
 - else
   #single_column
     %table
@@ -16,11 +16,11 @@
           %th
       %tfoot
         %tr
-          %td{:colspan => 5}= paginate @inspections
+          %td{colspan: 5}= paginate @inspections
       %tbody
         - @inspections.each do |i|
-          %tr{:class => cycle('', 'alt')}
-            %td= I18n.l i.created_at.to_time, :format => :short_date
+          %tr{class: cycle('', 'alt')}
+            %td= I18n.l i.created_at.to_time, format: :short_date
             %td= i.aircraft_registration
             %td= i.state.capitalize
             %td= i.zone_name
@@ -31,4 +31,4 @@
                 - if can? :update, i
                   %li= icon_to 'Edit', edit_inspection_path(i)
                 - if can? :destroy, i
-                  %li= icon_to 'Destroy', i, :confirm => 'Are you sure?', :method => :delete
+                  %li= icon_to 'Destroy', i, confirm: 'Are you sure?', method: :delete

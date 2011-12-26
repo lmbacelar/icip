@@ -1,6 +1,6 @@
 class ItemsController < AuthorizedController
-  before_filter :load_resources_from_zone, :only => [:index, :new, :create]
-  before_filter :load_resources_from_item, :except => [:index, :new, :create]
+  before_filter :load_resources_from_zone, only: [:index, :new, :create]
+  before_filter :load_resources_from_item, except: [:index, :new, :create]
 
   def show
   end
@@ -12,9 +12,9 @@ class ItemsController < AuthorizedController
   def create
     @item = @zone.items.build(params[:item])
     if @item.save
-      redirect_to @item, :notice  => "Successfully updated item."
+      redirect_to @item, notice: 'Successfully updated item.'
     else
-      render :action => 'new'
+      render action: 'new'
     end
   end
 
@@ -23,15 +23,15 @@ class ItemsController < AuthorizedController
 
   def update
     if @item.update_attributes(params[:item])
-      redirect_to @item, :notice  => "Successfully updated item."
+      redirect_to @item, notice: 'Successfully updated item.'
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
   def destroy
     @item.destroy
-    redirect_to @zone, :notice => "Successfully destroyed item."
+    redirect_to @zone, notice: 'Successfully destroyed item.'
   end
 
 private

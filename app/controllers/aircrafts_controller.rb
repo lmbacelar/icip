@@ -11,9 +11,9 @@ class AircraftsController < AuthorizedController
 
   def create
     if @aircraft.save
-      redirect_to @aircraft, :notice => "Successfully created aircraft."
+      redirect_to @aircraft, notice: 'Successfully created aircraft.'
     else
-      render :action => 'new'
+      render action: 'new'
     end
   end
 
@@ -22,14 +22,14 @@ class AircraftsController < AuthorizedController
 
   def update
     if @aircraft.update_attributes(params[:aircraft])
-      redirect_to @aircraft, :notice  => "Successfully updated aircraft."
+      redirect_to @aircraft, notice: 'Successfully updated aircraft.'
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
   def destroy
     @aircraft.destroy
-    redirect_to aircrafts_url, :notice => "Successfully destroyed aircraft."
+    redirect_to aircrafts_url, notice: 'Successfully destroyed aircraft.'
   end
 end

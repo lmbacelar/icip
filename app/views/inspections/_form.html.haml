@@ -13,8 +13,8 @@
         -#
         -#   Replace if executed with if can? create or update Tasc
         - unless @inspection.state == :unassigned || @inspection.executed
-          = link_to i.name, inspection_item_tascs_path(@inspection, i), :class => 'location_link',
-                    :data => { :location => i.location.to_json(:only => [:image_id, :x1, :y1, :x2, :y2]) }
+          = link_to i.name, inspection_item_tascs_path(@inspection, i), class: 'location_link',
+                    data: { location: i.location.to_json(only: [:image_id, :x1, :y1, :x2, :y2]) }
     .fix.right
       - unless current_user.role? :technician
         .group
@@ -23,7 +23,7 @@
             = f.association :technician,  label: 'Assigned to', collection: Role.find_by_name(:technician).users,
                                           prompt: '(Select technician)'
       - unless @inspection.state == :unassigned
-        = render :file => 'tascs/_tascs', :locals => { :tascs => @inspection.tascs }
+        = render file: 'tascs/_tascs', locals: { tascs: @inspection.tascs }
         .group
           .title Conclusion
           .content

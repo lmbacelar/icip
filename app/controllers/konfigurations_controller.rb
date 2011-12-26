@@ -1,6 +1,6 @@
 class KonfigurationsController < AuthorizedController
-  before_filter :load_resources_from_aircraft, :only => [:new, :create]
-  before_filter :load_resources_from_konfiguration, :except => [:new, :create]
+  before_filter :load_resources_from_aircraft, only: [:new, :create]
+  before_filter :load_resources_from_konfiguration, except: [:new, :create]
 
   def show
   end
@@ -13,9 +13,9 @@ class KonfigurationsController < AuthorizedController
   def create
     @konfiguration = @aircraft.konfigurations.build(params[:konfiguration])
     if @konfiguration.save
-      redirect_to @aircraft, :notice  => "Successfully updated configuration."
+      redirect_to @aircraft, notice: 'Successfully updated configuration.'
     else
-      render :action => 'new'
+      render action: 'new'
     end
   end
 
@@ -24,15 +24,15 @@ class KonfigurationsController < AuthorizedController
 
   def update
     if @konfiguration.update_attributes(params[:konfiguration])
-      redirect_to @aircraft, :notice  => "Successfully updated configuration."
+      redirect_to @aircraft, notice: 'Successfully updated configuration.'
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
   def destroy
     @konfiguration.destroy
-    redirect_to @aircraft, :notice => "Successfully destroyed configuration."
+    redirect_to @aircraft, notice: 'Successfully destroyed configuration.'
   end
 
 private

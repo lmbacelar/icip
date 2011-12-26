@@ -6,7 +6,7 @@ gem 'jquery-rails'
 gem 'haml-rails'
 gem 'cancan'
 gem 'simple_form'
-gem 'nested_form', :path => '~/git/nested_form'
+gem 'nested_form', path: '~/git/nested_form'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'tire'
@@ -14,7 +14,7 @@ gem 'kaminari'
 
 group :test do
   # Pretty printed test output
-  gem 'turn', :require => false
+  gem 'turn', require: false
 end
 
 group :development do
@@ -36,4 +36,4 @@ gem 'unicorn'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+# gem 'ruby-debug19', require: 'ruby-debug'

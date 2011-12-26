@@ -1,4 +1,4 @@
-%tr{:class => cycle('', 'alt')}
+%tr{class: cycle('', 'alt')}
   %td= zone.name
   %td= zone.description
   %td= "#{zone.inspection_interval} days"
@@ -9,4 +9,4 @@
       - if can? :update, zone
         %li= icon_to 'Edit', edit_zone_path(zone)
       - if can? :destroy, zone
-        %li= icon_to 'Destroy', zone, :confirm => 'Are you sure?', :method => :delete
+        %li= icon_to 'Destroy', zone, confirm: 'Are you sure?', method: :delete

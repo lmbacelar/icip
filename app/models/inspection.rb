@@ -1,11 +1,11 @@
 class Inspection < ActiveRecord::Base
   belongs_to :zone
-  belongs_to :technician, :class_name => 'User'
-  has_one :konfiguration, :through => :zone
-  has_one :aircraft, :through => :konfiguration
-  has_many :tascs, :dependent => :destroy
-  accepts_nested_attributes_for :tascs, :reject_if => lambda { |a| a[:action].blank? ||
-                                                                   a[:technician] }, :allow_destroy => true
+  belongs_to :technician, class_name: 'User'
+  has_one :konfiguration, through: :zone
+  has_one :aircraft, through: :konfiguration
+  has_many :tascs, dependent: :destroy
+  accepts_nested_attributes_for :tascs, reject_if: lambda { |a| a[:action].blank? ||
+                                                                a[:technician] }, allow_destroy: true
   scope :unassigned, where('inspections.technician_id IS NULL')
   scope :assigned, where('inspections.technician_id IS NOT NULL AND inspections.execution_date IS NULL')
   scope :executed, where('inspections.execution_date IS NOT NULL')
@@ -15,7 +15,7 @@ class Inspection < ActiveRecord::Base
 
   def state
     if self.technician.nil?
-      :unassigned
+     :unassigned
     elsif self.execution_date.nil?
       :assigned
     elsif self.tascs.pending.any?
@@ -45,7 +45,7 @@ class Inspection < ActiveRecord::Base
   include Tire::Model::Search
   include Tire::Model::Callbacks
   #
-  #   Preset searches: { search_text => elasticsearch query }
+  #   Preset searches: [ search_text, elasticsearch query ]
   SearchPresets = [ [ 'All', '*'],
                     [ 'Unassigned', 'state:Unassigned'],
                     [ 'Assigned', 'state:Assigned'],
@@ -67,9 +67,9 @@ class Inspection < ActiveRecord::Base
   #   Search mappings, handling:
   #     preset searches, general queries, pagination and sorting
   def self.search(params = {})
-    tire.search(:page => params[:page], :per_page => Kaminari.config.default_per_page) do
+    tire.search(page: params[:page], per_page: Kaminari.config.default_per_page) do
       # regular search
-      filter :term, :technician_id => params[:current_user_id] if params[:current_user_id]
+      filter :term, technician_id: params[:current_user_id] if params[:current_user_id]
       query do
         boolean do
           must { string params[:preset] } if params[:preset].present?
@@ -79,7 +79,7 @@ class Inspection < ActiveRecord::Base
       # TODO:
       #
       # Allow sorting by something passed on params, and sort on relevance
-      sort { by [{:updated_at => {:order => :desc}}, :aircraft_registration, :state] }
+      sort { by [{updated_at: {order: :desc}}, :aircraft_registration, :state] }
       #raise s.to_curl
     end
   end

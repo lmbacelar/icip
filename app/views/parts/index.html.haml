@@ -1,8 +1,8 @@
 #title= title 'Parts'
 
-= render :file => 'shared/search_form', :locals => { :object_class => Part, :target => parts_path }
+= render file: 'shared/search_form', locals: { object_class: Part, target: parts_path }
 - if @parts.empty?
-  = render :file => 'shared/no_search_results', :locals => { :search => params[:query] }
+  = render file: 'shared/no_search_results', locals: { search: params[:query] }
 - else
   #single_column
     %table
@@ -15,14 +15,14 @@
           %th
       %tfoot
         %tr
-          %td{:colspan => 4}= paginate @parts
+          %td{colspan: 4}= paginate @parts
           %td
             %ul.icons
               - if can? :create, Part
                 %li= icon_to 'New', new_part_path
       %tbody
         - @parts.each do |p|
-          %tr{:class => cycle('', 'alt')}
+          %tr{class: cycle('', 'alt')}
             %td= p.number
             %td= p.kind
             %td= p.description
@@ -34,4 +34,4 @@
                 - if can? :update, p
                   %li= icon_to 'Edit', edit_part_path(p)
                 - if can? :destroy, p
-                  %li= icon_to 'Destroy', p, :confirm => 'Are you sure?', :method => :delete
+                  %li= icon_to 'Destroy', p, confirm: 'Are you sure?', method: :delete

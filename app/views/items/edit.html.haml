@@ -3,7 +3,7 @@
                       #{link_to "Configuration ##{@konfiguration.number}", @konfiguration} , |
                       #{link_to "Zone #{@zone.name}", @zone}" |
 
-= render 'form', { :target => @item }
+= render 'form', { target: @item }
 
 .actions
   - if can? :read, @zone

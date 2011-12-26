@@ -4,16 +4,16 @@
 
 .columns
   .fix.left
-    = render :file => 'images/_images', :locals => { :images => Array(@zone.images),
-                                                     :group_title => 'Images',
-                                                     :image_type => :selector }
+    = render file: 'images/_images', locals: { images: Array(@zone.images),
+                                               group_title: 'Images',
+                                               image_type: :selector }
     - @zone.items.locatable.each do |i|
-      = link_to i.name, edit_item_path(i), :class => 'location_link',
-                :data => { :location => i.location.to_json(:only => [:image_id, :x1, :y1, :x2, :y2]) }
+      = link_to i.name, edit_item_path(i), class: 'location_link',
+                data: { location: i.location.to_json(only: [:image_id, :x1, :y1, :x2, :y2]) }
 
   .fix.right
-    = render @zone, { :group_title => 'Details' }
-    = render :file => 'items/_items', :locals => { :items => @zone.items }
+    = render @zone, { group_title: 'Details' }
+    = render file: 'items/_items', locals: { items: @zone.items }
 
 .actions
   - if can? :read, @konfiguration
@@ -26,5 +26,5 @@
     = link_to 'Edit Zone', edit_zone_path(@zone)
   - if can? :destroy, @zone
     |
-    = link_to 'Destroy Zone', @zone, :confirm => 'Are you sure?', :method => :delete
+    = link_to 'Destroy Zone', @zone, confirm: 'Are you sure?', method: :delete
 

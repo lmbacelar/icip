@@ -1,8 +1,8 @@
 #search_form
-  = form_tag target, :method => :get do
+  = form_tag target, method: :get do
     Show
     = select_tag :preset, options_for_select(object_class::SearchPresets, params[:preset])
     having
-    = text_field_tag :query, params[:query], :placeholder => '(search conditions)'
-    = submit_tag 'Go',:name => nil
+    = text_field_tag :query, params[:query], placeholder: '(search conditions)'
+    = submit_tag 'Go',name: nil
 %br

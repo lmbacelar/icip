@@ -5,14 +5,14 @@
       %dt State
       %dd= @inspection.state.capitalize
       %dt Created at
-      %dd= I18n.l @inspection.created_at, :format => :short_date
+      %dd= I18n.l @inspection.created_at, format: :short_date
       %dt Last Update
-      %dd= I18n.l @inspection.updated_at, :format => :short_date
+      %dd= I18n.l @inspection.updated_at, format: :short_date
       %dt Assigned to
       %dd= @inspection.technician.try(:name) || 'No One'
       %dt Executed?
       %dd
         - if @inspection.executed
-          = "Yes, on #{I18n.l(@inspection.execution_date, :format => :short_date)}"
+          = "Yes, on #{I18n.l(@inspection.execution_date, format: :short_date)}"
         - else
           = 'No'

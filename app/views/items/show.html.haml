@@ -5,14 +5,14 @@
 
 .columns
   .fix.left
-    = render :file => 'images/_images', :locals => { :images => Array(@item.image ? @item.image : @zone.images),
-                                                     :group_title => 'Location',
-                                                     :image_type => :selector }
+    = render file: 'images/_images', locals: { images: Array(@item.image ? @item.image : @zone.images),
+                                               group_title: 'Location',
+                                               image_type: :selector }
     - if @item.location
-      .location_box{ :data => { :location => @item.location.to_json(:except => [:created_at, :updated_at]) }}
+      .location_box{ data: { location: @item.location.to_json(except: [:created_at, :updated_at]) }}
 
   .fix.right
-    = render @item, { :group_title => 'Details' }
+    = render @item, { group_title: 'Details' }
 
 .actions
   -if can? :read, @zone
@@ -25,5 +25,5 @@
     = link_to 'Edit Item', edit_item_path(@item)
   -if can? :destroy, @item
     |
-    = link_to 'Destroy Item', @item, :confirm => 'Are you sure?', :method => :delete
+    = link_to 'Destroy Item', @item, confirm: 'Are you sure?', method: :delete
 

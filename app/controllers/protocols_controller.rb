@@ -1,6 +1,6 @@
 class ProtocolsController < AuthorizedController
-  before_filter :load_resources_from_part, :only => [:new, :create]
-  before_filter :load_resources_from_protocol, :except => [:new, :create]
+  before_filter :load_resources_from_part, only: [:new, :create]
+  before_filter :load_resources_from_protocol, except: [:new, :create]
 
   def show
   end
@@ -11,9 +11,9 @@ class ProtocolsController < AuthorizedController
 
   def create
     if load_existing_images && @protocol.update_attributes(params[:protocol])
-      redirect_to @protocol, :notice  => "Successfully updated protocol."
+      redirect_to @protocol, notice: 'Successfully updated protocol.'
     else
-      render :action => 'new'
+      render action: 'new'
     end
   end
 
@@ -22,15 +22,15 @@ class ProtocolsController < AuthorizedController
 
   def update
     if load_existing_images && @protocol.update_attributes(params[:protocol])
-      redirect_to @protocol, :notice  => "Successfully updated protocol."
+      redirect_to @protocol, notice: 'Successfully updated protocol.'
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
   def destroy
     @protocol.destroy
-    redirect_to @part, :notice => "Successfully destroyed protocol."
+    redirect_to @part, notice: 'Successfully destroyed protocol.'
   end
 
 private

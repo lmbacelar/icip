@@ -1,4 +1,4 @@
-%tr{:class => cycle('', 'alt')}
+%tr{class: cycle('', 'alt')}
   %td= item.name
   %td= item.part.try(:kind)
   %td= item.part.try(:number)
@@ -9,4 +9,4 @@
       - if can? :update, item
         %li= icon_to 'Edit', edit_item_path(item)
       - if can? :destroy, item
-        %li= icon_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete
+        %li= icon_to 'Destroy', item, confirm: 'Are you sure?', method: :delete

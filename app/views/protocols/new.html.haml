@@ -1,7 +1,7 @@
 = title "Protocol Rev. ##{@protocol.revnum}", "Protocol Rev. ##{@protocol.revnum} on P/N |
                                                     #{link_to @part.number, @part}" |
 
-= render 'form', { :target => [@part, @protocol] }
+= render 'form', { target: [@part, @protocol] }
 
 .actions
   - if can? :read, @part

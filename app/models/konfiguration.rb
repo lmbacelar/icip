@@ -6,11 +6,11 @@ class Konfiguration < ActiveRecord::Base
   attr_accessible :number, :description, :zones_attributes
 
   belongs_to :aircraft
-  has_many  :zones, :dependent => :destroy
-  accepts_nested_attributes_for :zones, :reject_if => lambda { |z| z[:name].blank? }, :allow_destroy => true
+  has_many  :zones, dependent: :destroy
+  accepts_nested_attributes_for :zones, reject_if: lambda { |z| z[:name].blank? }, allow_destroy: true
 
-  validates :number, :presence => true, :uniqueness => {:scope => :aircraft_id}
-  validates :description, :presence => true, :uniqueness => {:scope => :aircraft_id}
+  validates :number, presence: true, uniqueness: {scope: :aircraft_id}
+  validates :description, presence: true, uniqueness: {scope: :aircraft_id}
 
   scope :newest, order('number DESC')
   scope :oldest, order('number ASC')

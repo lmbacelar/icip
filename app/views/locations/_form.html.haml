@@ -2,20 +2,20 @@
   = f.error_messages
   .columns
     .fix.left
-      = render :file => 'images/_images', :locals => { :images => Array(@image),
-                                                       :group_title => 'Image',
-                                                       :image_type => :locator }
+      = render file: 'images/_images', locals: { images: Array(@image),
+                                                 group_title: 'Image',
+                                                 image_type: :locator }
 
     .fix.right
       .group
         .title Location
         .inputs
           .locator_form
-            = f.input :name, :input_html => { :size => 3 }
-            = f.input :x1, :input_html => { :size => 3 }
-            = f.input :y1, :input_html => { :size => 3 }
-            = f.input :x2, :input_html => { :size => 3 }
-            = f.input :y2, :input_html => { :size => 3 }
+            = f.input :name, input_html: { size: 3 }
+            = f.input :x1, input_html: { size: 3 }
+            = f.input :y1, input_html: { size: 3 }
+            = f.input :x2, input_html: { size: 3 }
+            = f.input :y2, input_html: { size: 3 }
         .content
           .locator_helper
             %p

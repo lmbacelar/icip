@@ -5,17 +5,16 @@ class Protocol < ActiveRecord::Base
   attr_accessible :revnum, :notes, :author, :images_attributes, :images_attributes, :checkpoints_attributes
 
   belongs_to :part
-  belongs_to :author, :class_name => 'User'
-  has_many :image_assignments, :as => :imageable, :dependent => :destroy
-  has_many :images, :through => :image_assignments, :dependent => :destroy
-  accepts_nested_attributes_for :images, :allow_destroy => true, :reject_if => lambda { |i| i[:file].blank? }
-  has_many :checkpoints, :as => :checkpointable, :dependent => :destroy
-  accepts_nested_attributes_for :checkpoints, :allow_destroy => true,
-                                              :reject_if => lambda { |c|  c[:number].blank? ||
-                                                                          c[:description].blank? } # ||
-  #                                                                       c[:pn].blank? }
+  belongs_to :author, class_name: 'User'
+  has_many :image_assignments, as: :imageable, dependent: :destroy
+  has_many :images, through: :image_assignments, dependent: :destroy
+  accepts_nested_attributes_for :images, allow_destroy: true, reject_if: lambda { |i| i[:file].blank? }
+  has_many :checkpoints, as: :checkpointable, dependent: :destroy
+  accepts_nested_attributes_for :checkpoints, allow_destroy: true,
+                                              reject_if: lambda { |c| c[:number].blank? ||
+                                                                      c[:description].blank? }
 
-  validates :revnum, :uniqueness => { :scope => :part_id}
+  validates :revnum, uniqueness: { scope: :part_id}
 
   scope :newest, order('revnum DESC')
   scope :oldest, order('revnum ASC')
@@ -34,7 +33,7 @@ class Protocol < ActiveRecord::Base
   end
 
   def to_s
-    "Rev. #{revnum} by #{author} on #{I18n.l(created_at, :format => :short_date)}"
+    "Rev. #{revnum} by #{author} on #{I18n.l(created_at, format: :short_date)}"
   end
 
   #
@@ -71,10 +70,10 @@ class Protocol < ActiveRecord::Base
       if header == Checkpoint::CsvColumns
         # import data
         lines.each do |line|
-          checkpoints.create(:number => line[0], :description => line[1],
-                             :part_id => Part.find_or_create_by_number(:number => line[2],
-                                                                       :kind => line[3],
-                                                                       :description => line[4]).id)
+          checkpoints.create(number: line[0], description: line[1],
+                             part_id: Part.find_or_create_by_number(number: line[2],
+                                                                    kind: line[3],
+                                                                    description: line[4]).id)
         end
       else
         puts "ERROR: Expecting ''#{Item::CsvColumns.join(',')}' on '#{fname}'. Skipping import of Checkpoints."

@@ -10,10 +10,10 @@
           %th
       %tfoot
         %tr
-          %td{:colspan => 3}
+          %td{colspan: 3}
           %td
             %ul.icons
               - if can? :create, Zone
                 %li= icon_to 'New', new_konfiguration_zone_path(@konfiguration)
       %tbody
-        = render :partial => 'zones/zone_row', :collection => zones.order(:name), :as => :zone
+        = render partial: 'zones/zone_row', collection: zones.order(:name), as: :zone

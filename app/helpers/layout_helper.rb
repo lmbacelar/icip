@@ -12,7 +12,7 @@ module LayoutHelper
   end
 
   def data_attributes(args)
-    content_for(:data_attributes) { tag("div", :id => 'data_attributes', :data => args) }
+    content_for(:data_attributes) { tag('div', id: 'data_attributes', data: args) }
   end
 
   def stylesheet(*args)

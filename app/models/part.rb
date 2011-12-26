@@ -7,14 +7,14 @@ class Part < ActiveRecord::Base
 
   attr_accessible :number, :kind, :description
 
-  has_many  :items, :dependent => :destroy
-  accepts_nested_attributes_for :items, :reject_if => lambda { |i| i[:name].blank? }, :allow_destroy => true
-  has_many  :protocols, :dependent => :destroy
-  accepts_nested_attributes_for :protocols, :reject_if => lambda { |p| p[:revnum].blank? }, :allow_destroy => true
-  has_one :checkpoint, :dependent => :destroy
+  has_many  :items, dependent: :destroy
+  accepts_nested_attributes_for :items, reject_if: lambda { |i| i[:name].blank? }, allow_destroy: true
+  has_many  :protocols, dependent: :destroy
+  accepts_nested_attributes_for :protocols, reject_if: lambda { |p| p[:revnum].blank? }, allow_destroy: true
+  has_one :checkpoint, dependent: :destroy
 
-  validates :number, :presence => true, :uniqueness => true
-  validates :kind, :inclusion => { :in => Kinds }
+  validates :number, presence: true, uniqueness: true
+  validates :kind, inclusion: { in: Kinds }
 
   default_scope order(:kind, :number)
 
@@ -29,7 +29,7 @@ class Part < ActiveRecord::Base
   include Tire::Model::Search
   include Tire::Model::Callbacks
   #
-  #   Preset searches: { search_text => elasticsearch query }
+  #   Preset searches: [ search_text,  elasticsearch query ]
   SearchPresets = [ [ 'All parts, no subparts', '-Subpart' ],
                     [ 'Seats', 'kind:Seat'],
                     [ 'Lavatories', 'kind:Lavatory'],
@@ -51,11 +51,11 @@ class Part < ActiveRecord::Base
   #   Search mappings, handling:
   #     autocomplete, preset searches, general queries, pagination and sorting
   def self.search(params = {})
-    tire.search(:page => params[:page], :per_page => Kaminari.config.default_per_page) do
+    tire.search(page: params[:page], per_page: Kaminari.config.default_per_page) do
       if params[:term].present?
         # autocomplete-ui
-        filter :prefix, 'number' => params[:term]
-        filter :not, :term => { :kind => 'Subpart' }
+        filter :prefix, number: params[:term]
+        filter :not, term: { kind: 'Subpart' }
         sort { by ['kind', 'number'] }
       else
         # regular search

@@ -10,10 +10,10 @@
           %th
       %tfoot
         %tr
-          %td{:colspan => 3}
+          %td{colspan: 3}
           %td
             %ul.icons
               - if can? :update, @protocol
                 %li= icon_to 'Edit', edit_protocol_path(@protocol)
       %tbody
-        = render :partial => 'checkpoints/checkpoint_row', :collection => checkpoints.sort_natural, :as => :checkpoint
+        = render partial: 'checkpoints/checkpoint_row', collection: checkpoints.sort_natural, as: :checkpoint

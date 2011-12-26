@@ -3,10 +3,10 @@
 
 .columns
   .var.left
-    = render @konfiguration, { :group_title => 'Details' }
+    = render @konfiguration, { group_title: 'Details' }
   .var.right
     - if @konfiguration.zones.any?
-      = render :file => 'zones/_zones', :locals => { :zones => @konfiguration.zones }
+      = render file: 'zones/_zones', locals: { zones: @konfiguration.zones }
 
 .actions
   - if can? :read, @aircraft
@@ -16,5 +16,5 @@
     = link_to 'Edit Configuration', edit_konfiguration_path(@konfiguration)
   - if can? :destroy, @konfiguration
     |
-    = link_to 'Destroy Configuration', @konfiguration, :confirm => 'Are you sure?', :method => :delete
+    = link_to 'Destroy Configuration', @konfiguration, confirm: 'Are you sure?', method: :delete
 

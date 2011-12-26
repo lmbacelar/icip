@@ -16,9 +16,9 @@ class PartsController < AuthorizedController
 
   def create
     if @part.save
-      redirect_to @part, :notice => "Successfully created part."
+      redirect_to @part, notice: 'Successfully created part.'
     else
-      render :action => 'new'
+      render action: 'new'
     end
   end
 
@@ -27,14 +27,14 @@ class PartsController < AuthorizedController
 
   def update
     if @part.update_attributes(params[:part])
-      redirect_to @part, :notice  => "Successfully updated part."
+      redirect_to @part, notice: 'Successfully updated part.'
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
   def destroy
     @part.destroy
-    redirect_to parts_url, :notice => "Successfully destroyed part."
+    redirect_to parts_url, notice: 'Successfully destroyed part.'
   end
 end

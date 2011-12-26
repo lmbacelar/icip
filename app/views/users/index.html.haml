@@ -21,7 +21,7 @@
               %li= icon_to 'New', new_user_path
     %tbody
       - @users.each do |s|
-        %tr{:class => cycle('', 'alt')}
+        %tr{class: cycle('', 'alt')}
           %td= s.email
           %td= s.tap_number
           %td= s.name
@@ -31,5 +31,5 @@
               - if can? :update, s
                 %li= icon_to 'Edit', edit_user_path(s)
               - if can? :destroy, s
-                %li= icon_to 'Destroy', s, :confirm => 'Are you sure?', :method => :delete
+                %li= icon_to 'Destroy', s, confirm: 'Are you sure?', method: :delete
 

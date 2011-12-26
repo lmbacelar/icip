@@ -2,19 +2,19 @@
 
 .columns
   .fix.left
-    = render :partial => 'images', :locals => { :images => Array(@image),
-                                                :group_title => 'Image',
-                                                :image_type => :selector }
+    = render partial: 'images', locals: { images: Array(@image),
+                                          group_title: 'Image',
+                                          image_type: :selector }
     - @locations.each do |o|
-      = link_to o.name, edit_location_path(o), :class => 'location_link',
-                :data => { :location => o.to_json(:only => [:x1, :y1, :x2, :y2]) }
+      = link_to o.name, edit_location_path(o), class: 'location_link',
+                data: { location: o.to_json(only: [:x1, :y1, :x2, :y2]) }
 
   .fix.right
-    = render :file => 'locations/_locations', :locals => { :locations => @locations.sort_natural,
-                                                           :group_title => 'Locations' }
+    = render file: 'locations/_locations', locals: { locations: @locations.sort_natural,
+                                                     group_title: 'Locations' }
 
 .actions
   = link_to 'View All Images', images_path
   |
-  = link_to 'Destroy Image', @image, :confirm => 'Are you sure?', :method => :delete
+  = link_to 'Destroy Image', @image, confirm: 'Are you sure?', method: :delete
 

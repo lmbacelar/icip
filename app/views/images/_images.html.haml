@@ -8,6 +8,6 @@
       - when :locator
         .locator= image_tag image_url
       -when :link_to_image
-        = link_to image_tag(image_url), i.file_url.to_s, :target => '_blank'
+        = link_to image_tag(image_url), i.file_url.to_s, target: '_blank'
       -when :none
         = image_tag image_url

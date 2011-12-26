@@ -11,11 +11,11 @@
         %th
     %tfoot
       %tr
-        %td{:colspan => 4}
+        %td{colspan: 4}
         %td
     %tbody
       - @images.each do |i|
-        %tr{:class => cycle('', 'alt')}
+        %tr{class: cycle('', 'alt')}
           %td= File.basename(i.file_url, '.*')
           %td= File.extname(i.file_url).gsub('.', '')
           %td
@@ -28,5 +28,5 @@
           %td
             %ul.icons
               %li= icon_to 'Show', i
-              %li= icon_to 'Destroy', i, :confirm => 'Are you sure?', :method => :delete
+              %li= icon_to 'Destroy', i, confirm: 'Are you sure?', method: :delete
 

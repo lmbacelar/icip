@@ -1,5 +1,5 @@
 class InspectionsController < AuthorizedController
-  before_filter :load_resources_from_inspection, :only => [:show, :edit]
+  before_filter :load_resources_from_inspection, only: [:show, :edit]
   before_filter do
     Zone.order('zones.id DESC').schedule_inspections
   end
@@ -18,15 +18,15 @@ class InspectionsController < AuthorizedController
 
   def update
     if @inspection.update_attributes(params[:inspection])
-      redirect_to inspections_url, :notice  => "Successfully updated inspection."
+      redirect_to inspections_url, notice: 'Successfully updated inspection.'
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
   def destroy
     @inspection.destroy
-    redirect_to inspections_url, :notice => "Successfully destroyed inspection."
+    redirect_to inspections_url, notice: 'Successfully destroyed inspection.'
   end
 
 private

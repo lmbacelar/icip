@@ -1,6 +1,6 @@
 class TascsController < AuthorizedController
-  before_filter :load_resources_from_inspection, :only => [:new, :create]
-  before_filter :load_resources_from_tasc, :except => [:new, :create]
+  before_filter :load_resources_from_inspection, only: [:new, :create]
+  before_filter :load_resources_from_tasc, except: [:new, :create]
 
   def show
   end
@@ -14,9 +14,9 @@ class TascsController < AuthorizedController
     @tasc.item_id = params[:item_id]
     @tasc.technician_id = current_user.id
     if @tasc.save
-      redirect_to edit_inspection_url(@inspection), :notice  => "Successfully created task."
+      redirect_to edit_inspection_url(@inspection), notice: 'Successfully created task.'
     else
-      render :action => 'new'
+      render action: 'new'
     end
   end
 
@@ -25,15 +25,15 @@ class TascsController < AuthorizedController
 
   def update
     if @tasc.update_attributes(params[:tasc])
-      redirect_to @inspection, :notice  => "Successfully updated task."
+      redirect_to @inspection, notice: 'Successfully updated task.'
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
   def destroy
     @tasc.destroy
-    redirect_to @inspection, :notice => "Successfully destroyed task."
+    redirect_to @inspection, notice: 'Successfully destroyed task.'
   end
 
 private

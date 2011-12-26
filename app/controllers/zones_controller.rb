@@ -1,6 +1,6 @@
 class ZonesController < AuthorizedController
-  before_filter :load_resources_from_konfiguration, :only => [:new, :create]
-  before_filter :load_resources_from_zone, :except => [:new, :create]
+  before_filter :load_resources_from_konfiguration, only: [:new, :create]
+  before_filter :load_resources_from_zone, except: [:new, :create]
 
   def show
   end
@@ -10,9 +10,9 @@ class ZonesController < AuthorizedController
 
   def create
     if load_existing_images && @zone.update_attributes(params[:zone])
-      redirect_to @zone, :notice  => "Successfully updated zone."
+      redirect_to @zone, notice: 'Successfully updated zone.'
     else
-      render :action => 'new'
+      render action: 'new'
     end
   end
 
@@ -21,15 +21,15 @@ class ZonesController < AuthorizedController
 
   def update
     if load_existing_images && @zone.update_attributes(params[:zone])
-      redirect_to @zone, :notice  => "Successfully updated zone."
+      redirect_to @zone, notice: 'Successfully updated zone.'
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
   def destroy
     @zone.destroy
-    redirect_to @konfiguration, :notice => "Successfully destroyed zone."
+    redirect_to @konfiguration, notice: 'Successfully destroyed zone.'
   end
 
 private

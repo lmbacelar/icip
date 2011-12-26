@@ -1,4 +1,4 @@
-%tr{:class => cycle('', 'alt')}
+%tr{class: cycle('', 'alt')}
   %td= konfiguration.number
   %td= konfiguration.description
   %td
@@ -8,4 +8,4 @@
       - if can? :update, konfiguration
         %li= icon_to 'Edit', edit_konfiguration_path(konfiguration)
       - if can? :destroy, konfiguration
-        %li= icon_to 'Destroy', konfiguration, :confirm => 'Are you sure?', :method => :delete
+        %li= icon_to 'Destroy', konfiguration, confirm: 'Are you sure?', method: :delete

@@ -1,9 +1,9 @@
 = title 'New Location', "New Location on |
                         #{link_to File.basename(@image.file_url, '.*'), @image}" |
 
-= data_attributes :location => @location.to_json(:only => [:x1, :y1, :x2, :y2])
+= data_attributes location: @location.to_json(only: [:x1, :y1, :x2, :y2])
 
-= render 'form', { :target => [@image, @location] }
+= render 'form', { target: [@image, @location] }
 
 .actions
   = link_to 'Back to Image', @image

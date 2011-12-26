@@ -17,7 +17,7 @@
               %li= icon_to 'New', new_aircraft_path
     %tbody
       - @aircrafts.each do |a|
-        %tr{:class => cycle('', 'alt')}
+        %tr{class: cycle('', 'alt')}
           %td= a.registration
           %td= a.manufacturer
           %td= a.model
@@ -28,5 +28,5 @@
               -if can? :update, a
                 %li= icon_to 'Edit', edit_aircraft_path(a)
               -if can? :destroy, a
-                %li= icon_to 'Destroy', a, :confirm => 'Are you sure?', :method => :delete
+                %li= icon_to 'Destroy', a, confirm: 'Are you sure?', method: :delete
 
