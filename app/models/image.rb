@@ -6,6 +6,8 @@ class Image < ActiveRecord::Base
   before_validation :update_checksum
 
   has_many :image_assignments, dependent: :destroy
+  has_many :protocols, through: :image_assignments, source: :imageable, source_type: 'Protocol'
+  has_many :zones, through: :image_assignments, source: :imageable, source_type: 'Zone'
   has_many :locations, dependent: :destroy
   accepts_nested_attributes_for :locations, allow_destroy: true, reject_if: ->(o){ o[:x1].nil? ||
                                                                                    o[:y1].nil? ||
