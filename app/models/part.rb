@@ -8,9 +8,9 @@ class Part < ActiveRecord::Base
   attr_accessible :number, :kind, :description
 
   has_many  :items, dependent: :destroy
-  accepts_nested_attributes_for :items, reject_if: lambda { |i| i[:name].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :items, allow_destroy: true, reject_if: ->(i){ i[:name].blank? }
   has_many  :protocols, dependent: :destroy
-  accepts_nested_attributes_for :protocols, reject_if: lambda { |p| p[:revnum].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :protocols, allow_destroy: true, reject_if: ->(p){ p[:revnum].blank? }
   has_one :checkpoint, dependent: :destroy
 
   validates :number, presence: true, uniqueness: true
@@ -18,9 +18,7 @@ class Part < ActiveRecord::Base
 
   default_scope order(:kind, :number)
 
-  def to_s
-    number
-  end
+  def to_s() number end
 
   # Searching
   #
@@ -82,12 +80,8 @@ class Part < ActiveRecord::Base
   #     Gets current protocol revision number, if exists.
   #     Could be done through detailed mapping of protocols object but
   #     It is simpler like this, in this case.
-  def current_protocol_rev
-    protocols.current.try(:revnum)
-  end
+  def current_protocol_rev() protocols.current.try(:revnum) end
   #
   #   Kaminari / Tire compatibility. Tire expects paginate method.
-  def self.paginate(options = {})
-    page(options[:page]).per(options[:per_page])
-  end
+  def self.paginate(options = {}) page(options[:page]).per(options[:per_page]) end
 end

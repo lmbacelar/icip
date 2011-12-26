@@ -7,10 +7,10 @@ class Image < ActiveRecord::Base
 
   has_many :image_assignments, dependent: :destroy
   has_many :locations, dependent: :destroy
-  accepts_nested_attributes_for :locations, reject_if: lambda { |o| o[:x1].nil? ||
-                                                                    o[:y1].nil? ||
-                                                                    o[:x2].nil? ||
-                                                                    o[:y2].nil? }, allow_destroy: true
+  accepts_nested_attributes_for :locations, allow_destroy: true, reject_if: ->(o){ o[:x1].nil? ||
+                                                                                   o[:y1].nil? ||
+                                                                                   o[:x2].nil? ||
+                                                                                   o[:y2].nil? }
   mount_uploader :file, ImageUploader
 
   validates :file, file_size: { maximum: 5.megabytes.to_i }

@@ -4,8 +4,8 @@ class Inspection < ActiveRecord::Base
   has_one :konfiguration, through: :zone
   has_one :aircraft, through: :konfiguration
   has_many :tascs, dependent: :destroy
-  accepts_nested_attributes_for :tascs, reject_if: lambda { |a| a[:action].blank? ||
-                                                                a[:technician] }, allow_destroy: true
+  accepts_nested_attributes_for :tascs, allow_destroy: true, reject_if: ->(a){ a[:action].blank? ||
+                                                                               a[:technician] }
   scope :unassigned, where('inspections.technician_id IS NULL')
   scope :assigned, where('inspections.technician_id IS NOT NULL AND inspections.execution_date IS NULL')
   scope :executed, where('inspections.execution_date IS NOT NULL')
@@ -25,9 +25,7 @@ class Inspection < ActiveRecord::Base
     end
   end
 
-  def executed
-    execution_date.present?
-  end
+  def executed() execution_date.present?  end
 
   def executed=(execd)
     execd.downcase if execd.is_a? String
@@ -90,18 +88,12 @@ class Inspection < ActiveRecord::Base
   end
   #
   #     Gets aircraft.registration
-  def aircraft_registration
-    aircraft.registration
-  end
+  def aircraft_registration() aircraft.registration end
   #
   #     Gets zone.name
-  def zone_name
-    zone.name
-  end
+  def zone_name() zone.name end
   #
   #   Kaminari / Tire compatibility. Tire expects paginate method.
-  def self.paginate(options = {})
-    page(options[:page]).per(options[:per_page])
-  end
+  def self.paginate(options = {}) page(options[:page]).per(options[:per_page]) end
 
 end

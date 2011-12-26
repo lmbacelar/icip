@@ -19,11 +19,7 @@ class Tasc < ActiveRecord::Base
   scope :pending, where('tascs.closing_id IS NULL')
   scope :closed, where('tascs.closing_id IS NOT NULL')
 
-  def closed?
-    not open?
-  end
+  def open?() closing.nil?  end
+  def closed?() not open?  end
 
-  def open?
-    closing.nil?
-  end
 end

@@ -13,18 +13,10 @@ class Checkpoint < ActiveRecord::Base
 
   scope :sort_natural, order("LPAD(SUBSTRING(number from '[0-9]+'),5, '0'), COALESCE(SUBSTRING(number from '[^0-9]+'), '0')")
 
-  def to_s
-    "#{number} - #{description}"
-  end
+  def to_s() "#{number} - #{description}" end
 
-  def pn
-    self.part.try(:number)
-  end
-
-  #
   # TODO:
-  # Remove "orphan" part numbers
-  def pn=(n)
-    self.part_id = Part.find_or_create_by_number(number: n).id
-  end
+  # Remove "orphan" part numbers on setter
+  def pn() self.part.try(:number) end
+  def pn=(n) self.part_id = Part.find_or_create_by_number(number: n).id end
 end

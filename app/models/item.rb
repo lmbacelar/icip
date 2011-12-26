@@ -27,9 +27,7 @@ class Item < ActiveRecord::Base
                     x, x, y, y)
   end
 
-  def part_number
-    part.try(:number)
-  end
+  def part_number() part.try(:number) end
   def part_number=(number)
     self.part = Part.find_by_number(number) if number.present?
   end

@@ -7,7 +7,7 @@ class Aircraft < ActiveRecord::Base
   attr_accessible :registration, :manufacturer, :model, :konfigurations_attributes
 
   has_many  :konfigurations, dependent: :destroy
-  accepts_nested_attributes_for :konfigurations, reject_if: lambda { |c| c[:number].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :konfigurations, allow_destroy: true, reject_if: ->(c){ c[:number].blank? }
   has_many :zones, through: :konfigurations
   has_many :inspections, through: :zones
   has_many :tascs, through: :inspections

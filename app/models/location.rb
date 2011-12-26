@@ -14,8 +14,6 @@ class Location < ActiveRecord::Base
 
   scope :sort_natural, order("LPAD(SUBSTRING(name from '[0-9]+'),5, '0'), SUBSTRING(name from '[^0-9]+')")
 
-  def image_id
-    image.try(:id)
-  end
+  def image_id() image.try(:id) end
 
 end
