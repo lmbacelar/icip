@@ -19,14 +19,9 @@
     %tbody
       - @images.each do |i|
         %tr{class: cycle('', 'alt')}
-          %td= File.basename(i.file_url, '.*')
-          %td= File.extname(i.file_url).gsub('.', '')
-          %td
-            - if i.file.size > 1.megabyte
-              = "#{i.file.size / 1.megabyte} MB"
-            - else
-              = "#{i.file.size / 1.kilobyte} kB"
-
+          %td= i.name
+          %td= i.extname
+          %td= i.file_size
           %td= i.locations.count
           %td
             %ul.icons

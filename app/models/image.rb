@@ -19,6 +19,16 @@ class Image < ActiveRecord::Base
   validates :checksum, presence: true, uniqueness: true
 
   def self.checksum(url)  Digest::MD5.hexdigest File.read(url)                  end
+  def name() File.basename file_url, '.*'                                       end
+  def extname() File.extname(file_url).gsub('.', '')                            end
+  def file_size
+    if file.size > 1.megabyte
+      "#{file.size / 1.megabyte} MB"
+    else
+      "#{file.size / 1.kilobyte} kB"
+    end
+  end
+
 
 private
   def update_checksum()   self.checksum = Image.checksum "public#{file.to_s}"   end
