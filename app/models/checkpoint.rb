@@ -1,5 +1,10 @@
 class Checkpoint < ActiveRecord::Base
 
+  #
+  # TODO:
+  # 1. Replace number by location.number (add association)
+  # 2. Replace description by part.description ???
+  #    This might not be true. Checkpoint description might be different from Part description.
   include CsvSerialize::InstanceMethods
   CsvColumns = %w[number description part.number part.kind part.description]
 

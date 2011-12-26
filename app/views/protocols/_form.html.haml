@@ -1,6 +1,11 @@
 = simple_nested_form_for target, html: { multipart: true } do |f|
   = f.error_messages
 
+  -# TODO
+  -# Make this a multistep form
+  -# Step 1. Set Details
+  -# Step 2. Add (existing) image(s)
+  -# Step 3. Add checkpoint(s) existing parts and locations
   .group
     .title Details
     .inputs
@@ -15,6 +20,8 @@
       -# Can't do it now because of nested_form bug on haml partials
       .group
         .title Images
+        -# Change the way images are added.
+        -# Only existing images should be added. Use select to choose images.
         = f.fields_for :images do |i|
           - if i.object.file_url.nil?
             = i.file_field :file
@@ -31,7 +38,13 @@
         .title Checkpoints
         .content
           = f.fields_for :checkpoints, f.object.checkpoints.sort_natural do |c|
+            -#
+            -# TODO
+            -# 1. Change number to location relation
+            -# 2. Change description to p/n description
             = c.text_field :number, label: false, placeholder: "(#{:number})", size: 1
+            -#= c.select :location, f.object.images.map { |i| i.locations.map { |o| [o.name, o.id] } }.flatten(1),
+            -#                      label: false, placeholder: "(#{:number})", size: 1
             = c.text_field :description, label: false, placeholder: "(#{:description})", size: 25
             = c.text_field :pn, label: false, placeholder: '(P/N)', size: 20
             = c.link_to_remove 'Remove'
