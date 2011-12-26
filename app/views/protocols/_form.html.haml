@@ -1,4 +1,4 @@
-= simple_nested_form_for target, html: { multipart: true } do |f|
+= simple_nested_form_for target do |f|
   = f.error_messages
 
   -# TODO
@@ -15,20 +15,15 @@
 
   .columns
     .fix.left
-      -# TODO
-      -# Move to partial.
-      -# Can't do it now because of nested_form bug on haml partials
       .group
         .title Images
-        -# Change the way images are added.
-        -# Only existing images should be added. Use select to choose images.
-        = f.fields_for :images do |i|
-          - if i.object.file_url.nil?
-            = i.file_field :file
-          - else
-            = link_to image_tag(i.object.file_url(:thumb).to_s), i.object.file_url.to_s, target: '_blank'
-          .content= i.link_to_remove 'Remove'
-        .content= f.link_to_add 'Add image', :images
+        .content
+          %br
+          = f.association :images, label: false, input_html: { size: 20 }
+          %p
+            (To select multiple images use
+            %strong Ctrl + Click
+            )
 
     .fix.right
       -# TODO
