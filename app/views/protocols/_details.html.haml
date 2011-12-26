@@ -8,6 +8,6 @@
       %dd= I18n.l(@protocol.created_at, format: :short_date)
       %dt Author
       %dd= @protocol.author.name
-      - if @protocol.notes
+      - if @protocol.notes.present?
         %dt Notes
         %dd= @protocol.notes
