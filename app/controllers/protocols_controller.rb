@@ -6,7 +6,6 @@ class ProtocolsController < AuthorizedController
   end
 
   def new
-    @protocol.revnum = 1 + ( @part.protocols.maximum(:revnum) || -1 )
   end
 
   def create

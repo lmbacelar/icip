@@ -2,19 +2,21 @@ class Protocol < ActiveRecord::Base
 
   include CsvSerialize::InstanceMethods
 
-  attr_accessible :revnum, :notes, :author, :images_attributes, :images_attributes, :checkpoints_attributes
+  before_validation :set_revnum
+
+  attr_accessible :revnum, :notes, :author_id, :image_ids, :checkpoints_attributes
 
   belongs_to :part
   belongs_to :author, class_name: 'User'
   has_many :image_assignments, as: :imageable, dependent: :destroy
   has_many :images, through: :image_assignments, dependent: :destroy
-  accepts_nested_attributes_for :images, allow_destroy: true, reject_if: ->(i){ i[:file].blank? }
   has_many :checkpoints, as: :checkpointable, dependent: :destroy
   accepts_nested_attributes_for :checkpoints, allow_destroy: true,
                                               reject_if: ->(c){ c[:number].blank? ||
                                                                 c[:description].blank? }
 
   validates :revnum, uniqueness: { scope: :part_id}
+  validates :author, presence: true
 
   scope :newest, order('revnum DESC')
   scope :oldest, order('revnum ASC')
@@ -77,6 +79,13 @@ class Protocol < ActiveRecord::Base
       puts "ERROR: Permission denied on '#{fname}'. Checkpoints not imported."
     rescue Errno::ENOENT
       puts "ERROR: '#{fname}' not found. Checkpoints not imported."
+    end
+  end
+
+private
+  def set_revnum
+    unless self.revnum.present?
+      self.revnum = 1 + ( part.protocols.maximum(:revnum) || -1 )
     end
   end
 end
