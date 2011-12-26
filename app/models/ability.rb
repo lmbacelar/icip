@@ -22,7 +22,7 @@ class Ability
         end
         # Can update Inspections assigned to user AND
         # while inspection is not executed OR
-        # is executed but has no tasks
+        # is executed but has no tasks OR
         # is executed and has tasks but all remain open
         can :update, Inspection do |ins|
           ins = Inspection.find(ins.id)
