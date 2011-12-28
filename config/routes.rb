@@ -19,7 +19,10 @@ Icip::Application.routes.draw do
     resources :protocols
   end
 
-  resources :inspections
+  resources :inspections do
+    get 'page/:page', action: :index, on: :collection
+  end
+
   get 'inspections/:inspection_id/items/:item_id/tascs/new' => 'tascs#new', as: :inspection_item_tascs
   post 'inspections/:inspection_id/items/:item_id/tascs/new' => 'tascs#create', as: :inspection_item_tascs
   delete 'tascs/:id' => 'tascs#destroy', as: :tasc
