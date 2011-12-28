@@ -25,7 +25,11 @@ class Konfiguration < ActiveRecord::Base
 
   # # # # # Public Methods              # # # # #
   def to_s
-    number
+    "##{number}"
+  end
+
+  def to_param
+    "#{id}-no-#{number}"
   end
 
   def self.current

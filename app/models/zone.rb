@@ -8,7 +8,7 @@ class Zone < ActiveRecord::Base
   # # # # # Instance Variables          # # # # #
   # # # # # Callbacks                   # # # # #
   # # # # # Attr_accessible / protected # # # # #
-  attr_accessible :name, :description, :inspection_interval, :images_attributes, :parts_attributes, :items_attributes
+  attr_accessible :name, :description, :inspection_interval, :image_ids
 
   # # # # # Associations / Delegates    # # # # #
   belongs_to :konfiguration
@@ -18,8 +18,6 @@ class Zone < ActiveRecord::Base
   has_many :image_assignments, as: :imageable, dependent: :destroy
   has_many :images, through: :image_assignments, dependent: :destroy
   has_many :locations, through: :images
-  accepts_nested_attributes_for :items, allow_destroy: true, reject_if: ->(i){ i[:name].blank? }
-  accepts_nested_attributes_for :images, allow_destroy: true, reject_if: ->(i){ i[:file].blank? }
 
   # # # # # Scopes                      # # # # #
   # # # # # Validations                 # # # # #
@@ -29,6 +27,14 @@ class Zone < ActiveRecord::Base
                                                                   less_than: 366 }
 
   # # # # # Public Methods              # # # # #
+  def to_s
+    name
+  end
+
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
+
   def schedule_inspection
     # Will not schedule if there is already an
     # unassigned or assigned inspection for this zone.

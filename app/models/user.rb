@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   # # # # # Constants                   # # # # #
   VALID_TAP_NUMBER_REGEXP = /^[\d]{5,6}$/
   # VALID_EMAIL_REGEXP defined in initializers/constants.rb
+
   # # # # # Instance Variables          # # # # #
   # # # # # Callbacks                   # # # # #
   # # # # # Attr_accessible / protected # # # # #
@@ -24,6 +25,7 @@ class User < ActiveRecord::Base
   validates :password, confirmation: true,
                        length: { within: 3..20 },
                        presence: true
+  validates :name, presence: true
 
   # # # # # Public Methods              # # # # #
   has_secure_password

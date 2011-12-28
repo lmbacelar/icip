@@ -53,7 +53,7 @@ class Part < ActiveRecord::Base
     indexes :kind, boost: 10, index: 'not_analyzed'
     indexes :created_at, type: 'date', index: 'no'
     indexes :updated_at, type: 'date', index: 'no'
-    indexes :current_protocol_rev, type: 'integer'
+    indexes :current_protocol, index: 'not_analyzed'
   end
 
   def self.search(params = {})
@@ -81,11 +81,11 @@ class Part < ActiveRecord::Base
 
   #   Indexed methods. These are passible of showing / searching.
   def to_indexed_json
-    to_json(methods: [:current_protocol_rev])
+    to_json(methods: [:current_protocol])
   end
 
-  def current_protocol_rev
-    protocols.current.try(:revnum)
+  def current_protocol
+    protocols.current.to_s
   end
 
   #   Kaminari / Tire compatibility. Tire expects paginate method.

@@ -1,11 +1,16 @@
 class Protocol < ActiveRecord::Base
-
+  # # # # # Includes / Extends          # # # # #
   include CsvSerialize::InstanceMethods
 
+  # # # # # Constants                   # # # # #
+  # # # # # Instance Variables          # # # # #
+  # # # # # Callbacks                   # # # # #
   before_validation :set_revnum
 
+  # # # # # Attr_accessible / protected # # # # #
   attr_accessible :revnum, :notes, :author_id, :image_ids, :checkpoints_attributes
 
+  # # # # # Associations / Delegates    # # # # #
   belongs_to :part
   belongs_to :author, class_name: 'User'
   has_many :image_assignments, as: :imageable, dependent: :destroy
@@ -15,19 +20,47 @@ class Protocol < ActiveRecord::Base
                                               reject_if: ->(c){ c[:number].blank? ||
                                                                 c[:description].blank? }
 
-  validates :revnum, uniqueness: { scope: :part_id}
-  validates :author, presence: true
-
+  # # # # # Scopes                      # # # # #
   scope :newest, order('revnum DESC')
   scope :oldest, order('revnum ASC')
 
-  def self.current() newest.first end
-  def current?() self == self.part.protocols.current end
-  def self.obsolete() newest.slice(1, newest.count-1) end
-  def obsolete?() !(new_record? || current?) end
+  # # # # # Validations                 # # # # #
+  validates :revnum, uniqueness: { scope: :part_id}
+  validates :author, presence: true
 
+  # # # # # Public Methods              # # # # #
   def to_s
-    "Rev. #{revnum} by #{author} on #{I18n.l(created_at, format: :short_date)}"
+    "Rev. #{revnum}"
+  end
+
+  def to_param
+    "#{id}-#{to_s.parameterize}"
+  end
+
+  def current?
+    self == self.part.protocols.current
+  end
+
+  def obsolete?
+    !(new_record? || current?)
+  end
+
+  def state
+    if current?
+      :current
+    elsif obsolete?
+      :obsolete
+    else
+      :new_record
+    end
+  end
+
+  def self.current
+    newest.first
+  end
+
+  def self.obsolete
+    newest.slice(1, newest.count-1)
   end
 
   #
@@ -82,7 +115,8 @@ class Protocol < ActiveRecord::Base
     end
   end
 
-private
+  # # # # # Private Methods             # # # # #
+  private
   def set_revnum
     unless self.revnum.present?
       self.revnum = 1 + ( part.protocols.maximum(:revnum) || -1 )
