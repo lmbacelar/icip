@@ -1,10 +1,7 @@
-.group
-  .title= group_title
-  .content
-    %dl
-      %dt Number
-      %dd= @konfiguration.number
-      %dt Description
-      %dd= @konfiguration.description
-      %dt Created at
-      %dd= I18n.l @konfiguration.created_at, format: :short_date
+%dl
+  %dt Number
+  %dd= konfiguration.number
+  %dt Description
+  %dd= konfiguration.description
+  %dt Created at
+  %dd= I18n.l konfiguration.created_at, format: :short_date

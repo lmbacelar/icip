@@ -1,0 +1,16 @@
+%table
+  %thead
+    %tr
+      %th Registration
+      %th Manufacturer
+      %th Model
+      %th
+  %tfoot
+    %tr
+      %td{:colspan => 3}
+      %td
+        %ul.icons
+          - if can? :create, Aircraft
+            %li= icon_to 'New', new_aircraft_path
+  %tbody
+    = render partial: 'aircrafts/table_row', collection: aircrafts, as: :a

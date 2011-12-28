@@ -1,17 +1,20 @@
-= title "#{File.basename @image.file_url, '.*'}"
+= title "#{@image}"
 
 .columns
   .fix.left
-    = render partial: 'images', locals: { images: Array(@image),
-                                          group_title: 'Image',
-                                          image_type: :selector }
-    - @locations.each do |o|
-      = link_to o.name, edit_location_path(o), class: 'location_link',
-                data: { location: o.to_json(only: [:x1, :y1, :x2, :y2]) }
+    .group
+      .title Image
+      .selector= render @image
+
+      - @locations.each do |o|
+        = link_to o.name, edit_location_path(o), class: 'location_link',
+                  data: { location: o.to_json(only: [:x1, :y1, :x2, :y2]) }
 
   .fix.right
-    = render file: 'locations/_locations', locals: { locations: @locations.sort_natural,
-                                                     group_title: 'Locations' }
+    .group
+      .title Locations
+      .content
+        = render 'locations/table', image: @image, locations: @locations.sort_natural
 
 .actions
   = link_to 'View All Images', images_path

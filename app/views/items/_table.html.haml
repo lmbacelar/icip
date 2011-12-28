@@ -1,0 +1,16 @@
+%table{id: 'items_table'}
+  %thead
+    %tr
+      %th Name
+      %th Kind
+      %th P/N
+      %th
+  %tfoot
+    %tr
+      %td{colspan: 3}
+      %td
+        %ul.icons
+          - if can? :create, Item
+            %li= icon_to 'New', new_zone_item_path(zone)
+  %tbody
+    = render partial: 'items/table_row', collection: items.sort_natural, as: :i

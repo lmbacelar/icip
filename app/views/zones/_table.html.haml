@@ -1,0 +1,16 @@
+%table
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th Insp. Interval.
+      %th
+  %tfoot
+    %tr
+      %td{colspan: 3}
+      %td
+        %ul.icons
+          - if can? :create, Zone
+            %li= icon_to 'New', new_konfiguration_zone_path(konfiguration)
+  %tbody
+    = render partial: 'zones/table_row', collection: zones.order(:name), as: :z

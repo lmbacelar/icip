@@ -1,0 +1,11 @@
+%tr{class: cycle('', 'alt')}
+  %td= k.number
+  %td= k.description
+  %td
+    %ul.icons
+      - if can? :read, k
+        %li= icon_to 'Show', k
+      - if can? :update, k
+        %li= icon_to 'Edit', edit_konfiguration_path(k)
+      - if can? :destroy, k
+        %li= icon_to 'Destroy', k, confirm: 'Are you sure?', method: :delete

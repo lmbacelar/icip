@@ -1,32 +1,3 @@
 #title= title 'Aircrafts'
 
-#single_column
-  %table
-    %thead
-      %tr
-        %th Registration
-        %th Manufacturer
-        %th Model
-        %th
-    %tfoot
-      %tr
-        %td{:colspan => 3}
-        %td
-          %ul.icons
-            - if can? :create, Aircraft
-              %li= icon_to 'New', new_aircraft_path
-    %tbody
-      - @aircrafts.each do |a|
-        %tr{class: cycle('', 'alt')}
-          %td= a.registration
-          %td= a.manufacturer
-          %td= a.model
-          %td
-            %ul.icons
-              -if can? :read, a
-                %li= icon_to 'Show', a
-              -if can? :update, a
-                %li= icon_to 'Edit', edit_aircraft_path(a)
-              -if can? :destroy, a
-                %li= icon_to 'Destroy', a, confirm: 'Are you sure?', method: :delete
-
+= render 'table', aircrafts: @aircrafts

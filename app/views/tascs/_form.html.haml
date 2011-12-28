@@ -2,9 +2,10 @@
   = f.error_messages
   .columns
     .fix.left
-      = render file: 'images/_images', locals: { images: Array(@item.part.protocols.current.images),
-                                                 group_title: 'Inspection Protocol',
-                                                 image_type: :selector }
+      .group
+        .title Inspection Protocol
+        .selector= render @item.part.protocols.current.images
+
     .fix.right
       .group
         .title Details

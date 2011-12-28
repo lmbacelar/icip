@@ -1,32 +1,3 @@
 #title= title 'Images'
 
-#single_column
-  %table
-    %thead
-      %tr
-        %th Filename
-        %th Type
-        %th Size
-        %th Locations
-        %th
-    %tfoot
-      %tr
-        %td{colspan: 4}
-        %td
-          %ul.icons
-            - if can? :create, Image
-              %li= icon_to 'New', new_image_path
-    %tbody
-      - @images.each do |i|
-        %tr{class: cycle('', 'alt')}
-          %td= i.name
-          %td= i.extname
-          %td= i.file_size
-          %td= i.locations.count
-          %td
-            %ul.icons
-              -if can? :read, i
-                %li= icon_to 'Show', i
-              -if can? :read, i
-                %li= icon_to 'Destroy', i, confirm: 'Are you sure?', method: :delete
-
+= render 'table', images: @images

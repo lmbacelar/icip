@@ -1,0 +1,12 @@
+%tr{class: cycle('', 'alt')}
+  %td= i.name
+  %td= i.part.kind
+  %td= i.part.number
+  %td
+    %ul.icons
+      - if can? :read, i
+        %li= icon_to 'Show', i
+      - if can? :update, i
+        %li= icon_to 'Edit', edit_item_path(i)
+      - if can? :destroy, i
+        %li= icon_to 'Destroy', i, confirm: 'Are you sure?', method: :delete

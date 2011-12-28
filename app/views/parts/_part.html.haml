@@ -1,11 +1,8 @@
-.group
-  .title= group_title
-  .content
-    %dl
-      %dt Number
-      %dd= @part.number
-      %dt Kind
-      %dd= @part.kind
-      - unless @part.description.blank?
-        %dt Description
-        %dd= @part.description
+%dl
+  %dt Number
+  %dd= part.number
+  %dt Kind
+  %dd= part.kind
+  - if part.description.present?
+    %dt Description
+    %dd= part.description

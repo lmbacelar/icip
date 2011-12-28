@@ -1,26 +1,32 @@
-= title "Zone #{@zone.name}", "Zone #{@zone.name} on |
-                               #{link_to @aircraft.registration, @aircraft}, |
-                               #{link_to "Configuration ##{@konfiguration.number}", @konfiguration}" |
+= title "Zone #{@zone}", "Zone #{@zone} on |
+                               #{link_to @aircraft, @aircraft}, |
+                               #{link_to "Configuration #{@konfiguration}", @konfiguration}" |
 
 .columns
   .fix.left
-    = render file: 'images/_images', locals: { images: Array(@zone.images),
-                                               group_title: 'Images',
-                                               image_type: :selector }
-    - @zone.items.locatable.each do |i|
-      = link_to i.name, edit_item_path(i), class: 'location_link',
-                data: { location: i.location.to_json(only: [:image_id, :x1, :y1, :x2, :y2]) }
+    .group
+      .title Images
+      .selector= render @zone.images
+      - @zone.items.locatable.each do |i|
+        = link_to i.name, edit_item_path(i), class: 'location_link',
+                  data: { location: i.location.to_json(only: [:image_id, :x1, :y1, :x2, :y2]) }
 
   .fix.right
-    = render @zone, { group_title: 'Details' }
-    = render file: 'items/_items', locals: { items: @zone.items }
+    .group
+      .title Details
+      .content
+        = render @zone
+    .group
+      .title Items
+      .content
+        = render 'items/table', zone: @zone, items: @zone.items
 
 .actions
   - if can? :read, @konfiguration
-    = link_to "Back to Configuration ##{@konfiguration.number}", @konfiguration
+    = link_to "Back to Configuration #{@konfiguration}", @konfiguration
   - if can? :read, @aircraft
     |
-    = link_to "Back to #{@aircraft.registration}", @aircraft
+    = link_to "Back to #{@aircraft}", @aircraft
   - if can? :update, @zone
     |
     = link_to 'Edit Zone', edit_zone_path(@zone)

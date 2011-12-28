@@ -1,4 +1,5 @@
-= title "Edit Protocol", "Edit Protocol on P/N #{link_to @part.number, @part}"
+= title "Edit Inspection Protocol #{@protocol}", |
+        "Edit Inspection Protocol #{link_to @protocol, @protocol} on P/N #{link_to @part, @part}" |
 
 = render 'form', { target: @protocol }
 
@@ -7,4 +8,4 @@
     = link_to 'Show', @protocol
   - if can? :read, @part
     |
-    = link_to "Back to P/N #{@part.number}", @part
+    = link_to "Back to P/N #{@part}", @part

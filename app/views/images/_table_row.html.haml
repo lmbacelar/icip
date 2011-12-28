@@ -1,0 +1,12 @@
+%tr{class: cycle('', 'alt')}
+  %td= i
+  %td= i.extname
+  %td= i.file_size
+  %td= i.locations.count
+  %td
+    %ul.icons
+      -if can? :read, i
+        %li= icon_to 'Show', i
+      -if can? :read, i
+        %li= icon_to 'Destroy', i, confirm: 'Are you sure?', method: :delete
+

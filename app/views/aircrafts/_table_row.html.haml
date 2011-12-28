@@ -1,0 +1,12 @@
+%tr{class: cycle('', 'alt')}
+  %td= a.registration
+  %td= a.manufacturer
+  %td= a.model
+  %td
+    %ul.icons
+      -if can? :read, a
+        %li= icon_to 'Show', a
+      -if can? :update, a
+        %li= icon_to 'Edit', edit_aircraft_path(a)
+      -if can? :destroy, a
+        %li= icon_to 'Destroy', a, confirm: 'Are you sure?', method: :delete

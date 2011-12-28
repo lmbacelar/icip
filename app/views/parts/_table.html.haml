@@ -1,0 +1,17 @@
+%table
+  %thead
+    %tr
+      %th Number
+      %th Kind
+      %th Description
+      %th Protocol
+      %th
+  %tfoot
+    %tr
+      %td{colspan: 4}= paginate parts
+      %td
+        %ul.icons
+          - if can? :create, Part
+            %li= icon_to 'New', new_part_path
+  %tbody
+    = render partial: 'parts/table_row', collection: parts, as: :p

@@ -1,13 +1,13 @@
 = title 'Edit Zone', "Edit Zone on |
-                      #{link_to @aircraft.registration, @aircraft}, |
-                      #{link_to "Configuration ##{@konfiguration.number}", @konfiguration}" |
+                      #{link_to @aircraft, @aircraft}, |
+                      #{link_to "Configuration #{@konfiguration}", @konfiguration}" |
 
 = render 'form', { target: @zone }
 
 .actions
   - if can? :read, @konfiguration
-    = link_to "Back to Configuration ##{@konfiguration.number}", @konfiguration
+    = link_to "Back to Configuration #{@konfiguration}", @konfiguration
   - if can? :read, @aircraft
     |
-    = link_to "Back to #{@aircraft.registration}", @aircraft
+    = link_to "Back to #{@aircraft}", @aircraft
 

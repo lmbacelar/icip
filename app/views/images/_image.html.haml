@@ -1,0 +1,6 @@
+- link_to_image = false if local_assigns[:link_to_image].nil?
+- image_url = image.file_url(:fitted).to_s
+- if link_to_image
+  = link_to image_tag(image_url), image.file_url.to_s, target: '_blank'
+- else
+  = image_tag image.file_url(:fitted).to_s

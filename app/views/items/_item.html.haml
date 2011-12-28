@@ -1,12 +1,8 @@
-.group
-  .title= group_title
-  .content
-    %dl
-      %dt Name
-      %dd= @item.name
-      - unless @item.part.blank?
-        %dt P/N
-        %dd= link_to @item.part.number, @item.part
-      - if @item.location
-        %dt Location
-        %dd= @item.image_location
+%dl
+  %dt Name
+  %dd= item.name
+  %dt P/N
+  %dd= link_to item.part, item.part
+  - if item.location
+    %dt Location
+    %dd= item.image_location

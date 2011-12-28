@@ -5,14 +5,17 @@
 
 .columns
   .fix.left
-    = render file: 'images/_images', locals: { images: Array(@item.image ? @item.image : @zone.images),
-                                               group_title: 'Location',
-                                               image_type: :selector }
-    - if @item.location
-      .location_box{ data: { location: @item.location.to_json(except: [:created_at, :updated_at]) }}
+    .group
+      .title Location
+      .selector= @item.image ? render(Array(@item.image)) : render(@zone.images)
+      - if @item.location
+        .location_box{ data: { location: @item.location.to_json(except: [:created_at, :updated_at]) }}
 
   .fix.right
-    = render @item, { group_title: 'Details' }
+    .group
+      .title Details
+      .content
+        = render @item
 
 .actions
   -if can? :read, @zone

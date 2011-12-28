@@ -1,0 +1,13 @@
+%tr{class: cycle('', 'alt')}
+  %td= p.revnum
+  %td= l p.created_at, format: :short_date
+  %td= p.author.try(:name)
+  %td= p.state.capitalize
+  %td
+    %ul.icons
+      - if can? :read, p
+        %li= icon_to 'Show', p
+      - if can? :update, p
+        %li= icon_to 'Edit', edit_protocol_path(p)
+      - if can? :destroy, p
+        %li= icon_to 'Destroy', p, confirm: 'Are you sure?', method: :delete

@@ -1,0 +1,16 @@
+%tr{class: cycle('', 'alt')}
+  %td= a.action
+  %td= a.item.name
+  %td= a.checkpoint.description
+  %td= a.etr
+  %td= a.technician.name
+  %td= I18n.l(a.closing.try(:updated_at), format: :short_date) if a.closing.present?
+  %td= a.closing.engineer.name
+  %td
+    %ul.icons
+      -# if can? :read, a
+        %li= icon_to 'Show', a
+      -# if can? :update, a
+        %li= icon_to 'Edit', edit_zone_path(a)
+      - if can? :destroy, a
+        %li= icon_to 'Destroy', a, confirm: 'Are you sure?', method: :delete

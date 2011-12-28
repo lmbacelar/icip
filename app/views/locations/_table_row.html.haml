@@ -1,0 +1,10 @@
+%tr{class: cycle('', 'alt')}
+  %td= o.name
+  %td= o.x1
+  %td= o.y1
+  %td= o.x2
+  %td= o.y2
+  %td
+    %ul.icons
+      %li= icon_to 'Edit', edit_location_path(o)
+      %li= icon_to 'Destroy', o, confirm: 'Are you sure?', method: :delete

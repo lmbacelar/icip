@@ -1,0 +1,13 @@
+%table
+  %thead
+    %tr
+      %th Date Open
+      %th Aircraft
+      %th State
+      %th Zone
+      %th
+  %tfoot
+    %tr
+      %td{colspan: 5}= paginate inspections
+  %tbody
+    = render partial: 'inspections/table_row', collection: inspections, as: :i

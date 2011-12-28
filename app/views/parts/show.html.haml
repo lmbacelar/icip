@@ -1,12 +1,17 @@
-= title "P/N #{@part.number}"
+= title "P/N #{@part}"
 
-= render @part, { group_title: 'Details' }
+.columns
+  .fix.left
+    .group
+      .title Details
+      .content
+        = render @part
 
--if @part.protocols.current
-  = render file: 'protocols/_links', locals: { part: @part, protocols: [@part.protocols.current], group_title: 'Current Protocol' }
-
--if @part.protocols.obsolete.try(:any?)
-  = render file: 'protocols/_links', locals: { part: @part, protocols: @part.protocols.obsolete, group_title: 'Obsolete Protocols' }
+  .fix.right
+    .group
+      .title Protocols
+      .content
+        = render 'protocols/table', part: @part, protocols: @part.protocols
 
 .actions
   - if can? :read, Part
@@ -14,9 +19,6 @@
   - if can? :update, @part
     |
     = link_to 'Edit Part', edit_part_path(@part)
-  - if can? :create, Protocol
-    |
-    = link_to 'New Protocol', new_part_protocol_path(@part)
   - if can? :destroy, @part
     |
     = link_to 'Destroy Part', @part, confirm: 'Are you sure?', method: :delete

@@ -1,25 +1,31 @@
-= title "Protocol Rev. ##{@protocol.revnum}", "Protocol Rev. ##{@protocol.revnum} on P/N |
-                                                    #{link_to @part.number, @part}" |
+= title "Inspection Protocol #{@protocol}", "Inspection Protocol #{@protocol} on P/N |
+                                                                 #{link_to @part, @part}" |
 
 -# TODO
 -# WARNING IF THERE ARE INSPECTIONS ALREADY BASED ON THIS PROTOCOL REVISION
 -# PROTOCOL SHOULD NOT BE CHANGED. MIGHT COMPROMISE STATE OF ASSOCIATED INSPECTIONS.
 -# NEW REVISION SHOULD BE DONE INSTEAD !!!
 
-= render partial: 'details'
+.group
+  .title Details
+  .content
+    = render @protocol
+
 .columns
   .fix.left
-    - if @protocol.images.any?
-      = render file: 'images/_images', locals: { images: @protocol.images,
-                                                 group_title: 'Images',
-                                                 image_type: :link_to_image }
+    .group
+      .title Images
+      .selector= render @protocol.images
+
   .fix.right
-    .content
-      = render file: 'checkpoints/_checkpoints', locals: { checkpoints: @protocol.checkpoints }
+    .group
+      .title Checkpoints
+      .content
+        = render 'checkpoints/table', protocol: @protocol, checkpoints: @protocol.checkpoints
 
 .actions
   - if can? :read, @part
-    = link_to 'Back to Part', @part
+    = link_to "Back to P/N #{@part}", @part
   - if can? :update, @protocol
     -# TODO
     -# ONLY ALLOW EDITING IF THERE ARE NO INSPECTIONS ASSOCIATED?

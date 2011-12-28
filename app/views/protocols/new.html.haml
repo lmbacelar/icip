@@ -1,8 +1,7 @@
-= title "Protocol Rev. ##{@protocol.revnum}", "Protocol Rev. ##{@protocol.revnum} on P/N |
-                                                    #{link_to @part.number, @part}" |
+= title "New Inspection Protocol", "New Inspection Protocol on P/N #{link_to @part, @part}"
 
 = render 'form', { target: [@part, @protocol] }
 
 .actions
   - if can? :read, @part
-    = link_to "Back to P/N #{@part.number}", @part
+    = link_to "Back to P/N #{@part}", @part

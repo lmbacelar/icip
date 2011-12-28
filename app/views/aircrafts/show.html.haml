@@ -1,12 +1,17 @@
-= title "Aircraft #{@aircraft.registration}"
+= title "Aircraft #{@aircraft}"
 
 .columns
   .var.left
-    = render @aircraft, { group_title: 'Details' }
-  .var.right
-    - if @aircraft.konfigurations.any?
-      = render file: 'konfigurations/_konfigurations', locals: { konfigurations: @aircraft.konfigurations }
+    .group
+      .title Details
+      .content
+        = render @aircraft
 
+  .var.right
+    .group
+      .title Configurations
+      .content
+        = render 'konfigurations/table', aircraft: @aircraft, konfigurations: @aircraft.konfigurations
 
 .actions
   -if can? :read, Aircraft

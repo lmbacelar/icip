@@ -9,7 +9,6 @@
   .group
     .title Details
     .inputs
-      = f.input :revnum, input_html: { readonly: true, size: 3 }
       = f.association :author, include_blank: false, input_html: { readonly: true }
       = f.input :notes, as: :string, input_html: { size: 80 }
 

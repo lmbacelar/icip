@@ -1,0 +1,12 @@
+%tr{class: cycle('', 'alt')}
+  %td= z.name
+  %td= z.description
+  %td= "#{z.inspection_interval} days"
+  %td
+    %ul.icons
+      - if can? :read, z
+        %li= icon_to 'Show', z
+      - if can? :update, z
+        %li= icon_to 'Edit', edit_zone_path(z)
+      - if can? :destroy, z
+        %li= icon_to 'Destroy', z, confirm: 'Are you sure?', method: :delete

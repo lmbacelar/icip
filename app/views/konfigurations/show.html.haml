@@ -1,16 +1,22 @@
-= title "Configuration ##{@konfiguration.number}", "Configuration ##{@konfiguration.number} on |
-                                                    #{link_to @aircraft.registration, @aircraft}" |
+= title "Configuration #{@konfiguration}", "Configuration #{@konfiguration} on |
+                                           #{link_to @aircraft, @aircraft}" |
 
 .columns
   .var.left
-    = render @konfiguration, { group_title: 'Details' }
+    .group
+      .title Details
+      .content
+        = render @konfiguration
+
   .var.right
-    - if @konfiguration.zones.any?
-      = render file: 'zones/_zones', locals: { zones: @konfiguration.zones }
+    .group
+      .title Zones
+      .content
+        = render 'zones/table', konfiguration: @konfiguration, zones: @konfiguration.zones
 
 .actions
   - if can? :read, @aircraft
-    = link_to "Back to #{@aircraft.registration}", @aircraft
+    = link_to "Back to #{@aircraft}", @aircraft
   - if can? :update, @konfiguration
     |
     = link_to 'Edit Configuration', edit_konfiguration_path(@konfiguration)

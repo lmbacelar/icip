@@ -1,7 +1,0 @@
-.group
-  .title= group_title
-  .content
-    - protocols.each do |p|
-      %dl
-        %dt= link_to_if can?(:read, p), "Rev. #{p.revnum}", p
-        %dd= "by #{p.author.name}, on #{I18n.l(p.created_at, format: :short_date)}"

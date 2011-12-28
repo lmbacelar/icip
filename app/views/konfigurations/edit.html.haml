@@ -1,5 +1,5 @@
 = title 'Edit Configuration', "Edit Configuration on |
-                               #{link_to @aircraft.registration, @aircraft}" |
+                               #{link_to @aircraft, @aircraft}" |
 
 = render 'form', { target: @konfiguration }
 
@@ -8,4 +8,4 @@
     = link_to 'Show', @konfiguration
   -if can? :read, @aircraft
     |
-    = link_to "Back to #{@aircraft.registration}", @aircraft
+    = link_to "Back to #{@aircraft}", @aircraft

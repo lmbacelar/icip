@@ -1,0 +1,17 @@
+%table
+  %thead
+    %tr
+      %th Rev. No.
+      %th Date
+      %th Author
+      %th State
+      %th
+  %tfoot
+    %tr
+      %td{colspan: 4}
+      %td
+        %ul.icons
+          - if can? :create, Protocol
+            %li= icon_to 'New', new_part_protocol_path(part)
+  %tbody
+    = render partial: 'protocols/table_row', collection: protocols.newest, as: :p

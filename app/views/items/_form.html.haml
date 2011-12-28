@@ -12,5 +12,10 @@
             .location_link{ data: { location: o.to_json }}= o.name
 
     .fix.right
-      = render partial: 'form_details', locals: { f: f }
+      .group
+        .title Item
+        .content
+          = f.input :name, input_html: { size: 4 }
+          = f.input :part_number, input_html: { size: 20, data: {autocomplete_source: parts_path} }
+          = f.input :image_location, input_html: { size: 20 }
     = f.submit

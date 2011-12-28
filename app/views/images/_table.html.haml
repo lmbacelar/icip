@@ -1,0 +1,17 @@
+%table
+  %thead
+    %tr
+      %th Filename
+      %th Type
+      %th Size
+      %th Locations
+      %th
+  %tfoot
+    %tr
+      %td{colspan: 4}
+      %td
+        %ul.icons
+          - if can? :create, Image
+            %li= icon_to 'New', new_image_path
+  %tbody
+    = render partial: 'table_row', collection: images, as: :i

@@ -5,13 +5,20 @@
 
 .columns
   .fix.left
-    = render file: 'images/_images', locals: { images: Array(@zone.images),
-                                               group_title: 'Zone',
-                                               image_type: :selector }
+    .group
+      .title Zone
+      .selector= render @zone.images
+
   .fix.right
-    = render @inspection, { group_title: 'Details' }
-    - if @inspection.tascs.any?
-      = render file: 'tascs/_tascs', locals: { tascs: @inspection.tascs }
+    .group
+      .title Zone
+      .content
+        = render @inspection
+
+    .group
+      .title Tasks
+      .content
+        = render 'tascs/table', inspection: @inspection, tascs: @inspection.tascs
 
 .actions
   -if can? :read, Inspection

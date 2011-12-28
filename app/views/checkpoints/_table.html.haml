@@ -1,0 +1,16 @@
+%table
+  %thead
+    %tr
+      %th Number
+      %th Description
+      %th P/N
+      %th
+  %tfoot
+    %tr
+      %td{colspan: 3}
+      %td
+        %ul.icons
+          - if can? :update, protocol
+            %li= icon_to 'Edit', edit_protocol_path(protocol)
+  %tbody
+    = render partial: 'checkpoints/table_row', collection: checkpoints.sort_natural, as: :c
