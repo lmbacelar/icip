@@ -42,46 +42,46 @@ puts 'IMPORTING Aircrafts from csv ...'
 Aircraft.from_csv 'db/seeds/aircrafts.csv'
 # Loading Configurations / Zones / Images
 Aircraft.all.each do |a|
-  puts "IMPORTING Configurations from csv for #{a.registration} ..."
+  puts "IMPORTING Configurations from csv for #{a} ..."
   a.association_from_csv :konfigurations, 'db/seeds/configurations.csv'
   a.konfigurations.each do |k|
-    puts "IMPORTING Zones from csv for #{a.registration}, Configuration #{k.number} ..."
+    puts "IMPORTING Zones from csv for #{a}, Configuration #{k} ..."
     k.association_from_csv :zones, 'db/seeds/zones.csv'
     k.zones.each do |z|
-      puts "IMPORTING Images from csv for #{a.registration}, Configuration #{k.number}, zone #{z.name} ..."
-      z.images_from_csv "db/seeds/#{a.registration}.#{z.name}.images.csv"
+      puts "IMPORTING Images from csv for #{a}, Configuration #{k}, zone #{z} ..."
+      z.images_from_csv "db/seeds/#{a}.#{z}.images.csv"
       z.images.each do |i|
         if i.locations.empty?
-          puts "IMPORTING Locations from csv for Image '#{File.basename(i.file_url, '.*')} ..."
-          i.association_from_csv :locations, "db/seeds/#{File.basename(i.file_url, '.*')}.locations.csv"
+          puts "IMPORTING Locations from csv for Image '#{i} ..."
+          i.association_from_csv :locations, "db/seeds/#{i}.locations.csv"
         else
-          puts "SKIPPING Locations for Image '#{File.basename(i.file_url, '.*')}. Already loaded ..."
+          puts "SKIPPING Locations for Image '#{i}. Already loaded ..."
         end
       end
-      puts "IMPORTING Items, Parts and associating Locations for #{a.registration}, Configuration #{k.number}, Zone #{z.name} ..."
-      z.items_from_csv "db/seeds/#{a.registration}.#{z.name}.items.csv"
+      puts "IMPORTING Items, Parts and associating Locations for #{a}, Configuration #{k}, Zone #{z} ..."
+      z.items_from_csv "db/seeds/#{a}.#{z}.items.csv"
     end
   end
 end
 
 Part.all.each do |part|
-  checkpoints_csv = "db/seeds/#{part.number}.checkpoints.csv"
-  images_csv = "db/seeds/#{part.number}.images.csv"
+  checkpoints_csv = "db/seeds/#{part}.checkpoints.csv"
+  images_csv = "db/seeds/#{part}.images.csv"
   if File.exist?(checkpoints_csv) || File.exist?(images_csv)
-    p = part.protocols.create(revnum: 0, author: User.find_by_tap_number('308007'))
+    p = part.protocols.create(author_id: User.find_by_tap_number('308007').id)
     if File.exist? checkpoints_csv
-      puts "IMPORTING Checkpoints for P/N #{part.number} Protocol Rev.#{p.revnum} ..."
+      puts "IMPORTING Checkpoints for P/N #{part} Protocol #{p} ..."
       p.checkpoints_from_csv checkpoints_csv
     end
     if File.exist? images_csv
-      puts "IMPORTING Images for P/N #{part.number} Protocol Rev.#{p.revnum} ..."
+      puts "IMPORTING Images for P/N #{part} Protocol #{p} ..."
       p.images_from_csv images_csv
       p.images.each do |i|
         if i.locations.empty?
-          puts "IMPORTING Locations from csv for Image '#{File.basename(i.file_url, '.*')} ..."
-          i.association_from_csv :locations, "db/seeds/#{File.basename(i.file_url, '.*')}.locations.csv"
+          puts "IMPORTING Locations from csv for Image '#{i} ..."
+          i.association_from_csv :locations, "db/seeds/#{i}.locations.csv"
         else
-          puts "SKIPPING Locations for Image '#{File.basename(i.file_url, '.*')}. Already loaded ..."
+          puts "SKIPPING Locations for Image '#{i}. Already loaded ..."
         end
       end
     end
