@@ -1,10 +1,18 @@
 require 'file_size_validator'
 class Image < ActiveRecord::Base
+  # # # # # Includes / Extends          # # # # #
   include CsvSerialize::InstanceMethods
+
+  # # # # # Constants                   # # # # #
   CsvColumns = %w[]
 
+  # # # # # Instance Variables          # # # # #
+  # # # # # Callbacks                   # # # # #
   before_validation :update_checksum
 
+  # # # # # Attr_accessible / protected # # # # #
+  # # # # # Associations / Delegates    # # # # #
+  mount_uploader :file, ImageUploader
   has_many :image_assignments, dependent: :destroy
   has_many :protocols, through: :image_assignments, source: :imageable, source_type: 'Protocol'
   has_many :zones, through: :image_assignments, source: :imageable, source_type: 'Zone'
@@ -13,14 +21,31 @@ class Image < ActiveRecord::Base
                                                                                    o[:y1].nil? ||
                                                                                    o[:x2].nil? ||
                                                                                    o[:y2].nil? }
-  mount_uploader :file, ImageUploader
 
+  # # # # # Scopes                      # # # # #
+
+  # # # # # Validations                 # # # # #
   validates :file, file_size: { maximum: 5.megabytes.to_i }
   validates :checksum, presence: true, uniqueness: true
+  # TODO: Validate Uniqueness on to_s
 
-  def self.checksum(url)  Digest::MD5.hexdigest File.read(url)                  end
-  def name() File.basename file_url, '.*'                                       end
-  def extname() File.extname(file_url).gsub('.', '')                            end
+  # # # # # Public Methods              # # # # #
+  def to_s
+    File.basename file_url, '.*'
+  end
+
+  def extname
+    File.extname(file_url).gsub('.', '')
+  end
+
+  def to_param
+    "#{id}-#{to_s.parameterize}"
+  end
+
+  def self.checksum(url)
+    Digest::MD5.hexdigest File.read(url)
+  end
+
   def file_size
     if file.size > 1.megabyte
       "#{file.size / 1.megabyte} MB"
@@ -29,7 +54,7 @@ class Image < ActiveRecord::Base
     end
   end
 
-
-private
+  # # # # # Private Methods             # # # # #
+  private
   def update_checksum()   self.checksum = Image.checksum "public#{file.to_s}"   end
 end

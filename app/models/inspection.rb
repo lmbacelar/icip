@@ -1,4 +1,20 @@
 class Inspection < ActiveRecord::Base
+  # # # # # Includes / Extends          # # # # #
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
+  # # # # # Constants                   # # # # #
+  # Preset searches: [ search_text, elasticsearch query ]
+  SearchPresets = [ [ 'All', '*'],
+                    [ 'Unassigned', 'state:Unassigned'],
+                    [ 'Assigned', 'state:Assigned'],
+                    [ 'Pending', 'state:Pending'],
+                    [ 'Closed', 'state:Closed'] ]
+
+  # # # # # Instance Variables          # # # # #
+  # # # # # Callbacks                   # # # # #
+  # # # # # Attr_accessible / protected # # # # #
+  # # # # # Associations / Delegates    # # # # #
   belongs_to :zone
   belongs_to :technician, class_name: 'User'
   has_one :konfiguration, through: :zone
@@ -6,6 +22,8 @@ class Inspection < ActiveRecord::Base
   has_many :tascs, dependent: :destroy
   accepts_nested_attributes_for :tascs, allow_destroy: true, reject_if: ->(a){ a[:action].blank? ||
                                                                                a[:technician] }
+
+  # # # # # Scopes                      # # # # #
   scope :unassigned, where('inspections.technician_id IS NULL')
   scope :assigned, where('inspections.technician_id IS NOT NULL AND inspections.execution_date IS NULL')
   scope :executed, where('inspections.execution_date IS NOT NULL')
@@ -13,6 +31,8 @@ class Inspection < ActiveRecord::Base
   scope :clean, executed.where('id NOT IN (SELECT inspection_id FROM tascs)')
   scope :closed, clean + executed.joins(:tascs).merge(Tasc.closed)
 
+  # # # # # Validations                 # # # # #
+  # # # # # Public Methods              # # # # #
   def state
     if self.technician.nil?
      :unassigned
@@ -25,7 +45,9 @@ class Inspection < ActiveRecord::Base
     end
   end
 
-  def executed() execution_date.present?  end
+  def executed
+    execution_date.present?
+  end
 
   def executed=(execd)
     execd.downcase if execd.is_a? String
@@ -37,19 +59,7 @@ class Inspection < ActiveRecord::Base
   end
 
   # Searching
-  #
   #   Model searching through ElasticSearch
-  #
-  include Tire::Model::Search
-  include Tire::Model::Callbacks
-  #
-  #   Preset searches: [ search_text, elasticsearch query ]
-  SearchPresets = [ [ 'All', '*'],
-                    [ 'Unassigned', 'state:Unassigned'],
-                    [ 'Assigned', 'state:Assigned'],
-                    [ 'Pending', 'state:Pending'],
-                    [ 'Closed', 'state:Closed'] ]
-  #
   #   Index mappings
   mapping do
     indexes :id, type: 'integer'
@@ -61,9 +71,7 @@ class Inspection < ActiveRecord::Base
     indexes :updated_at, type: 'date'
     indexes :technician_id, type: 'integer'
   end
-  #
-  #   Search mappings, handling:
-  #     preset searches, general queries, pagination and sorting
+
   def self.search(params = {})
     tire.search(page: params[:page], per_page: Kaminari.config.default_per_page) do
       # regular search
@@ -75,25 +83,32 @@ class Inspection < ActiveRecord::Base
         end
       end
       # TODO:
-      #
       # Allow sorting by something passed on params, and sort on relevance
       sort { by [{updated_at: {order: :desc}}, :aircraft_registration, :state] }
       #raise s.to_curl
     end
   end
-  #
-  #   Indexed methods. These are passible of showing / searching.
+
+  # Indexed methods. These are passible of showing / searching.
   def to_indexed_json
     to_json(methods: [:state, :executed, :aircraft_registration, :zone_name])
   end
-  #
-  #     Gets aircraft.registration
-  def aircraft_registration() aircraft.registration end
-  #
-  #     Gets zone.name
-  def zone_name() zone.name end
-  #
-  #   Kaminari / Tire compatibility. Tire expects paginate method.
-  def self.paginate(options = {}) page(options[:page]).per(options[:per_page]) end
 
+  # Gets aircraft.registration
+  def aircraft_registration
+    aircraft.registration
+  end
+
+  # Gets zone.name
+  def zone_name
+    zone.name
+  end
+
+  #   Kaminari / Tire compatibility. Tire expects paginate method.
+  def self.paginate(options = {})
+    page(options[:page]).per(options[:per_page])
+  end
+
+  # # # # # Private Methods             # # # # #
+  private
 end
