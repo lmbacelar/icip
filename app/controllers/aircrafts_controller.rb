@@ -11,7 +11,8 @@ class AircraftsController < AuthorizedController
 
   def create
     if @aircraft.save
-      redirect_to @aircraft, notice: 'Successfully created aircraft.'
+      redirect_to new_aircraft_konfiguration_path(@aircraft),
+                  notice: "Successfully created #{@aircraft} aircraft."
     else
       render action: 'new'
     end

@@ -16,7 +16,8 @@ class PartsController < AuthorizedController
 
   def create
     if @part.save
-      redirect_to @part, notice: 'Successfully created part.'
+      redirect_to new_part_protocol_path(@part),
+                  notice: "Successfully created part #{@part}."
     else
       render action: 'new'
     end

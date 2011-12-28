@@ -13,7 +13,8 @@ class KonfigurationsController < AuthorizedController
   def create
     @konfiguration = @aircraft.konfigurations.build(params[:konfiguration])
     if @konfiguration.save
-      redirect_to @aircraft, notice: 'Successfully updated configuration.'
+      redirect_to new_konfiguration_zone_path(@konfiguration),
+                  notice: "Successfully created configuration #{@konfiguration}."
     else
       render action: 'new'
     end
