@@ -2,11 +2,6 @@
 window.Application ||= {}
 
 jQuery ->
-  # Draw box around item location
-  $('.location_link, .location_box').each ->
-    l = $(@).data().location
-    Application.drawBox $(@), $("#image_#{l.image_id}"), l.x1, l.y1, l.x2, l.y2
-
 #  TODO
 #  Filter Select Box
 #   # Set item image_location on location click

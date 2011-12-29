@@ -14,3 +14,13 @@ jQuery ->
   $('.group').children('.title').click ->
     $(@).siblings().toggle('fast')
 
+  # Draw box around item location
+  $('.location_link, .location_box').each ->
+    l = $(@).data().location
+    Application.drawBox $(@), $("#image_#{l.image_id}"), l.x1, l.y1, l.x2, l.y2
+
+  # Set item image_location on location click
+  $('.location_link').click ->
+    l = $(@).data().location
+    $('.image_locator').val("#{l.name}, on image ##{l.image_id}")
+
