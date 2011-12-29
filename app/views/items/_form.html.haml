@@ -7,9 +7,10 @@
         .title Layout
         .item_location
         - @zone.images.each do |i|
-          .selector= image_tag i.file_url.to_s
-          - i.locations.each do |o|
-            .location_link{ data: { location: o.to_json }}= o.name
+          = div_for i do
+            = image_tag i.file_url.to_s
+            - i.locations.each do |o|
+              .location_link{ data: { location: o.to_json }}= o.name
 
     .fix.right
       .group
@@ -17,5 +18,5 @@
         .content
           = f.input :name, input_html: { size: 4 }
           = f.input :part_number, input_html: { size: 20, data: {autocomplete_source: parts_path} }
-          = f.input :image_location, input_html: { size: 20 }
+          = f.input :image_location, input_html: { size: 20 , class: 'image_locator'}
     = f.submit

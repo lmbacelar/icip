@@ -1,14 +1,14 @@
-= title "#{@image}"
+= title "Image #{@image}"
 
 .columns
   .fix.left
     .group
       .title Image
-      .selector= render @image
-
-      - @locations.each do |o|
-        = link_to o.name, edit_location_path(o), class: 'location_link',
-                  data: { location: o.to_json(only: [:x1, :y1, :x2, :y2]) }
+      = div_for @image do
+        = render @image
+        - @locations.each do |o|
+          = link_to o.name, edit_location_path(o), class: 'location_link',
+                    data: { location: o.to_json(only: [:image_id, :x1, :y1, :x2, :y2]) }
 
   .fix.right
     .group

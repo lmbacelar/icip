@@ -4,8 +4,10 @@
   .columns
     .fix.left
       .group
-        .title Zone
-        .selector= render @zone.images
+        .title Layout
+        - @zone.images.each do |i|
+          = div_for i do
+            = render i
 
       - @zone.items.inspectable.locatable.each do |i|
         -# TODO:

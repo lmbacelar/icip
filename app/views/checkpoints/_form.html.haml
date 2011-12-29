@@ -16,5 +16,5 @@
         .title Checkpoint
         .content
           = f.association :part, collection: Part.subparts
-          = f.input :image_location, input_html: { size: 30 }
+          = f.input :image_location, input_html: { size: 30 , class: 'image_locator' }
     = f.submit

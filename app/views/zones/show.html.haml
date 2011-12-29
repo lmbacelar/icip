@@ -6,10 +6,12 @@
   .fix.left
     .group
       .title Images
-      .selector= render @zone.images
-      - @zone.items.locatable.each do |i|
-        = link_to i.name, edit_item_path(i), class: 'location_link',
-                  data: { location: i.location.to_json(only: [:image_id, :x1, :y1, :x2, :y2]) }
+      - @zone.images.each do |i|
+        = div_for i do
+          = render i
+          - @zone.items.locatable.each do |e|
+            = link_to e.name, edit_item_path(e), class: 'location_link',
+                  data: { location: e.location.to_json(only: [:image_id, :x1, :y1, :x2, :y2]) }
 
   .fix.right
     .group

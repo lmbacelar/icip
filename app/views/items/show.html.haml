@@ -7,9 +7,13 @@
   .fix.left
     .group
       .title Location
-      .selector= @item.image ? render(Array(@item.image)) : render(@zone.images)
-      - if @item.location
-        .location_box{ data: { location: @item.location.to_json(except: [:created_at, :updated_at]) }}
+      - if @item.image
+        = div_for @item.image do
+          = render @item.image
+          - if @item.location
+            .location_box{ data: { location: @item.location.to_json(except: [:created_at, :updated_at]) } }
+      - else
+        = render @zone.images
 
   .fix.right
     .group
