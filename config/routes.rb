@@ -16,7 +16,9 @@ Icip::Application.routes.draw do
   end
   resources :parts, shallow: true do
     get 'page/:page', action: :index, on: :collection
-    resources :protocols
+    resources :protocols, shallow: true do
+      resources :checkpoints
+    end
   end
 
   resources :inspections do

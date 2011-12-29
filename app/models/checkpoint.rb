@@ -17,7 +17,7 @@ class Checkpoint < ActiveRecord::Base
     # 1. Replace number by location.number (add association)
     # 2. Replace description by part.description ???
     #    This might not be true. Checkpoint description might be different from Part description.
-  belongs_to :protocol
+  belongs_to :checkpointable, polymorphic: true
   belongs_to :part
   has_one :location_assignment, as: :locatable, dependent: :destroy
   has_one :location, through: :location_assignment

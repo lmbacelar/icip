@@ -10,7 +10,7 @@
       %td{colspan: 3}
       %td
         %ul.icons
-          - if can? :update, protocol
-            %li= icon_to 'Edit', edit_protocol_path(protocol)
+          - if can? :create, Checkpoint
+            %li= icon_to 'New', new_protocol_checkpoint_path(protocol)
   %tbody
     = render partial: 'checkpoints/table_row', collection: checkpoints.sort_natural, as: :c

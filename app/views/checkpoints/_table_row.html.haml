@@ -3,3 +3,10 @@
   %td= c.description
   %td= c.part.number
   %td
+    %ul.icons
+      - if can? :read, c
+        %li= icon_to 'Show', c
+      - if can? :update, c
+        %li= icon_to 'Edit', edit_item_path(c)
+      - if can? :destroy, c
+        %li= icon_to 'Destroy', c, confirm: 'Are you sure?', method: :delete

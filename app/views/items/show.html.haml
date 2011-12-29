@@ -1,7 +1,7 @@
-= title "Item #{@item.name}", "Item #{@item.name} on |
-                              #{link_to @aircraft.registration, @aircraft}, |
-                              #{link_to "Configuration ##{@konfiguration.number}", @konfiguration}, |
-                              #{link_to "Zone #{@zone.name}", @zone}" |
+= title "Item #{@item}", "Item #{@item} on |
+                         #{link_to @aircraft, @aircraft}, |
+                         #{link_to "Configuration #{@konfiguration}", @konfiguration}, |
+                         #{link_to "Zone #{@zone}", @zone}" |
 
 .columns
   .fix.left
@@ -19,10 +19,10 @@
 
 .actions
   -if can? :read, @zone
-    = link_to "Back to Zone #{@zone.name}", @zone
+    = link_to "Back to Zone #{@zone}", @zone
   -if can? :read, @aircraft
     |
-    = link_to "Back to #{@aircraft.registration}", @aircraft
+    = link_to "Back to #{@aircraft}", @aircraft
   -if can? :update, @item
     |
     = link_to 'Edit Item', edit_item_path(@item)

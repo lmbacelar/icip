@@ -1,0 +1,28 @@
+= title "Checkpoint #{@checkpoint}", "Checkpoint #{@checkpoint} on |
+                                     #{link_to "P/N #{@part}", @part}, |
+                                     #{link_to "Protocol #{@protocol}", @protocol}" |
+
+.columns
+  .fix.left
+    .group
+      .title Location
+      .selector= @checkpoint.image ? render(Array(@checkpoint.image)) : render(@protocol.images)
+      - if @checkpoint.location
+        .location_box{ data: { location: @checkpoint.location.to_json(except: [:created_at, :updated_at]) }}
+
+  .fix.right
+    .group
+      .title Details
+      .content
+        = render @checkpoint
+
+.actions
+  -if can? :read, @protocol
+    = link_to "Back to Protocol #{@protocol}", @protocol
+  -if can? :update, @checkpoint
+    |
+    = link_to 'Edit Checkpoint', edit_checkpoint_path(@checkpoint)
+  -if can? :destroy, @checkpoint
+    |
+    = link_to 'Destroy Checkpoint', @checkpoint, confirm: 'Are you sure?', method: :delete
+
