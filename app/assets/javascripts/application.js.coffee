@@ -3,7 +3,6 @@
 //= require jquery-ui
 //= require_self
 //= require globals
-//= require nested_form
 
 # Access global objects through Application.
 window.Application ||= {}

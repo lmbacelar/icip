@@ -1,14 +1,11 @@
-= title 'Edit Item', "Edit Item on |
-                      #{link_to @aircraft.registration, @aircraft}, |
-                      #{link_to "Configuration ##{@konfiguration.number}", @konfiguration} , |
-                      #{link_to "Zone #{@zone.name}", @zone}" |
+= title 'Edit Checkpoint'
 
-= render 'form', { target: @item }
+= render 'form', target: @checkpoint
 
 .actions
-  - if can? :read, @zone
-    = link_to "Back to Zone #{@zone.name}", @zone
-  - if can? :read, @aircraft
+  - if can? :read, @protocol
+    = link_to "Back to Protocol #{@protocol}", @protocol
+  - if can? :read, @part
     |
-    = link_to "Back to #{@aircraft.registration}", @aircraft
+    = link_to "Back to P/N #{@part}", @part
 

@@ -1,39 +1,39 @@
-number,description,part.number,part.kind,part.description
-1,LH bottom front foil,147-00-541-13KV,Subpart,
-1,RH bottom front foil,147-00-542-14KV,Subpart,
-1A,RH front foil lower,149-00-251-56KV,Subpart,
-2,LH panel outside assy,147-00-522-03KV,Subpart,
-2,RH panel outside assy,147-00-520-14KV,Subpart,
-3,LH foil upper,147-00-821-00KV,Subpart,
-3,RH foil upper,147-00-821-01KV,Subpart,
-4,LH foil bumper,147-00-541-57KV,Subpart,
-4,RH foil bumper,147-00-541-58KV,Subpart,
-6,PD panel,147-00-870-75KV,Subpart,
-7,CTR armcap LH,664-00-830-01,Subpart,
-7,CTR armcap RH,664-00-830-02,Subpart,
-7,Armcap LH,664-00-340-20,Subpart,
-7,Armcap RH,664-00-340-20,Subpart,
-7A,RH headphone insert assy,147-00-870-07KW,Subpart,
-7A,LH headphone insert assy,147-00-870-08KW,Subpart,
-8,LH armrest,664-00-300-01,Subpart,
-8,RH armrest,664-00-300-02,Subpart,
-9,Table rack,147-00-811-85KV,Subpart,
-10,LH side foil,147-00-870-77KW,Subpart,
-10,RH side foil,147-00-870-76KW,Subpart,
-11,Front foil,147-00-840-31KW,Subpart,
-12,LH foil rear cover bottom,147-00-541-55KV,Subpart,
-12,RH foil rear cover bottom,147-00-541-56KV,Subpart,
-13,LH service cover,149-00-892-93KV,Subpart,
-13,RH service cover,149-00-892-94KV,Subpart,
-14,Rear lower cover,147-00-870-71KV,Subpart,
-15,Rear stowage assy,664-00-870-51,Subpart,
-16,LH foil rear,147-00-541-65KW,Subpart,
-16,RH foil rear,147-00-541-66KW,Subpart,
-5,Dress cover – legrest,TP25-8314-EPA,Subpart,
-5,Dress cover – headrest,TP25-8353-EPA,Subpart,
-5,Dress cover – backrest,TP25-8352-EPA,Subpart,
-5,LH dress cover - seatbottom,TP25-8354-EPA,Subpart,
-5,RH dress cover - seatbottom,TP25-8355-EPA,Subpart,
-5,Dress cover – footrest,TP25-8315-EPA,Subpart,
-5A,Seat belt with buckle,TP25-8389,Subpart,
-5A,Seat belt without buckle,TP25-8390,Subpart,
+location.name,location.image,part.number,part.kind,part.description
+1,TOE-TOP_C_front.png,147-00-541-13KV,Subpart,LH bottom front foil
+1,TOE-TOP_C_front.png,147-00-542-14KV,Subpart,RH bottom front foil
+1A,TOE-TOP_C_front.png,149-00-251-56KV,Subpart,RH front foil lower
+2,TOE-TOP_C_front.png,147-00-522-03KV,Subpart,LH panel outside assy
+2,TOE-TOP_C_front.png,147-00-520-14KV,Subpart,RH panel outside assy
+3,TOE-TOP_C_front.png,147-00-821-00KV,Subpart,LH foil upper
+3,TOE-TOP_C_front.png,147-00-821-01KV,Subpart,RH foil upper
+4,TOE-TOP_C_front.png,147-00-541-57KV,Subpart,LH foil bumper
+4,TOE-TOP_C_front.png,147-00-541-58KV,Subpart,RH foil bumper
+6,TOE-TOP_C_front.png,147-00-870-75KV,Subpart,PD panel
+7,TOE-TOP_C_front.png,664-00-830-01,Subpart,CTR armcap LH
+7,TOE-TOP_C_front.png,664-00-830-02,Subpart,CTR armcap RH
+7,TOE-TOP_C_front.png,664-00-340-20,Subpart,Armcap LH
+7,TOE-TOP_C_front.png,664-00-340-20,Subpart,Armcap RH
+7A,TOE-TOP_C_front.png,147-00-870-07KW,Subpart,RH headphone insert assy
+7A,TOE-TOP_C_front.png,147-00-870-08KW,Subpart,LH headphone insert assy
+8,TOE-TOP_C_front.png,664-00-300-01,Subpart,LH armrest
+8,TOE-TOP_C_front.png,664-00-300-02,Subpart,RH armrest
+9,TOE-TOP_C_front.png,147-00-811-85KV,Subpart,Table rack
+10,TOE-TOP_C_front.png,147-00-870-77KW,Subpart,LH side foil
+10,TOE-TOP_C_front.png,147-00-870-76KW,Subpart,RH side foil
+11,TOE-TOP_C_front.png,147-00-840-31KW,Subpart,Front foil
+12,TOE-TOP_C_back.png,147-00-541-55KV,Subpart,LH foil rear cover bottom
+12,TOE-TOP_C_back.png,147-00-541-56KV,Subpart,RH foil rear cover bottom
+13,TOE-TOP_C_back.png,149-00-892-93KV,Subpart,LH service cover
+13,TOE-TOP_C_back.png,149-00-892-94KV,Subpart,RH service cover
+14,TOE-TOP_C_back.png,147-00-870-71KV,Subpart,Rear lower cover
+15,TOE-TOP_C_back.png,664-00-870-51,Subpart,Rear stowage assy
+16,TOE-TOP_C_back.png,147-00-541-65KW,Subpart,LH foil rear
+16,TOE-TOP_C_back.png,147-00-541-66KW,Subpart,RH foil rear
+5,TOE-TOP_C_front.png,TP25-8314-EPA,Subpart,Dress cover – legrest
+5,TOE-TOP_C_front.png,TP25-8353-EPA,Subpart,Dress cover – headrest
+5,TOE-TOP_C_front.png,TP25-8352-EPA,Subpart,Dress cover – backrest
+5,TOE-TOP_C_front.png,TP25-8354-EPA,Subpart,LH dress cover - seatbottom
+5,TOE-TOP_C_front.png,TP25-8355-EPA,Subpart,RH dress cover - seatbottom
+5,TOE-TOP_C_front.png,TP25-8315-EPA,Subpart,Dress cover – footrest
+5A,TOE-TOP_C_front.png,TP25-8389,Subpart,Seat belt with buckle
+5A,TOE-TOP_C_front.png,TP25-8390,Subpart,Seat belt without buckle

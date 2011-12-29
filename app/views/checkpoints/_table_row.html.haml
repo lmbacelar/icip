@@ -1,12 +1,12 @@
 %tr{class: cycle('', 'alt')}
-  %td= c.number
-  %td= c.description
+  %td= c.location
   %td= c.part.number
+  %td= c.part.description
   %td
     %ul.icons
       - if can? :read, c
         %li= icon_to 'Show', c
       - if can? :update, c
-        %li= icon_to 'Edit', edit_item_path(c)
+        %li= icon_to 'Edit', edit_checkpoint_path(c)
       - if can? :destroy, c
         %li= icon_to 'Destroy', c, confirm: 'Are you sure?', method: :delete

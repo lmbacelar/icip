@@ -4,18 +4,17 @@
   .columns
     .fix.left
       .group
-        .title Layout
-        .item_location
-        - @zone.images.each do |i|
-          .selector= image_tag i.file_url.to_s
-          - i.locations.each do |o|
-            .location_link{ data: { location: o.to_json }}= o.name
+        .title Location
+        - @protocol.images.each do |i|
+          = div_for i do
+            = image_tag i.file_url(:fitted).to_s
+            - i.locations.each do |o|
+              .location_link{ data: { location: o.to_json }}= o.name
 
     .fix.right
       .group
-        .title Item
+        .title Checkpoint
         .content
-          = f.input :name, input_html: { size: 4 }
-          = f.input :part_number, input_html: { size: 20, data: {autocomplete_source: parts_path} }
-          = f.input :image_location, input_html: { size: 20 }
+          = f.association :part, collection: Part.subparts
+          = f.input :image_location, input_html: { size: 30 }
     = f.submit

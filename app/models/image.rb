@@ -54,7 +54,13 @@ class Image < ActiveRecord::Base
     end
   end
 
+  def self.id_from_filename(filename)
+    Hash[*self.all.map { |i| [File.basename(i.file_url), i.id] }.flatten][filename]
+  end
+
   # # # # # Private Methods             # # # # #
   private
-  def update_checksum()   self.checksum = Image.checksum "public#{file.to_s}"   end
+  def update_checksum
+    self.checksum = Image.checksum "public#{file.to_s}"
+  end
 end

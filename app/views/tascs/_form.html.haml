@@ -4,7 +4,11 @@
     .fix.left
       .group
         .title Inspection Protocol
-        .selector= render @item.part.protocols.current.images
+        - @item.part.protocols.current.images.each do |i|
+          = div_for i do
+            = image_tag i.file_url(:fitted).to_s
+            - i.locations.each do |o|
+              .location_link{ data: { location: o.to_json }}= o.name
 
     .fix.right
       .group

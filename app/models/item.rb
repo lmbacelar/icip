@@ -20,6 +20,7 @@ class Item < ActiveRecord::Base
   # # # # # Scopes                      # # # # #
   scope :sort_natural, joins(:part).order("parts.kind, LPAD(SUBSTRING(name from '[0-9]+'),5, '0'), SUBSTRING(name from '[^0-9]+')")
   scope :locatable, joins(:location)
+  scope :inspectable, joins(:part).merge(Part.with_protocol)
 
   # # # # # Validations                 # # # # #
   validates :name, presence: true, uniqueness: { scope: :zone_id }
@@ -57,15 +58,6 @@ class Item < ActiveRecord::Base
         self.location = nil
       end
     end
-  end
-
-  def self.on_image(image_id)
-    locatable.joins(:image).where("images.id = ?", image_id)
-  end
-
-  def self.at_position(x,y)
-    locatable.where("locations.x1 <= ? AND locations.x2 >= ? AND locations.y1 <= ? AND locations.y2 >= ?",
-                    x, x, y, y)
   end
 
   # # # # # Private Methods             # # # # #

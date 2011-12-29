@@ -1,4 +1,4 @@
-= simple_nested_form_for target do |f|
+= simple_form_for target do |f|
   = f.error_messages
 
   -# TODO
@@ -25,24 +25,8 @@
             )
 
     .fix.right
-      -# TODO
-      -# Move to partial.
-      -# Can't do it now because of nested_form bug on haml partials
       .group
         .title Checkpoints
-        -# .content
-        -#   = f.fields_for :checkpoints, f.object.checkpoints.sort_natural do |c|
-        -#     -#
-        -#     -# TODO
-        -#     -# 1. Change number to location relation
-        -#     -# 2. Change description to p/n description
-        -#     = c.text_field :number, label: false, placeholder: "(#{:number})", size: 1
-        -#     -#= c.select :location, f.object.images.map { |i| i.locations.map { |o| [o.name, o.id] } }.flatten(1),
-        -#     -#                      label: false, placeholder: "(#{:number})", size: 1
-        -#     = c.text_field :description, label: false, placeholder: "(#{:description})", size: 25
-        -#     = c.text_field :pn, label: false, placeholder: '(P/N)', size: 20
-        -#     = c.link_to_remove 'Remove'
-        -#   = f.link_to_add 'Add Item', :checkpoints
 
   = f.submit
 

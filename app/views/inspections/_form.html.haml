@@ -1,4 +1,4 @@
-= simple_nested_form_for @inspection do |f|
+= simple_form_for @inspection do |f|
   = f.error_messages
 
   .columns
@@ -7,11 +7,8 @@
         .title Zone
         .selector= render @zone.images
 
-      - @zone.items.locatable.each do |i|
+      - @zone.items.inspectable.locatable.each do |i|
         -# TODO:
-        -#   Add Task links to all items with no tasks
-        -#   Edit Task links to all items with tasks
-        -#
         -#   Replace if executed with if can? create or update Tasc
         - unless @inspection.state == :unassigned || @inspection.executed
           = link_to i.name, inspection_item_tascs_path(@inspection, i), class: 'location_link',

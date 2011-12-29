@@ -67,12 +67,8 @@ end
 Part.all.each do |part|
   checkpoints_csv = "db/seeds/#{part}.checkpoints.csv"
   images_csv = "db/seeds/#{part}.images.csv"
-  if File.exist?(checkpoints_csv) || File.exist?(images_csv)
+  if File.exist?(images_csv) || File.exist?(checkpoints_csv)
     p = part.protocols.create(author_id: User.find_by_tap_number('308007').id)
-    if File.exist? checkpoints_csv
-      puts "IMPORTING Checkpoints for P/N #{part} Protocol #{p} ..."
-      p.checkpoints_from_csv checkpoints_csv
-    end
     if File.exist? images_csv
       puts "IMPORTING Images for P/N #{part} Protocol #{p} ..."
       p.images_from_csv images_csv
@@ -84,6 +80,10 @@ Part.all.each do |part|
           puts "SKIPPING Locations for Image '#{i}. Already loaded ..."
         end
       end
+    end
+    if File.exist? checkpoints_csv
+      puts "IMPORTING Checkpoints for P/N #{part} Protocol #{p} ..."
+      p.checkpoints_from_csv checkpoints_csv
     end
   end
 end

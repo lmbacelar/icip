@@ -5,7 +5,7 @@
   %td= a.etr
   %td= a.technician.name
   %td= I18n.l(a.closing.try(:updated_at), format: :short_date) if a.closing.present?
-  %td= a.closing.engineer.name
+  %td= a.closing.try(:engineer).try(:name)
   %td
     %ul.icons
       -# if can? :read, a

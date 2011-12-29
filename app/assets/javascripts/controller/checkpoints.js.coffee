@@ -7,9 +7,7 @@ jQuery ->
     l = $(@).data().location
     Application.drawBox $(@), $("#image_#{l.image_id}"), l.x1, l.y1, l.x2, l.y2
 
-#  TODO
-#  Filter Select Box
-#   # Set item image_location on location click
-#   $('.location_link').click ->
-#     l = $(@).data().location
-#     $('#checkpoint_image_location').val("#{l.name}, on image ##{l.image_id}")
+  # Set item image_location on location click
+  $('.location_link').click ->
+    l = $(@).data().location
+    $('#checkpoint_image_location').val("#{l.name}, on image ##{l.image_id}")

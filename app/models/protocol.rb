@@ -8,17 +8,14 @@ class Protocol < ActiveRecord::Base
   before_validation :set_revnum
 
   # # # # # Attr_accessible / protected # # # # #
-  attr_accessible :revnum, :notes, :author_id, :image_ids, :checkpoints_attributes
+  attr_accessible :revnum, :notes, :author_id, :image_ids #, :checkpoints_attributes
 
   # # # # # Associations / Delegates    # # # # #
   belongs_to :part
   belongs_to :author, class_name: 'User'
   has_many :image_assignments, as: :imageable, dependent: :destroy
   has_many :images, through: :image_assignments, dependent: :destroy
-  has_many :checkpoints, as: :checkpointable, dependent: :destroy
-  accepts_nested_attributes_for :checkpoints, allow_destroy: true,
-                                              reject_if: ->(c){ c[:number].blank? ||
-                                                                c[:description].blank? }
+  has_many :checkpoints, dependent: :destroy
 
   # # # # # Scopes                      # # # # #
   scope :newest, order('revnum DESC')
@@ -74,8 +71,8 @@ class Protocol < ActiveRecord::Base
         csv << Checkpoint::CsvColumns
         # iterate children
         checkpoints.each do |c|
-          csv << [c.number, c.description,
-                  c.part.try(:number), c.part.try(:kind), c.part.try(:description)]
+          csv << [c.location.name, c.location.image,
+                  c.part.number, c.part.kind, c.part.try(:description)]
         end
       end
     rescue Errno::EISDIR
@@ -97,10 +94,9 @@ class Protocol < ActiveRecord::Base
       if header == Checkpoint::CsvColumns
         # import data
         lines.each do |line|
-          checkpoints.create(number: line[0], description: line[1],
-                             part_id: Part.find_or_create_by_number(number: line[2],
-                                                                    kind: line[3],
-                                                                    description: line[4]).id)
+          checkpoints.create(
+            location: Location.find_by_name_and_image_id(line[0], Image.id_from_filename(line[1])),
+            part_id: Part.find_or_create_by_number(number: line[2], kind: line[3], description: line[4]).id)
         end
       else
         puts "ERROR: Expecting ''#{Item::CsvColumns.join(',')}' on '#{fname}'. Skipping import of Checkpoints."

@@ -18,7 +18,6 @@ class Aircraft < ActiveRecord::Base
   has_many :zones, through: :konfigurations
   has_many :inspections, through: :zones
   has_many :tascs, through: :inspections
-  accepts_nested_attributes_for :konfigurations, allow_destroy: true, reject_if: ->(c){ c[:number].blank? }
 
   # # # # # Scopes # # # # #
 

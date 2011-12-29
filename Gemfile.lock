@@ -1,8 +1,3 @@
-PATH
-  remote: ~/git/nested_form
-  specs:
-    nested_form (0.1.1)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -158,7 +153,6 @@ DEPENDENCIES
   jquery-rails
   kaminari
   mini_magick
-  nested_form!
   pg
   rails (= 3.1.0)
   sass-rails (~> 3.1.0)

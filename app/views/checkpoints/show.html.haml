@@ -1,14 +1,13 @@
-= title "Checkpoint #{@checkpoint}", "Checkpoint #{@checkpoint} on |
-                                     #{link_to "P/N #{@part}", @part}, |
-                                     #{link_to "Protocol #{@protocol}", @protocol}" |
+= title "Checkpoint #{@checkpoint}"
 
 .columns
   .fix.left
     .group
       .title Location
-      .selector= @checkpoint.image ? render(Array(@checkpoint.image)) : render(@protocol.images)
-      - if @checkpoint.location
-        .location_box{ data: { location: @checkpoint.location.to_json(except: [:created_at, :updated_at]) }}
+      = div_for @checkpoint.image do
+        = render @checkpoint.image
+        - if @checkpoint.location
+          .location_box{ data: { location: @checkpoint.location.to_json(except: [:created_at, :updated_at]) }}
 
   .fix.right
     .group
@@ -17,7 +16,10 @@
         = render @checkpoint
 
 .actions
+  -if can? :read, @part
+    = link_to "Back to P/N #{@part}", @part
   -if can? :read, @protocol
+    |
     = link_to "Back to Protocol #{@protocol}", @protocol
   -if can? :update, @checkpoint
     |

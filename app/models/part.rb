@@ -29,6 +29,8 @@ class Part < ActiveRecord::Base
 
   # # # # # Scopes                      # # # # #
   default_scope order(:kind, :number)
+  scope :subparts, where(kind: 'Subpart')
+  scope :with_protocol, where('parts.id IN (SELECT part_id FROM protocols)')
 
   # # # # # Validations                 # # # # #
   validates :number, presence: true, uniqueness: true

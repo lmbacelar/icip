@@ -1,8 +1,8 @@
 %dl
-  %dt Location
-  %dd= checkpoint.location
   %dt P/N
   %dd= checkpoint.part
-  - if checkpoint.pn.description.present?
+  - if checkpoint.part.description.present?
     %dt Description
     %dd= checkpoint.part.description
+  %dt Location
+  %dd= checkpoint.location
