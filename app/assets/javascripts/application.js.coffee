@@ -14,7 +14,8 @@ jQuery ->
   $('.group').children('.title').click ->
     $(@).siblings().toggle('fast')
 
-  # Draw box around item location
+  # Draw box around item location.
+  # Window load garantees images are loaded and their position is acurately reported
   $(window).load ->
     $('.location_link, .location_box').each ->
       l = $(@).data().location
