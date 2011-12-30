@@ -15,9 +15,10 @@ jQuery ->
     $(@).siblings().toggle('fast')
 
   # Draw box around item location
-  $('.location_link, .location_box').each ->
-    l = $(@).data().location
-    Application.drawBox $(@), $("#image_#{l.image_id}"), l.x1, l.y1, l.x2, l.y2
+  $(window).load ->
+    $('.location_link, .location_box').each ->
+      l = $(@).data().location
+      Application.drawBox $(@), $("#image_#{l.image_id}"), l.x1, l.y1, l.x2, l.y2
 
   # Set item image_location on location click
   $('.location_link').click ->
