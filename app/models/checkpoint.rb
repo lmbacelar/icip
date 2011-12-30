@@ -38,10 +38,6 @@ class Checkpoint < ActiveRecord::Base
 
   # TODO:
   # Remove "orphan" part numbers on setter
-  def pn
-    part.try(:number)
-  end
-
   def image_location
     "#{location.name}, on image ##{location.image_id} (#{image})" if location
   end
@@ -57,8 +53,13 @@ class Checkpoint < ActiveRecord::Base
     end
   end
 
-  def pn=(n)
-    self.part_id = Part.find_or_create_by_number(number: n).id
+  def part_number
+    part.try(:number)
   end
+
+  def part_number=(number)
+    self.part = Part.find_by_number(number) if number.present?
+  end
+
   # # # # # Private Methods             # # # # #
 end

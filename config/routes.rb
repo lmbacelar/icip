@@ -20,6 +20,8 @@ Icip::Application.routes.draw do
       resources :checkpoints
     end
   end
+  get 'parts_autocomplete' => 'parts#parts_autocomplete', as: :parts_autocomplete
+  get 'subparts_autocomplete' => 'parts#subparts_autocomplete', as: :subparts_autocomplete
 
   resources :inspections do
     get 'page/:page', action: :index, on: :collection

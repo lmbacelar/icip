@@ -29,7 +29,8 @@ class Part < ActiveRecord::Base
 
   # # # # # Scopes                      # # # # #
   default_scope order(:kind, :number)
-  scope :subparts, where(kind: 'Subpart')
+  scope :subparts, where(kind: 'Subpart').order(:number)
+  scope :except_subparts, where("kind != 'Subpart'").order(:kind, :number)
   scope :with_protocol, where('parts.id IN (SELECT part_id FROM protocols)')
 
   # # # # # Validations                 # # # # #
@@ -60,25 +61,17 @@ class Part < ActiveRecord::Base
 
   def self.search(params = {})
     tire.search(page: params[:page], per_page: Kaminari.config.default_per_page) do
-      if params[:term].present?
-        # autocomplete-ui
-        filter :prefix, number: params[:term]
-        filter :not, term: { kind: 'Subpart' }
-        sort { by ['kind', 'number'] }
-      else
-        # regular search
-        query do
-          boolean do
-            must { string params[:preset] } if params[:preset].present?
-            must { string params[:query] } if params[:query].present?
-          end
+      query do
+        boolean do
+          must { string params[:preset] } if params[:preset].present?
+          must { string params[:query] } if params[:query].present?
         end
-        # TODO:
-        # Allow sorting by something passed on params, and sort on relevance
-        sort { by [:kind, :number] }
       end
-      #raise s.to_curl
+      # TODO:
+      # Allow sorting by something passed on params, and sort on relevance
+      sort { by [:kind, :number] }
     end
+    #raise s.to_curl
   end
 
   #   Indexed methods. These are passible of showing / searching.

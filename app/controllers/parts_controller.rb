@@ -2,10 +2,6 @@ class PartsController < AuthorizedController
   def index
     params[:preset] ||= Part::SearchPresets.first[1] # if defined? Part::SearchPresets
     @parts = Part.search(params)
-    respond_to do |format|
-      format.html
-      format.json { render json: @parts.map(&:number)}
-    end
   end
 
   def show
@@ -37,5 +33,15 @@ class PartsController < AuthorizedController
   def destroy
     @part.destroy
     redirect_to parts_url, notice: 'Successfully destroyed part.'
+  end
+
+  def parts_autocomplete
+    @parts = Part.except_subparts.where("number LIKE ?", "%#{params[:term]}%")
+    render json: @parts.map(&:number)
+  end
+
+  def subparts_autocomplete
+    @subparts = Part.subparts.where("number LIKE ?", "%#{params[:term]}%")
+    render json: @subparts.map(&:number)
   end
 end
