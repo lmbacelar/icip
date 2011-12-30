@@ -1,8 +1,5 @@
 class InspectionsController < AuthorizedController
   before_filter :load_resources_from_inspection, only: [:show, :edit]
-  before_filter do
-    Zone.order('zones.id DESC').schedule_inspections
-  end
 
   def index
     params[:preset] ||= Inspection::SearchPresets.first[1] # if defined? Inspection::SearchPresets
