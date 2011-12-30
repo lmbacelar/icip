@@ -48,8 +48,11 @@ class Zone < ActiveRecord::Base
     end
   end
 
-  def self.schedule_inspections
-    self.all.each { |z| z.schedule_inspection }
+  def self.schedule_inspections(delay=0)
+    self.all.each do |z|
+      z.schedule_inspection
+      sleep delay
+    end
   end
 
   def items_to_csv(fname)
