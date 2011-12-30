@@ -37,6 +37,7 @@ GEM
     cancan (1.6.7)
     carrierwave (0.5.8)
       activesupport (~> 3.0)
+    chronic (0.6.6)
     coffee-rails (3.1.1)
       coffee-script (>= 2.2.0)
       railties (~> 3.1.0)
@@ -142,6 +143,9 @@ GEM
       kgio (~> 2.4)
       rack
       raindrops (~> 0.6)
+    whenever (0.7.2)
+      activesupport (>= 2.3.4)
+      chronic (~> 0.6.3)
 
 PLATFORMS
   ruby
@@ -163,3 +167,4 @@ DEPENDENCIES
   turn
   uglifier
   unicorn
+  whenever

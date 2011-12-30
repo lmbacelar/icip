@@ -4,6 +4,7 @@ gem 'rails', '3.1.0'
 gem 'pg'
 gem 'jquery-rails'
 gem 'haml-rails'
+gem 'whenever', require: false
 gem 'cancan'
 gem 'simple_form'
 gem 'carrierwave'
