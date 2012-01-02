@@ -10,6 +10,9 @@ class Location < ActiveRecord::Base
   # # # # # Attr_accessible / protected # # # # #
   # # # # # Associations / Delegates    # # # # #
   belongs_to :image
+  has_many :location_assignments, dependent: :destroy
+  has_many :items, through: :location_assignments, source: :locatable, source_type: 'Item'
+  has_many :checkpoints, through: :location_assignments, source: :locatable, source_type: 'Checkpoint'
 
   # # # # # Scopes                      # # # # #
   scope :sort_natural, order("LPAD(SUBSTRING(name from '[0-9]+'),5, '0'), SUBSTRING(name from '[^0-9]+')")

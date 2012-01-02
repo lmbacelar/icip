@@ -7,6 +7,9 @@ class TascsController < AuthorizedController
 
   def new
     @tasc = @inspection.tascs.build
+    @images = @item.part.protocols.current.images
+    @checkpoints = @item.part.protocols.current.checkpoints.sort_natural
+    #@checkpoint_locations = @checkpoints.includes(:location)
   end
 
   def create

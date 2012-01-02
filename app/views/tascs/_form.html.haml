@@ -4,17 +4,22 @@
     .fix.left
       .group
         .title Inspection Protocol
-        - @item.part.protocols.current.images.each do |i|
+        - @images.each do |i|
           = div_for i do
             = image_tag i.file_url(:fitted).to_s
             - i.locations.each do |o|
-              .location_link{ data: { location: o.to_json }}= o.name
+              .location_link{ data: { location: o.to_json(except: [:created_at, :updated_at]) }}= o.name
 
     .fix.right
       .group
         .title Details
         .inputs
-          = f.association :checkpoint, collection: @item.part.protocols.current.checkpoints.sort_natural, prompt: '(Select one)'
+          = f.input :checkpoint do
+            = f.select :checkpoint_id,
+                  @checkpoints.map {|c| [c.part.try(:description),
+                                         c.id,
+                                         { 'data-location_name' => c.location.name }]},
+                  prompt: '(Select one)'
           = f.input :action, collection: Tasc::Actions, prompt: '(Select one)'
           = f.input :etr, collection: Tasc::Etrs, label: 'ETR', prompt: '(Select one)'
           = f.input :comment

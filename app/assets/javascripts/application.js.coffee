@@ -22,7 +22,24 @@ jQuery ->
       Application.drawBox $(@), $("#image_#{l.image_id}"), l.x1, l.y1, l.x2, l.y2
 
   # Set item image_location on location click
-  $('.location_link').click ->
-    l = $(@).data().location
-    $('.image_locator').val("#{l.name}, on image ##{l.image_id}")
+  if $('.image_locator').length > 0
+    $('.location_link').click ->
+      # Get location data
+      l = $(@).data().location
+      $(@).val("#{l.name}, on image ##{l.image_id}")
 
+  # Filter select checkpoints options on location click
+  if $("#tasc_checkpoint_id").length > 0
+    # Save original checkpoints and first option (prompt?)
+    checkpoints = $("#tasc_checkpoint_id").html()
+    prompt = $("#tasc_checkpoint_id option:first")
+    $('.location_link').click ->
+      # Get location data
+      l = $(@).data().location
+      # Restore original checkpoints
+      $("#tasc_checkpoint_id").html(checkpoints)
+      # Remove options not matching selected location
+      $("#tasc_checkpoint_id option[data-location_name!='#{l.name}']").remove()
+      # If prompt is valid re-insert it
+      if $("#tasc_checkpoint_id option").size() > 1
+        $("#tasc_checkpoint_id").prepend(prompt)
