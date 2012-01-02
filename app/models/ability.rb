@@ -28,11 +28,17 @@ class Ability
           ins = Inspection.find(ins.id)
           ins.technician_id == user.id && (!ins.executed || ins.tascs.empty? || ins.tascs.closed.empty?)
         end
-        # Can manage Tasks
-        # TODO:
-        # Restrict further
-        #   Can manage Tasks for inspections assigned to user while tasks remain open
-        can :manage, [Tasc]
+        # Can create Tasks
+        # TODO: Restrict further: only on inspections assigned to user
+        can :create, Tasc
+        # Can read Tasks assigned to him
+        can :read, Tasc do |tas|
+          tas.inspection.technician_id == user.id
+        end
+        # Can update and destroy Tasks assigned to him, while the inspection is not closed
+        can [:update, :destroy], Tasc do |tas|
+          tas.inspection.technician_id == user.id && !tas.inspection.executed
+        end
 
         # Can read Closings for Tasks created by himself
         can :read, [Closing] do |c|
