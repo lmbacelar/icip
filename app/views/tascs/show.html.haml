@@ -1,0 +1,37 @@
+= title 'Task', "Task on |
+                #{link_to @inspection.aircraft, @inspection.aircraft}, |
+                #{link_to "Zone #{@inspection.zone}", @inspection.zone}, |
+                #{link_to "Item #{@tasc.item}", @tasc.item}" |
+
+.columns
+  .fix.left
+    .group
+      .title= "Inspection Protocol #{@protocol}"
+      - @images.each do |i|
+        = div_for i do
+          = image_tag i.file_url(:fitted).to_s
+          .location_box{ data: { location: @location.to_json(except: [:created_at, :updated_at]) } }
+
+  .fix.right
+    .group
+      .title Task Details
+      .content
+        = render @tasc
+    .group
+      .title Checkpoint
+      .content
+        = render @checkpoint
+    .group
+      .title Technician
+      .content
+        = render @tasc.technician
+
+.actions
+  -if can? :read, @inspection
+    = link_to "Back to #{@inspection.aircraft} Inspection", @inspection
+  -if can? :update, @tasc
+    |
+    = link_to 'Edit Task', edit_tasc_path(@tasc)
+  -if can? :destroy, @tasc
+    |
+    = link_to 'Destroy Task', @tasc, confirm: 'Are you sure?', method: :delete

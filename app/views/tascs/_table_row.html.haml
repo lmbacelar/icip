@@ -6,7 +6,7 @@
   %td= I18n.l(a.closing.try(:updated_at), format: :short_date) if a.closing.present?
   %td
     %ul.icons
-      -# if can? :read, a
+      - if can? :read, a
         %li= icon_to 'Show', a
       - if can? :update, a
         %li= icon_to 'Edit', edit_tasc_path(a)
