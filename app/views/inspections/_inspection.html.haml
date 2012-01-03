@@ -6,7 +6,7 @@
   %dt Last Update
   %dd= I18n.l inspection.updated_at, format: :short_date
   %dt Assigned to
-  %dd= inspection.technician.try(:name) || 'No One'
+  %dd= inspection.technician_names || 'No One'
   %dt Executed?
   %dd
     - if inspection.executed
