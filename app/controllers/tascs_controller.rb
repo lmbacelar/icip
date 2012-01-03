@@ -6,10 +6,13 @@ class TascsController < AuthorizedController
   end
 
   def new
+    @protocol = @item.part.protocols.current
+    # TODO: Restrict further checkpoints.
+    # Exclude all those with pending tascs on this or another inspection.
+    @checkpoints = @protocol.checkpoints.sort_natural
+    @locations = @protocol.locations.uniq
+    @images = @protocol.images
     @tasc = @inspection.tascs.build
-    @images = @item.part.protocols.current.images
-    @checkpoints = @item.part.protocols.current.checkpoints.sort_natural
-    #@checkpoint_locations = @checkpoints.includes(:location)
   end
 
   def create
@@ -24,11 +27,18 @@ class TascsController < AuthorizedController
   end
 
   def edit
+    @item = @tasc.item
+    @protocol = @item.part.protocols.current
+    # TODO: Restrict further checkpoints.
+    # Exclude all those with pending tascs on this or another inspection.
+    @checkpoints = @protocol.checkpoints.sort_natural
+    @locations = @protocol.locations.uniq
+    @images = @protocol.images
   end
 
   def update
     if @tasc.update_attributes(params[:tasc])
-      redirect_to @inspection, notice: 'Successfully updated task.'
+      redirect_to edit_inspection_url(@inspection), notice: 'Successfully updated task.'
     else
       render action: 'edit'
     end
