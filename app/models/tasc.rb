@@ -20,11 +20,12 @@ class Tasc < ActiveRecord::Base
 
   # # # # # Validations                 # # # # #
   validates :technician, presence: true
-  validates :action, inclusion: { in: Actions }
-  validates :etr, inclusion: { in: Etrs }
+  validates :action, presence: true, inclusion: { in: Actions }
+  validates :etr, presence: true, inclusion: { in: Etrs }
   validates :inspection, presence: true
   validates :item, presence: true
   validates :checkpoint, presence: true
+  validates :checkpoint_id, uniqueness: { scope: [:inspection_id, :item_id] }
 
   # # # # # Public Methods              # # # # #
   def open?
