@@ -3,15 +3,13 @@ class TascsController < AuthorizedController
   before_filter :load_resources_from_tasc, except: [:new, :create]
 
   def show
+    @protocol = @tasc.item.part.protocols.current
+    @images = @protocol.images
+    @checkpoint = @tasc.checkpoint
+    @location = @checkpoint.location
   end
 
   def new
-    @protocol = @item.part.protocols.current
-    # TODO: Restrict further checkpoints.
-    # Exclude all those with pending tascs on this or another inspection.
-    @checkpoints = @protocol.checkpoints.sort_natural
-    @locations = @protocol.locations.uniq
-    @images = @protocol.images
     @tasc = @inspection.tascs.build
   end
 
@@ -46,13 +44,19 @@ class TascsController < AuthorizedController
 
   def destroy
     @tasc.destroy
-    redirect_to @inspection, notice: 'Successfully destroyed task.'
+    redirect_to edit_inspection_url(@inspection), notice: 'Successfully destroyed task.'
   end
 
 private
   def load_resources_from_inspection
     @inspection = Inspection.find(params[:inspection_id])
     @item = Item.find(params[:item_id])
+    @protocol = @item.part.protocols.current
+    # TODO: Restrict checkpoints further.
+    # Exclude all those with pending tascs on this or another inspection.
+    @checkpoints = @protocol.checkpoints.sort_natural
+    @locations = @protocol.locations.uniq
+    @images = @protocol.images
   end
 
   def load_resources_from_tasc
