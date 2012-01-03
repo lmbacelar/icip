@@ -8,6 +8,16 @@
 window.Application ||= {}
 
 jQuery ->
+  # Highlight flash notice
+  $('#flash_notice').hide()
+  $('#flash_notice').fadeIn()
+
+  # Highlight flash error
+  $('#flash_error').effect 'pulsate', { times: 3}, 500
+
+  # Highlight form error messages
+  $('.error_messages').effect 'pulsate', { times: 3}, 500
+
   # Show / Hide groups
   # TODO:
   # show / hide up / down icon accordingly
