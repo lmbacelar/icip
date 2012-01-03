@@ -32,5 +32,9 @@ jQuery ->
       $('#location_y1').val(y[0])
       $('#location_x2').val(x[1])
       $('#location_y2').val(y[1])
+      $('#location_x1').parent().effect 'highlight', {}, 500
+      $('#location_y1').parent().effect 'highlight', {}, 500
+      $('#location_x2').parent().effect 'highlight', {}, 500
+      $('#location_y2').parent().effect 'highlight', {}, 500
       Application.drawBox $('.location_box'), $(@), x[0], y[0], x[1], y[1]
       $('.location_box').show()
