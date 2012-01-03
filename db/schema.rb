@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111229185345) do
+ActiveRecord::Schema.define(:version => 20120103190844) do
 
   create_table "aircrafts", :force => true do |t|
     t.string   "registration", :limit => 10
@@ -56,7 +56,6 @@ ActiveRecord::Schema.define(:version => 20111229185345) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "execution_date"
-    t.string   "assigned_to"
     t.integer  "technician_id"
   end
 
