@@ -21,7 +21,7 @@
                                         c.id,
                                         { 'data-location_name' => c.location.name }]},
                   prompt: '(Select one)'
-          = f.input :action, collection: Tasc::Actions, prompt: '(Select one)', required: true
+          = f.input :action, collection: Tasc::Actions, prompt: '(Select one)'
           = f.input :etr, collection: Tasc::Etrs, label: 'ETR', prompt: '(Select one)'
           = f.input :comment
         .clear
