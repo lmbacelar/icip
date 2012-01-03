@@ -1,5 +1,4 @@
 jQuery ->
-  $('#filter_checkpoints_help').effect 'pulsate', {times:2}, 500
 
   # Save original checkpoints and first option (prompt?)
   checkpoints = $("#tasc_checkpoint_id").html()
