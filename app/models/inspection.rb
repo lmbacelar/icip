@@ -17,6 +17,8 @@ class Inspection < ActiveRecord::Base
   # # # # # Associations / Delegates    # # # # #
   belongs_to :zone
   belongs_to :technician, class_name: 'User'
+  has_many :inspection_assignments, dependent: :destroy
+  has_many :technicians, through: :inspection_assignments, source: :user
   has_one :konfiguration, through: :zone
   has_one :aircraft, through: :konfiguration
   has_many :tascs, dependent: :destroy
@@ -32,7 +34,7 @@ class Inspection < ActiveRecord::Base
   # # # # # Validations                 # # # # #
   # # # # # Public Methods              # # # # #
   def state
-    if self.technician.nil?
+    if self.technicians.empty?
      :unassigned
     elsif self.execution_date.nil?
       :assigned
@@ -56,6 +58,14 @@ class Inspection < ActiveRecord::Base
     end
   end
 
+  def technician_names
+    if technicians.any?
+      technicians.map{ |tec| tec.name }.join(', ')
+    else
+      nil
+    end
+  end
+
   # Searching
   #   Model searching through ElasticSearch
   #   Index mappings
@@ -67,13 +77,16 @@ class Inspection < ActiveRecord::Base
     indexes :zone_name, index: 'not_analyzed'
     indexes :created_at, type: 'date'
     indexes :updated_at, type: 'date'
-    indexes :technician_id, type: 'integer'
+    # TODO: Fix this to work with multiple technicians assigned to each inspection
+    #       Use :technician_ids???
+    # indexes :technician_id, type: 'integer'
   end
 
   def self.search(params = {})
     tire.search(page: params[:page], per_page: Kaminari.config.default_per_page) do
       # regular search
-      filter :term, technician_id: params[:current_user_id] if params[:current_user_id]
+      # TODO: Fix this to work with multiple technicians assigned to each inspection
+      # filter :term, technician_id: params[:current_user_id] if params[:current_user_id]
       query do
         boolean do
           must { string params[:preset] } if params[:preset].present?

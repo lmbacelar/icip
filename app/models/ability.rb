@@ -18,7 +18,7 @@ class Ability
         can :read, [Protocol, Checkpoint]
         # Can read inspections assigned to user
         can :read, Inspection do |ins|
-          ins.technician_id == user.id
+          ins.id && Inspection.find(ins.id).technician_ids.include?(user.id)
         end
         # Can update Inspections assigned to user AND
         # while inspection is not executed OR
@@ -26,23 +26,23 @@ class Ability
         # is executed and has tasks but all remain open
         can :update, Inspection do |ins|
           ins = Inspection.find(ins.id)
-          ins.technician_id == user.id && (!ins.executed || ins.tascs.empty? || ins.tascs.closed.empty?)
+          ins.technician_ids.include?(user.id) && (!ins.executed || ins.tascs.empty? || ins.tascs.closed.empty?)
         end
         # Can create Tasks
         # TODO: Restrict further: only on inspections assigned to user
         can :create, Tasc
         # Can read Tasks assigned to him
         can :read, Tasc do |tas|
-          tas.inspection.technician_id == user.id
+          tas.inspection.technician_ids.include?(user.id)
         end
         # Can update and destroy Tasks assigned to him, while the inspection is not closed
         can [:update, :destroy], Tasc do |tas|
-          tas.inspection.technician_id == user.id && !tas.inspection.executed
+          tas.inspection.technician_ids.include?(user.id) && !tas.inspection.executed
         end
 
         # Can read Closings for Tasks created by himself
         can :read, [Closing] do |c|
-          c.task.technician_id == user.id
+          c.tasc.technician_id == user.id
         end
       end
       if user.role? :engineer

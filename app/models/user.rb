@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
   # # # # # Associations / Delegates    # # # # #
   has_many :memberships, dependent: :destroy
   has_many :roles, through: :memberships
-  has_many :inspections, dependent: :destroy, foreign_key: :technician_id
+  has_many :inspection_assignments, dependent: :destroy
+  has_many :inspections, through: :inspection_assignments, foreign_key: :technician_id
 
   # # # # # Scopes                      # # # # #
   # # # # # Validations                 # # # # #

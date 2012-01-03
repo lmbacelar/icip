@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120103190844) do
+ActiveRecord::Schema.define(:version => 20120103191046) do
 
   create_table "aircrafts", :force => true do |t|
     t.string   "registration", :limit => 10
@@ -49,6 +49,13 @@ ActiveRecord::Schema.define(:version => 20120103190844) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "checksum"
+  end
+
+  create_table "inspection_assignments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "inspection_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "inspections", :force => true do |t|
