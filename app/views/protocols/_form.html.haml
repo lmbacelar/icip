@@ -17,12 +17,8 @@
       .group
         .title Images
         .content
-          %br
+          = render partial: 'image_selection_help'
           = f.association :images, label: false, input_html: { size: 20 }
-          %p
-            (To select multiple images use
-            %strong Ctrl + Click
-            )
 
     .fix.right
       .group
