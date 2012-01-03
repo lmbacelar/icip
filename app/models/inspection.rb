@@ -20,8 +20,6 @@ class Inspection < ActiveRecord::Base
   has_one :konfiguration, through: :zone
   has_one :aircraft, through: :konfiguration
   has_many :tascs, dependent: :destroy
-  accepts_nested_attributes_for :tascs, allow_destroy: true, reject_if: ->(a){ a[:action].blank? ||
-                                                                               a[:technician] }
 
   # # # # # Scopes                      # # # # #
   scope :unassigned, where('inspections.technician_id IS NULL')
