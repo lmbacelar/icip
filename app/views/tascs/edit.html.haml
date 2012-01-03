@@ -3,7 +3,9 @@
                      Zone #{link_to "Zone #{@inspection.zone}", @inspection.zone}, |
                      #{link_to "Item #{@item}", @item}" |
 
-= render 'form'
+= render 'form', target: @tasc, images: @images,
+                                locations: @locations,
+                                checkpoints: @checkpoints
 
 .actions
   - if can? :read, @tasc
