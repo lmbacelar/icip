@@ -19,8 +19,8 @@
         .group
           .title Assignment
           .content
-            = f.association :technician,  label: 'Assigned to', collection: Role.find_by_name(:technician).users,
-                                          prompt: '(Select technician)'
+            = render partial: 'technician_selection_help'
+            = f.association :technicians,  label: false, collection: Role.find_by_name(:technician).users
       - unless @inspection.state == :unassigned
         .group
           .title Tasks
