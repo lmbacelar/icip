@@ -27,8 +27,11 @@ Icip::Application.routes.draw do
     get 'page/:page', action: :index, on: :collection
   end
 
-  get 'inspections/:inspection_id/items/:item_id/tascs/new' => 'tascs#new', as: :inspection_item_tascs
+  get 'inspections/:inspection_id/items/:item_id/tascs/new' => 'tascs#new', as: :new_inspection_item_tasc
   post 'inspections/:inspection_id/items/:item_id/tascs/new' => 'tascs#create', as: :inspection_item_tascs
+  get 'tascs/:id' => 'tascs#show', as: :tasc
+  get 'tascs/:id/edit' => 'tascs#edit', as: :edit_tasc
+  put 'tascs/:id' => 'tascs#update', as: :tasc
   delete 'tascs/:id' => 'tascs#destroy', as: :tasc
 
   resources :images, shallow: true do
