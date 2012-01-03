@@ -16,6 +16,7 @@ class Protocol < ActiveRecord::Base
   has_many :image_assignments, as: :imageable, dependent: :destroy
   has_many :images, through: :image_assignments, dependent: :destroy
   has_many :checkpoints, dependent: :destroy
+  has_many :locations, through: :checkpoints, dependent: :destroy
 
   # # # # # Scopes                      # # # # #
   scope :newest, order('revnum DESC')
