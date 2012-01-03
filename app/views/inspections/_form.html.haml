@@ -23,8 +23,9 @@
                                           prompt: '(Select technician)'
       - unless @inspection.state == :unassigned
         .group
-          .title Assignment
+          .title Tasks
           .content
+            = render partial: 'new_task_help'
             = render 'tascs/table', tascs: @inspection.tascs
 
         .group

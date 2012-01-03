@@ -9,16 +9,19 @@
     .fix.right
       .group
         .title Location
-        .inputs
+        .content
+          #location_coordinates_help
+            %p
+              To set location
+              %strong Coordinates
+              \:
+              %ul
+                %li Click and drag on image to the left.
+                %br
           .locator_form
             = f.input :name, input_html: { size: 3 }
             = f.input :x1, input_html: { size: 3 }
             = f.input :y1, input_html: { size: 3 }
             = f.input :x2, input_html: { size: 3 }
             = f.input :y2, input_html: { size: 3 }
-        .content
-          .locator_helper
-            %p
-              %strong To set/reset coordinates:
-              Drag on image.
       = f.submit

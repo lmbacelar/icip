@@ -2,6 +2,10 @@
 window.Application ||= {}
 
 jQuery ->
+
+  # Highlight Help
+  $('#location_coordinates_help').effect 'pulsate', {times:2}, 500
+
   # add location_box
   $('<div></div>').appendTo('.locator').addClass('location_box')
 

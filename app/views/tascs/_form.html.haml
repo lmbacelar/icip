@@ -13,7 +13,8 @@
     .fix.right
       .group
         .title Details
-        .inputs
+        .content
+          = render partial: 'filter_checkpoints_help'
           = f.input :checkpoint do
             = f.select :checkpoint_id,
                   checkpoints.map {|c| [c.part.try(:description),
