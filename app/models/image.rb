@@ -1,4 +1,3 @@
-require 'file_size_validator'
 class Image < ActiveRecord::Base
   # # # # # Includes / Extends          # # # # #
   include CsvSerialize::InstanceMethods
