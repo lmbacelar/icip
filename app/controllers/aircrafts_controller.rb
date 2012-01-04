@@ -1,9 +1,14 @@
 class AircraftsController < AuthorizedController
+
+  respond_to :html, :xml, :csv
+
   def index
     @aircrafts = Aircraft.order :registration
+    respond_with @aircrafts
   end
 
   def show
+    respond_with @aircraft
   end
 
   def new
