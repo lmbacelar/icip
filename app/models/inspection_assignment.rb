@@ -6,7 +6,7 @@ class InspectionAssignment < ActiveRecord::Base
   # # # # # Attr_accessible / protected # # # # #
   # # # # # Associations / Delegates    # # # # #
   belongs_to :user
-  belongs_to :inspection
+  belongs_to :inspection, touch: true
 
   # # # # # Scopes                      # # # # #
   # # # # # Validations                 # # # # #
