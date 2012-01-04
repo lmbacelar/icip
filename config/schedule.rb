@@ -1,3 +1,5 @@
+# Set Cron Tasks.
+# To Update crontab, run 'bundle exec whenever -i' from rails app root.
 set :environment, :development
 set :output, "#{path}/log/cron.log"
 
@@ -12,4 +14,3 @@ every 1.hour do
   rake "environment tire:import CLASS='Part' FORCE=true"
   rake "environment tire:import CLASS='Inspection' FORCE=true"
 end
-
