@@ -77,16 +77,14 @@ class Inspection < ActiveRecord::Base
     indexes :zone_name, index: 'not_analyzed'
     indexes :created_at, type: 'date'
     indexes :updated_at, type: 'date'
-    # TODO: Fix this to work with multiple technicians assigned to each inspection
-    #       Use :technician_ids???
-    # indexes :technician_id, type: 'integer'
+    indexes :technician_ids, type: 'integer'
   end
 
   def self.search(params = {})
     tire.search(page: params[:page], per_page: Kaminari.config.default_per_page) do
       # regular search
       # TODO: Fix this to work with multiple technicians assigned to each inspection
-      # filter :term, technician_id: params[:current_user_id] if params[:current_user_id]
+      filter :term, technician_ids: params[:current_user_id] if params[:current_user_id]
       query do
         boolean do
           must { string params[:preset] } if params[:preset].present?
@@ -102,7 +100,7 @@ class Inspection < ActiveRecord::Base
 
   # Indexed methods. These are passible of showing / searching.
   def to_indexed_json
-    to_json(methods: [:state, :executed, :aircraft_registration, :zone_name])
+    to_json(methods: [:state, :executed, :aircraft_registration, :zone_name, :technician_ids])
   end
 
   # Gets aircraft.registration
