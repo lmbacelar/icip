@@ -4,13 +4,13 @@
   .columns
     .fix.left
       .group
-        .title Layout
+        .title Zone Layout
         - @zone.images.each do |i|
           = div_for i do
             = render i
 
-      - @zone.items.inspectable.locatable.each do |i|
-        - if can? :create, Task
+      - @inspectable_locatable_items.each do |i|
+        - if can? :create, Tasc
           = link_to i.name, inspection_item_tascs_path(@inspection, i), class: 'location_link',
                     data: { location: i.location.to_json(only: [:image_id, :x1, :y1, :x2, :y2]) }
 
