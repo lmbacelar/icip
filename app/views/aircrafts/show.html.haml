@@ -1,7 +1,5 @@
 = title "Aircraft #{@aircraft}"
-= link_to 'XLS', params.merge(format: :xls)
-|
-= link_to 'CSV', params.merge(format: :csv)
+= links_to_export separator: " | "
 
 .columns
   .var.left

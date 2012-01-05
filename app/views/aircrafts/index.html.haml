@@ -1,6 +1,4 @@
 #title= title 'Aircrafts'
-= link_to 'XLS', params.merge(format: :xls)
-|
-= link_to 'CSV', params.merge(format: :csv)
+= links_to_export separator: " | "
 
 = render 'table', aircrafts: @aircrafts
