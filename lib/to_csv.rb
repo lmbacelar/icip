@@ -23,13 +23,23 @@ class Array
         csv << columns.collect { |column| item.send(column) }
       end
     end
-
     output
   end
-
 end
 
 class ActiveRecord::Base
+  def to_csv(options = {}, csv_options = {})
+    [self].to_csv(options, csv_options)
+  end
+end
+
+class Tire::Results::Collection
+  def to_csv(options = {}, csv_options = {})
+    self.to_a.to_csv(options, csv_options)
+  end
+end
+
+class Tire::Results::Item
   def to_csv(options = {}, csv_options = {})
     [self].to_csv(options, csv_options)
   end
