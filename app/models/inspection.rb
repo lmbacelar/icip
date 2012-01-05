@@ -16,7 +16,6 @@ class Inspection < ActiveRecord::Base
   # # # # # Attr_accessible / protected # # # # #
   # # # # # Associations / Delegates    # # # # #
   belongs_to :zone
-  belongs_to :technician, class_name: 'User'
   has_many :inspection_assignments, dependent: :destroy
   has_many :technicians, through: :inspection_assignments, source: :user
   has_one :konfiguration, through: :zone
@@ -24,8 +23,8 @@ class Inspection < ActiveRecord::Base
   has_many :tascs, dependent: :destroy
 
   # # # # # Scopes                      # # # # #
-  scope :unassigned, where('inspections.technician_id IS NULL')
-  scope :assigned, where('inspections.technician_id IS NOT NULL AND inspections.execution_date IS NULL')
+  scope :unassigned, where('id NOT IN (SELECT inspection_id FROM inspection_assignments)')
+  scope :assigned, select('DISTINCT inspections.*').joins(:inspection_assignments).where('inspections.execution_date IS NULL')
   scope :executed, where('inspections.execution_date IS NOT NULL')
   scope :pending, executed.joins(:tascs).merge(Tasc.pending)
   scope :clean, executed.where('id NOT IN (SELECT inspection_id FROM tascs)')
