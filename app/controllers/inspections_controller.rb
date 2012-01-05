@@ -1,14 +1,18 @@
 class InspectionsController < AuthorizedController
   before_filter :load_resources_from_inspection, only: [:show, :edit]
 
+  respond_to :html, :csv, :xls
+
   def index
     params[:preset] ||= Inspection::SearchPresets.first[1] # if defined? Inspection::SearchPresets
     # If current_user cannot read an arbitrary nspection, filter by current_user
     params[:current_user_id] ||= current_user.id if cannot? :read, Inspection.new
     @inspections = Inspection.search(params)
+    respond_with @inspections
   end
 
   def show
+    respond_with @inspection
   end
 
   def edit

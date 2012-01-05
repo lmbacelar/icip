@@ -1,4 +1,7 @@
 #title= title 'Inspections'
+= link_to 'XLS', params.merge(format: :xls)
+|
+= link_to 'CSV', params.merge(format: :csv)
 
 = render file: 'shared/search_form', locals: { object_class: Inspection, target: inspections_path }
 - if @inspections.empty?
