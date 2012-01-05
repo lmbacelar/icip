@@ -1,7 +1,8 @@
 class InspectionsController < AuthorizedController
   before_filter :load_resources_from_inspection, only: [:show, :edit]
 
-  respond_to :html, :csv, :xls
+  respond_to :html
+  respond_to :csv, :xls, only: [:index, :show]
 
   def index
     params[:preset] ||= Inspection::SearchPresets.first[1] # if defined? Inspection::SearchPresets

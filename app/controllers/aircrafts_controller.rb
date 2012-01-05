@@ -1,6 +1,7 @@
 class AircraftsController < AuthorizedController
 
-  respond_to :html, :csv, :xls
+  respond_to :html
+  respond_to :csv, :xls, only: [:index, :show]
 
   def index
     @aircrafts = Aircraft.order :registration
