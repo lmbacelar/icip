@@ -1,16 +1,20 @@
 = title "Aircraft #{@aircraft}"
-= links_to_export separator: " | "
 
 .columns
   .var.left
     .group
-      .title Details
+      .title
+        = show_hide_links
+        Details
+        = links_to_export separator: " | "
       .content
         = render @aircraft
 
   .var.right
     .group
-      .title Configurations
+      .title
+        = show_hide_links
+        Configurations
       .content
         = render 'konfigurations/table', aircraft: @aircraft, konfigurations: @aircraft.konfigurations
 

@@ -1,4 +1,9 @@
 #title= title 'Aircrafts'
-= links_to_export separator: " | "
 
-= render 'table', aircrafts: @aircrafts
+.group
+  .title
+    = show_hide_links
+    Search Results
+    = links_to_export separator: " | "
+  .content
+    = render 'table', aircrafts: @aircrafts
