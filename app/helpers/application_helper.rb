@@ -10,4 +10,10 @@ module ApplicationHelper
     mimes.each { |k,v| output << link_to(k.to_s.upcase, params.merge(format: k)) }
     content_tag :div, output.join(args[:separator]).html_safe, class: (args[:class] || 'links_to_export')
   end
+
+  def show_hide_links
+    content_tag :div, class: 'icons' do
+      (icon_to('Up', '') + icon_to('Down', '')).html_safe
+    end
+  end
 end
