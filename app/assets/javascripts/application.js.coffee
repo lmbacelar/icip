@@ -18,11 +18,20 @@ jQuery ->
   # Highlight form error messages
   $('.error_messages').effect 'pulsate', { times: 3}, 500
 
-  # Show / Hide groups
-  # TODO:
-  # show / hide up / down icon accordingly
-  $('.group').children('.title').click ->
-    $(@).siblings().toggle('fast')
+  # Show hide groups icon
+  $('.group .title .icons a.down').hide()
+  # Hide groups
+  $('.group .title .icons a.up').click (e) ->
+    e.preventDefault()
+    $(@).parent().parent().siblings().hide('fast')
+    $(@).hide()
+    $(@).siblings('a.down').show()
+  # Show groups
+  $('.group .title .icons a.down').click (e) ->
+    e.preventDefault()
+    $(@).parent().parent().siblings().show('fast')
+    $(@).hide()
+    $(@).siblings('a.up').show()
 
   # Draw box around item location.
   # Window load garantees images are loaded and their position is acurately reported
