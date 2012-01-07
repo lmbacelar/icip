@@ -15,9 +15,9 @@
 
     .fix.right
       - unless current_user.role? :technician
-        = group_tag title: 'Assignment'
-        = render partial: 'technician_selection_help'
-        = f.association :technicians,  label: false, collection: Role.find_by_name(:technician).users
+        = group_tag title: 'Assignment' do
+          = render partial: 'technician_selection_help'
+          = f.association :technicians,  label: false, collection: Role.find_by_name(:technician).users
       - unless @inspection.state == :unassigned
         = group_tag title: 'Tasks' do
           = render partial: 'new_task_help'

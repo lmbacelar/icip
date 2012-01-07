@@ -10,7 +10,7 @@
                     data: { location: o.to_json(only: [:image_id, :x1, :y1, :x2, :y2]) }
 
   .fix.right
-    = group_tag title: 'Locations', content_class: '' do
+    = group_tag title: 'Locations' do
       = render 'locations/table', image: @image, locations: @locations.sort_natural
 
 .actions
