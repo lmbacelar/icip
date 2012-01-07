@@ -26,7 +26,9 @@ module ApplicationHelper
           if args[:export_links]
             html += export_links separator: args[:export_links_separator]
           end
+          html
         end
+        html
       end
       html += content_tag :div, class: 'content' do
         yield block
