@@ -1,10 +1,15 @@
 class PartsController < AuthorizedController
+  respond_to :html
+  respond_to :csv, :xls, only: [:index, :show]
+
   def index
     params[:preset] ||= Part::SearchPresets.first[1] # if defined? Part::SearchPresets
     @parts = Part.search(params)
+    respond_with @parts
   end
 
   def show
+    respond_with @part
   end
 
   def new
