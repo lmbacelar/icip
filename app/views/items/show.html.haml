@@ -5,8 +5,7 @@
 
 .columns
   .fix.left
-    .group
-      .title Location
+    = group_tag title: 'Location', content_class: '' do
       - if @item.image
         = div_for @item.image do
           = render @item.image
@@ -16,10 +15,8 @@
         = render @zone.images
 
   .fix.right
-    .group
-      .title Details
-      .content
-        = render @item
+    = group_tag title: 'Details' do
+      = render @item
 
 .actions
   -if can? :read, @zone

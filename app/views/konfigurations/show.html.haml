@@ -3,16 +3,12 @@
 
 .columns
   .var.left
-    .group
-      .title Details
-      .content
-        = render @konfiguration
+    = group_tag title: 'Details' do
+      = render @konfiguration
 
   .var.right
-    .group
-      .title Zones
-      .content
-        = render 'zones/table', konfiguration: @konfiguration, zones: @konfiguration.zones
+    = group_tag title: 'Zones' do
+      = render 'zones/table', konfiguration: @konfiguration, zones: @konfiguration.zones
 
 .actions
   - if can? :read, @aircraft

@@ -5,4 +5,5 @@
   = render file: 'shared/no_search_results', locals: { search: params[:query],
                                                        preset: params[:preset] }
 - else
-  = render 'table', parts: @parts
+  = group_tag title: 'Search Results', export_links: { separator: ' | ' } do
+    = render 'table', parts: @parts

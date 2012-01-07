@@ -5,24 +5,17 @@
 
 .columns
   .fix.left
-    .group
-      .title Layout
+    = group_tag title: 'Layout', content_class: '' do
       - @zone.images.each do |i|
         = div_for i do
           = render i
 
   .fix.right
-    .group
-      .title
-        Details
-        = links_to_export separator: " | "
-      .content
-        = render @inspection
+    = group_tag title: 'Details', export_links: { separator: " | "} do
+      = render @inspection
 
-    .group
-      .title Tasks
-      .content
-        = render 'tascs/table', inspection: @inspection, tascs: @inspection.tascs
+    = group_tag title: 'Tasks' do
+      = render 'tascs/table', inspection: @inspection, tascs: @inspection.tascs
 
 .actions
   -if can? :read, Inspection

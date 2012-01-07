@@ -5,26 +5,19 @@
 
 .columns
   .fix.left
-    .group
-      .title= "Inspection Protocol #{@protocol}"
+    = group_tag title: "Inspection Protocol #{@protocol}", content_class: '' do
       - @images.each do |i|
         = div_for i do
           = image_tag i.file_url(:fitted).to_s
           .location_box{ data: { location: @location.to_json(except: [:created_at, :updated_at]) } }
 
   .fix.right
-    .group
-      .title Task Details
-      .content
-        = render @tasc
-    .group
-      .title Checkpoint
-      .content
-        = render @checkpoint
-    .group
-      .title Technician
-      .content
-        = render @tasc.technician
+    = group_tag title: 'Task Details' do
+      = render @tasc
+    = group_tag title: 'Checkpoint' do
+      = render @checkpoint
+    = group_tag title: 'Technician' do
+      = render @tasc.technician
 
 .actions
   -if can? :read, @inspection

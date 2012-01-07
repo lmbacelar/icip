@@ -1,10 +1,7 @@
 = simple_form_for target do |f|
   = f.error_messages
-  .group
-    .title Details
-    .inputs
-      = f.input :number, input_html: { readonly: true, size: 8 }
-      = f.input :description
-    .clear
+  = group_tag title: 'Details' do
+    = f.input :number, input_html: { readonly: true, size: 8 }
+    = f.input :description
   = f.submit
 

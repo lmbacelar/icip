@@ -2,8 +2,7 @@
   = f.error_messages
   .columns
     .fix.left
-      .group
-        .title Inspection Protocol
+      = group_tag title: 'Inspection Protocol', content_class: '' do
         - images.each do |i|
           = div_for i do
             = image_tag i.file_url(:fitted).to_s
@@ -11,19 +10,16 @@
           .location_link{ data: { location: o.to_json(except: [:created_at, :updated_at]) }}= o.name
 
     .fix.right
-      .group
-        .title Details
-        .content
-          = render partial: 'filter_checkpoints_help'
-          = f.input :checkpoint do
-            = f.select :checkpoint_id,
-                  checkpoints.map {|c| [c.part.try(:description),
-                                        c.id,
-                                        { 'data-location_name' => c.location.name }]},
-                  prompt: '(Select one)'
-          = f.input :action, collection: Tasc::Actions, prompt: '(Select one)'
-          = f.input :etr, collection: Tasc::Etrs, label: 'ETR', prompt: '(Select one)'
-          = f.input :comment
-        .clear
+      = group_tag title: 'Details' do
+        = render partial: 'filter_checkpoints_help'
+        = f.input :checkpoint do
+          = f.select :checkpoint_id,
+                checkpoints.map {|c| [c.part.try(:description),
+                                      c.id,
+                                      { 'data-location_name' => c.location.name }]},
+                prompt: '(Select one)'
+        = f.input :action, collection: Tasc::Actions, prompt: '(Select one)'
+        = f.input :etr, collection: Tasc::Etrs, label: 'ETR', prompt: '(Select one)'
+        = f.input :comment
       = f.submit
 

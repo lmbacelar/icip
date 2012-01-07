@@ -2,16 +2,12 @@
 
 .columns
   .fix.left
-    .group
-      .title Details
-      .content
-        = render @part
+    = group_tag title: 'Details', export_links: { separator: ' | ' } do
+      = render @part
 
   .fix.right
-    .group
-      .title Inspection Protocols
-      .content
-        = render 'protocols/table', part: @part, protocols: @part.protocols
+    = group_tag title: 'Inspection Protocols' do
+      = render 'protocols/table', part: @part, protocols: @part.protocols
 
 .actions
   - if can? :read, Part

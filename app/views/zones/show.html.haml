@@ -4,8 +4,7 @@
 
 .columns
   .fix.left
-    .group
-      .title Images
+    = group_tag title: 'Images', content_class: '' do
       - @zone.images.each do |i|
         = div_for i do
           = render i
@@ -14,14 +13,10 @@
                   data: { location: e.location.to_json(only: [:image_id, :x1, :y1, :x2, :y2]) }
 
   .fix.right
-    .group
-      .title Details
-      .content
-        = render @zone
-    .group
-      .title Items
-      .content
-        = render 'items/table', zone: @zone, items: @zone.items
+    = group_tag title: 'Details' do
+      = render @zone
+    = group_tag title: 'Items' do
+      = render 'items/table', zone: @zone, items: @zone.items
 
 .actions
   - if can? :read, @konfiguration

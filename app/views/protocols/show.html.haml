@@ -6,22 +6,17 @@
 -# PROTOCOL SHOULD NOT BE CHANGED. MIGHT COMPROMISE STATE OF ASSOCIATED INSPECTIONS.
 -# NEW REVISION SHOULD BE DONE INSTEAD !!!
 
-.group
-  .title Details
-  .content
-    = render @protocol
+= group_tag title: 'Details' do
+  = render @protocol
 
 .columns
   .fix.left
-    .group
-      .title Images
+    = group_tag title: 'Images', content_class: '' do
       = render @protocol.images
 
   .fix.right
-    .group
-      .title Checkpoints
-      .content
-        = render 'checkpoints/table', protocol: @protocol, checkpoints: @protocol.checkpoints
+    = group_tag title: 'Checkpoints' do
+      = render 'checkpoints/table', protocol: @protocol, checkpoints: @protocol.checkpoints
 
 .actions
   - if can? :read, @part

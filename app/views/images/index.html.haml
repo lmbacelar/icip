@@ -1,3 +1,4 @@
 #title= title 'Images'
 
-= render 'table', images: @images
+= group_tag title: 'Search Results' do
+  = render 'table', images: @images

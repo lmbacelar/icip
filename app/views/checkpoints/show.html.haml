@@ -2,18 +2,15 @@
 
 .columns
   .fix.left
-    .group
-      .title Location
+    = group_tag title: 'Location' , content_class: '' do
       = div_for @checkpoint.image do
         = render @checkpoint.image
         - if @checkpoint.location
           .location_box{ data: { location: @checkpoint.location.to_json(except: [:created_at, :updated_at]) }}
 
   .fix.right
-    .group
-      .title Details
-      .content
-        = render @checkpoint
+    = group_tag title: 'Details' do
+      = render @checkpoint
 
 .actions
   -if can? :read, @part

@@ -1,10 +1,9 @@
 = title "Log In#{current_user ? ' as a different user' : ''}"
 
 .columns
-  .fix.left.group
-    .title User Credentials
-    .simple_form
-      = form_tag sessions_path do
+  .fix.left
+    = form_tag sessions_path do
+      = group_tag title: 'User Credentials', content_class: 'simple_form' do
         = label_tag :login, 'E-Mail or TAP Nr.'
         .input= text_field_tag :login
         = label_tag :password

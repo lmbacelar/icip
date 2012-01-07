@@ -1,12 +1,10 @@
 = simple_form_for @user do |f|
   = f.error_messages
-  .group
-    .title User Info
-    .content
-      = f.input :email, input_html: { size: 30 }
-      = f.input :name, input_html: { size: 30 }
-      = f.input :tap_number, input_html: { size: 8 }
-      = f.input :password, input_html: { size: 16 }
-      = f.input :password_confirmation, label: 'Password (again)', input_html: { size: 16 }
-      = f.association :roles, as: :check_boxes
+  = group_tag title: 'User Info' do
+    = f.input :email, input_html: { size: 30 }
+    = f.input :name, input_html: { size: 30 }
+    = f.input :tap_number, input_html: { size: 8 }
+    = f.input :password, input_html: { size: 16 }
+    = f.input :password_confirmation, label: 'Password (again)', input_html: { size: 16 }
+    = f.association :roles, as: :check_boxes
   = f.submit

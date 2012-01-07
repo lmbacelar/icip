@@ -3,8 +3,7 @@
 
   .columns
     .fix.left
-      .group
-        .title Zone Layout
+      = group_tag title: 'Zone Layout', content_class: '' do
         - @zone.images.each do |i|
           = div_for i do
             = render i
@@ -16,22 +15,16 @@
 
     .fix.right
       - unless current_user.role? :technician
-        .group
-          .title Assignment
-          .content
-            = render partial: 'technician_selection_help'
-            = f.association :technicians,  label: false, collection: Role.find_by_name(:technician).users
+        = group_tag title: 'Assignment'
+        = render partial: 'technician_selection_help'
+        = f.association :technicians,  label: false, collection: Role.find_by_name(:technician).users
       - unless @inspection.state == :unassigned
-        .group
-          .title Tasks
-          .content
-            = render partial: 'new_task_help'
-            = render 'tascs/table', tascs: @inspection.tascs
+        = group_tag title: 'Tasks' do
+          = render partial: 'new_task_help'
+          = render 'tascs/table', tascs: @inspection.tascs
 
-        .group
-          .title Conclusion
-          .content
-            = f.input :executed, as: :select, include_blank: false
+        = group_tag title: 'Conclusion' do
+          = f.input :executed, as: :select, include_blank: false
 
       = f.submit
 

@@ -2,26 +2,16 @@
   = f.error_messages
   .columns
     .fix.left
-      .group
-        .title Image
-        .locator= render @image
+      = group_tag title: 'Image', content_class: 'locator' do
+        = render @image
 
     .fix.right
-      .group
-        .title Location
-        .content
-          #location_coordinates_help
-            %p
-              To set location
-              %strong Coordinates
-              \:
-              %ul
-                %li Click and drag on image to the left.
-                %br
-          .locator_form
-            = f.input :name, input_html: { size: 3 }
-            = f.input :x1, input_html: { size: 3 }
-            = f.input :y1, input_html: { size: 3 }
-            = f.input :x2, input_html: { size: 3 }
-            = f.input :y2, input_html: { size: 3 }
+      = group_tag title: 'Location' do
+        = render partial: 'set_location_help'
+        .locator_form
+          = f.input :name, input_html: { size: 3 }
+          = f.input :x1, input_html: { size: 3 }
+          = f.input :y1, input_html: { size: 3 }
+          = f.input :x2, input_html: { size: 3 }
+          = f.input :y2, input_html: { size: 3 }
       = f.submit

@@ -6,23 +6,19 @@
   -# Step 1. Set Details
   -# Step 2. Add (existing) image(s)
   -# Step 3. Add checkpoint(s) existing parts and locations
-  .group
-    .title Details
-    .inputs
-      = f.association :author, include_blank: false, input_html: { readonly: true }
-      = f.input :notes, as: :string, input_html: { size: 80 }
+  = group_tag title: 'Details' do
+    = f.association :author, include_blank: false, input_html: { readonly: true }
+    = f.input :notes, as: :string, input_html: { size: 80 }
 
   .columns
     .fix.left
-      .group
-        .title Images
-        .content
-          = render partial: 'image_selection_help'
-          = f.association :images, label: false, input_html: { size: 20 }
+      = group_tag title: 'Images' do
+        = render partial: 'image_selection_help'
+        = f.association :images, label: false, input_html: { size: 20 }
 
     .fix.right
-      .group
-        .title Checkpoints
+      = group_tag title: 'Checkpoints' do
+        Place Checkpoints here ...
 
   = f.submit
 

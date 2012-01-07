@@ -3,12 +3,10 @@
 
   .columns
     .fix.left
-      .group
-        .title Image
-        .content
-          %strong 1.
-          = f.file_field :file
-          %br
-          %br
-          %strong 2.
-          = f.submit 'Upload'
+      = group_tap title: 'Image'
+        %strong 1.
+        = f.file_field :file
+        %br
+        %br
+        %strong 2.
+        = f.submit 'Upload'

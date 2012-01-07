@@ -2,8 +2,7 @@
 
 .columns
   .fix.left
-    .group
-      .title Image
+    = group_tag title: 'Image', content_class: '' do
       = div_for @image do
         = render @image
         - @locations.each do |o|
@@ -11,10 +10,8 @@
                     data: { location: o.to_json(only: [:image_id, :x1, :y1, :x2, :y2]) }
 
   .fix.right
-    .group
-      .title Locations
-      .content
-        = render 'locations/table', image: @image, locations: @locations.sort_natural
+    = group_tag title: 'Locations', content_class: '' do
+      = render 'locations/table', image: @image, locations: @locations.sort_natural
 
 .actions
   = link_to 'View All Images', images_path

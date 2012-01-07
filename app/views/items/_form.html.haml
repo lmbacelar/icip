@@ -3,9 +3,7 @@
 
   .columns
     .fix.left
-      .group
-        .title Layout
-        .item_location
+      = group_tag title: 'Layout', content_class: 'item_location' do
         - @zone.images.each do |i|
           = div_for i do
             = image_tag i.file_url.to_s
@@ -13,11 +11,9 @@
               .location_link{ data: { location: o.to_json }}= o.name
 
     .fix.right
-      .group
-        .title Item
-        .content
-          = render partial: 'item_location_help'
-          = f.input :name, input_html: { size: 4 }
-          = f.input :part_number, input_html: { size: 20, data: {autocomplete_source: parts_autocomplete_path} }
-          = f.input :image_location, input_html: { size: 20 , class: 'image_locator'}
+      = group_tag title: 'Item' do
+        = render partial: 'item_location_help'
+        = f.input :name, input_html: { size: 4 }
+        = f.input :part_number, input_html: { size: 20, data: {autocomplete_source: parts_autocomplete_path} }
+        = f.input :image_location, input_html: { size: 20 , class: 'image_locator'}
     = f.submit

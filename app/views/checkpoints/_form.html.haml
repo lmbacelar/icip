@@ -3,8 +3,7 @@
 
   .columns
     .fix.left
-      .group
-        .title Location
+      = group_tag title: 'Location', content_class: '' do
         - @protocol.images.each do |i|
           = div_for i do
             = image_tag i.file_url(:fitted).to_s
@@ -12,10 +11,8 @@
               .location_link{ data: { location: o.to_json }}= o.name
 
     .fix.right
-      .group
-        .title Checkpoint
-        .content
-          = render partial: 'checkpoint_location_help'
-          = f.input :part_number, input_html: { size: 20, data: {autocomplete_source: subparts_autocomplete_path} }
-          = f.input :image_location, input_html: { size: 30 , class: 'image_locator' }
+      = group_tag title: 'Checkpoint' do
+        = render partial: 'checkpoint_location_help'
+        = f.input :part_number, input_html: { size: 20, data: {autocomplete_source: subparts_autocomplete_path} }
+        = f.input :image_location, input_html: { size: 30 , class: 'image_locator' }
     = f.submit

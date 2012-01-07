@@ -1,9 +1,7 @@
 = simple_form_for @aircraft do |f|
   = f.error_messages
-  .group
-    .title Details
-    .content
-      = f.input :registration, input_html: { size: 8 }
-      = f.input :manufacturer, input_html: { size: 12 }
-      = f.input :model, input_html: { size: 12 }
+  = group_tag title: 'Details' do
+    = f.input :registration, input_html: { size: 8 }
+    = f.input :manufacturer, input_html: { size: 12 }
+    = f.input :model, input_html: { size: 12 }
   = f.submit
