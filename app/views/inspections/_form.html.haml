@@ -21,7 +21,7 @@
       - unless @inspection.state == :unassigned
         = group_tag title: 'Tasks' do
           = render partial: 'new_task_help'
-          = render 'tascs/table', tascs: @inspection.tascs
+          = render 'tascs/table', tascs: @inspection.ordered_tascs
 
         = group_tag title: 'Conclusion' do
           = f.input :executed, as: :select, include_blank: false

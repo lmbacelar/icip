@@ -65,6 +65,10 @@ class Inspection < ActiveRecord::Base
     end
   end
 
+  def ordered_tascs
+    self.tascs.joins(:item).order(:name)
+  end
+
   # Searching
   #   Model searching through ElasticSearch
   #   Index mappings

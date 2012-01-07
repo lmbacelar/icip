@@ -15,7 +15,7 @@
       = render @inspection
 
     = group_tag title: 'Tasks' do
-      = render 'tascs/table', inspection: @inspection, tascs: @inspection.tascs
+      = render 'tascs/table', inspection: @inspection, tascs: @inspection.ordered_tascs
 
 .actions
   -if can? :read, Inspection
