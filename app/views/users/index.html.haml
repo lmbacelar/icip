@@ -1,35 +1,4 @@
 #title= title 'Users'
 
-#single_column
-  %table
-    %thead
-      %tr
-        %th E-Mail
-        %th TAP Nr.
-        %th Name
-        %th Roles
-        %th
-    %tfoot
-      %tr
-        %td
-        %td
-        %td
-        %td
-        %td
-          %ul.icons
-            - if can? :create, User
-              %li= icon_to 'New', new_user_path
-    %tbody
-      - @users.each do |s|
-        %tr{class: cycle('', 'alt')}
-          %td= s.email
-          %td= s.tap_number
-          %td= s.name
-          %td= s.role_list
-          %td
-            %ul.icons
-              - if can? :update, s
-                %li= icon_to 'Edit', edit_user_path(s)
-              - if can? :destroy, s
-                %li= icon_to 'Destroy', s, confirm: 'Are you sure?', method: :delete
-
+= group_tag title: 'Search Results', export_links: { separator: ' | ' } do
+  = render 'table', users: @users

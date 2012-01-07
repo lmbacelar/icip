@@ -1,0 +1,17 @@
+%table
+  %thead
+    %tr
+      %th E-Mail
+      %th TAP Nr.
+      %th Name
+      %th Roles
+      %th
+  %tfoot
+    %tr
+      %td{colspan:4}
+      %td
+        %ul.icons
+          - if can? :create, User
+            %li= icon_to 'New', new_user_path
+  %tbody
+    = render partial: 'users/table_row', collection: users, as: :s

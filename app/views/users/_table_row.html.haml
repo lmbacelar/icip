@@ -1,0 +1,11 @@
+%tr{class: cycle('', 'alt')}
+  %td= s.email
+  %td= s.tap_number
+  %td= s.name
+  %td= s.role_list
+  %td
+    %ul.icons
+      - if can? :update, s
+        %li= icon_to 'Edit', edit_user_path(s)
+      - if can? :destroy, s
+        %li= icon_to 'Destroy', s, confirm: 'Are you sure?', method: :delete
