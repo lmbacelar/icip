@@ -24,13 +24,17 @@ module ApplicationHelper
           html = show_hide_links unless args[:show_hide_links]
           html += args[:title]
           if args[:export_links]
-            html += export_links separator: args[:export_links_separator]
+            if args[:export_links].is_a? Hash
+              html += export_links separator: args[:export_links][:separator]
+            else
+              html += export_links
+            end
           end
           html
         end
         html
       end
-      html += content_tag :div, class: 'content' do
+      html += content_tag :div, class: (args[:content_class] || 'content') do
         yield block
       end
     end
