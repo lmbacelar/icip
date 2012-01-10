@@ -4,10 +4,16 @@ module ApplicationHelper
   end
 
   def export_links(args = {})
-    mimes = controller.mimes_for_action(action_name)
+    # Get URL for export links. If no path supplied, assume current path
+    url = Rails.application.routes.recognize_path(args[:path]) if args[:path].present?
+    url = Rails.application.routes.recognize_path(request.env['PATH_INFO']) if args[:path].blank?
+    # Get mime types for this controller / action
+    mimes = eval "#{url[:controller].to_s.capitalize}Controller.mimes_for_action(:#{url[:action].to_sym})"
     output = []
+    # Generate link for each mime type the controller / action responds to other than html.
     mimes.delete(:html)
-    mimes.each { |k,v| output << link_to(k.to_s.upcase, params.merge(format: k)) }
+    mimes.each { |k,v| output << link_to(k.to_s.upcase, url.merge(format: k)) }
+    # Return links, separated (if specified) and classed '.export_links' (or other if specified).
     content_tag :div, output.join(args[:separator]).html_safe, class: (args[:class] || 'export_links')
   end
 
@@ -29,7 +35,7 @@ module ApplicationHelper
           html += args[:title]
           if args[:export_links]
             if args[:export_links].is_a? Hash
-              html += export_links separator: args[:export_links][:separator]
+              html += export_links args[:export_links]
             else
               html += export_links
             end
