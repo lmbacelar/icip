@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user
 
-  def mimes_for_action(action)
+  def self.mimes_for_action(action)
     mimes = self.mimes_for_respond_to.dup
     action = action.to_sym
     mimes.delete_if { |k,v| (v[:only] && !v[:only].include?(action)) }
