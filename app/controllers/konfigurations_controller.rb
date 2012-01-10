@@ -11,6 +11,7 @@ class KonfigurationsController < AuthorizedController
   end
 
   def show
+    respond_with @konfiguration
   end
 
   def new

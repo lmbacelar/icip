@@ -1,8 +1,17 @@
 class ZonesController < AuthorizedController
-  before_filter :load_resources_from_konfiguration, only: [:new, :create]
-  before_filter :load_resources_from_zone, except: [:new, :create]
+  before_filter :load_resources_from_konfiguration, only: [:index, :new, :create]
+  before_filter :load_resources_from_zone, except: [:index, :new, :create]
+
+  respond_to :html
+  respond_to :csv, :xls, only: [:index, :show]
+
+  def index
+    @zones = @konfiguration.zones.order :name
+    respond_with @zones
+  end
 
   def show
+    respond_with @zone
   end
 
   def new

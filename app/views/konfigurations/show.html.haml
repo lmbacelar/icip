@@ -3,11 +3,12 @@
 
 .columns
   .var.left
-    = group_tag title: 'Details' do
+    = group_tag title: 'Details', export_links: { separator: ' | ' } do
       = render @konfiguration
 
   .var.right
-    = group_tag title: 'Zones' do
+    = group_tag title: 'Zones', export_links: {  path: konfiguration_zones_path(@konfiguration),
+                                                 separator: ' | ' }  do
       = render 'zones/table', konfiguration: @konfiguration, zones: @konfiguration.zones
 
 .actions

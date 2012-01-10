@@ -13,9 +13,10 @@
                   data: { location: e.location.to_json(only: [:image_id, :x1, :y1, :x2, :y2]) }
 
   .fix.right
-    = group_tag title: 'Details' do
+    = group_tag title: 'Details', export_links: { separator: ' | ' }  do
       = render @zone
-    = group_tag title: 'Items' do
+    = group_tag title: 'Items', export_links: {  path: zone_items_path(@zone),
+                                                 separator: ' | ' }  do
       = render 'items/table', zone: @zone, items: @zone.items
 
 .actions
