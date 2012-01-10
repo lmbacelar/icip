@@ -21,7 +21,11 @@ module ApplicationHelper
     html= content_tag :div, class: 'group' do
       if args[:title]
         html = content_tag :div, class: 'title' do
-          html = show_hide_links unless args[:show_hide_links]
+          if (args[:show_hide_links].nil? || args[:show_hide_links])
+            html = show_hide_links
+          else
+            html = ''
+          end
           html += args[:title]
           if args[:export_links]
             if args[:export_links].is_a? Hash
