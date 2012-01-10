@@ -6,7 +6,8 @@
       = render @aircraft
 
   .var.right
-    = group_tag title: 'Configurations' do
+    = group_tag title: 'Configurations', export_links: {  path: aircraft_konfigurations_path(@aircraft),
+                                                          separator: ' | ' } do
       = render 'konfigurations/table', aircraft: @aircraft, konfigurations: @aircraft.konfigurations
 
 .actions

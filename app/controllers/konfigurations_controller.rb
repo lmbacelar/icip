@@ -1,6 +1,14 @@
 class KonfigurationsController < AuthorizedController
-  before_filter :load_resources_from_aircraft, only: [:new, :create]
-  before_filter :load_resources_from_konfiguration, except: [:new, :create]
+  before_filter :load_resources_from_aircraft, only: [:index, :new, :create]
+  before_filter :load_resources_from_konfiguration, except: [:index, :new, :create]
+
+  respond_to :html
+  respond_to :csv, :xls, only: [:index, :show]
+
+  def index
+    @konfigurations = @aircraft.konfigurations.order :number
+    respond_with @konfigurations
+  end
 
   def show
   end
