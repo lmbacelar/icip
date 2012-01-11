@@ -10,7 +10,7 @@ class Closing < ActiveRecord::Base
   # # # # # Public Methods              # # # # #
   # # # # # Private Methods             # # # # #
   belongs_to :engineer, class_name: 'User'
-  has_one :tasc
+  belongs_to :tasc
 
   # # # # # Scopes                      # # # # #
 
