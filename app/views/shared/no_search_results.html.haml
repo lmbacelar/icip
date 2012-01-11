@@ -3,7 +3,7 @@
   %strong= preset if preset
   = ' AND ' unless preset.nil? || search.nil? || preset.empty? || search.empty?
   %strong= search
-  \- did not match any parts.
+  = "- did not match any #{object_name}."
 %br
 #search_no_match_suggestions
   Suggestions:
