@@ -20,6 +20,8 @@
       = image_tag 'tap_me_black.png'
     #menu
       %ul
+        -if can?(:create, Closing)
+          %li= link_to 'Tasks', tascs_url
         -if can?(:read, Inspection)
           %li= link_to 'Inspections', inspections_url
         -if can?(:read, Aircraft)
