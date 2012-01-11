@@ -48,9 +48,30 @@ class Ability
       if user.role? :engineer
         can :read, [Aircraft, Konfiguration, Zone, Item]
         can [:create, :read, :update], Part
-        can [:create, :read, :update], Inspection
         can [:create, :read, :update], [Protocol, Checkpoint]
-        can :manage, [Tasc, Closing]
+        # Can create and read all Inspections
+        can [:create, :read], Inspection
+        # Can update Inspections as long as they are not closed
+        can :update, Inspection do |ins|
+          ins.state != :closed
+        end
+        # Can destroy Inspections wich have not yet been executed
+        can :destroy, Inspection do |ins|
+          ins.state == :unassigned || ins.state == :assigned
+        end
+        # Can create and read all Tasks, Closings
+        # TODO: Restrict further creation:
+        #   Only create Tasks on open Inspection (if any).
+        #   Only create closing on open Tascs.
+        can [:create, :read], [Tasc, Closing]
+        # Can update, destroy open Tasks
+        can [:update, :destroy], Tasc do |tas|
+          tas.open?
+        end
+        # Can update, destroy Closings if Tasks are closed
+        can [:update, :destroy], Closing do |c|
+          c.tasc.closed?
+        end
       end
     end
   end
