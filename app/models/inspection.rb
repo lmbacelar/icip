@@ -28,7 +28,7 @@ class Inspection < ActiveRecord::Base
   scope :executed, where('inspections.execution_date IS NOT NULL')
   scope :pending, executed.joins(:tascs).merge(Tasc.pending)
   scope :clean, executed.where('id NOT IN (SELECT inspection_id FROM tascs)')
-  scope :closed, clean + executed.joins(:tascs).merge(Tasc.closed)
+  scope :closed, joins(tascs: :closing) + clean
 
   # # # # # Validations                 # # # # #
   # # # # # Public Methods              # # # # #
@@ -116,7 +116,6 @@ class Inspection < ActiveRecord::Base
     zone.name
   end
 
-  #   Kaminari / Tire compatibility. Tire expects paginate method.
   def self.paginate(options = {})
     page(options[:page]).per(options[:per_page])
   end
