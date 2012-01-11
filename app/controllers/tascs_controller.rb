@@ -1,8 +1,21 @@
 class TascsController < AuthorizedController
   before_filter :load_resources_from_inspection, only: [:new, :create]
-  before_filter :load_resources_from_tasc, except: [:new, :create]
+  before_filter :load_resources_from_tasc, except: [:index, :new, :create]
+
+  respond_to :html
+  respond_to :csv, :xls, only: [:index, :show]
+
+  def index
+    #@tascs = Tasc.all
+    params[:preset] ||= Tasc::SearchPresets.first[1] # if defined? Inspection::SearchPresets
+    # If current_user cannot read an arbitrary nspection, filter by current_user
+    params[:current_user_id] ||= current_user.id if cannot? :read, Tasc.new
+    @tascs = Tasc.search(params)
+    respond_with @tascs
+  end
 
   def show
+    @closing = @tasc.closing
     @protocol = @tasc.item.part.protocols.current
     @images = @protocol.images
     @checkpoint = @tasc.checkpoint
