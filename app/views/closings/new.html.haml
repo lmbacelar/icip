@@ -1,0 +1,26 @@
+= title 'Close Task', "Close Task on |
+                    #{link_to @inspection.aircraft, @inspection.aircraft}, |
+                    #{link_to "Zone #{@inspection.zone}", @inspection.zone}, |
+                    #{link_to "Item #{@item}", @item}" |
+
+.columns
+  .fix.left
+    = group_tag title: "Checkpoint Location", content_class: '' do
+      - @images.each do |i|
+        = div_for i do
+          = image_tag i.file_url(:fitted).to_s
+          .location_box{ data: { location: @location.to_json(except: [:created_at, :updated_at]) } }
+
+  .fix.right
+    = group_tag title: 'Closing' do
+      = render 'form', tasc: @tasc, closing: @closing
+    = group_tag title: 'Task' do
+      = render @tasc
+    = group_tag title: 'Checkpoint' do
+      = render @checkpoint
+    = group_tag title: 'Technician' do
+      = render @tasc.technician
+
+.actions
+  - if can? :read, @tasc
+    = link_to "Back to Task", @tasc

@@ -1,0 +1,10 @@
+#title= title 'Tasks'
+
+= render file: 'shared/search_form', locals: { object_class: Tasc, target: tascs_path }
+- if @tascs.empty?
+  = render file: 'shared/no_search_results', locals: {  search: params[:query],
+                                                        preset: params[:preset],
+                                                        object_name: 'tasks'}
+- else
+  = group_tag title: 'Search Results', export_links: { separator: " | " } do
+    = render 'table', tascs: @tascs, info: :full
