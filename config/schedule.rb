@@ -13,4 +13,5 @@ end
 every 1.hour do
   rake "environment tire:import CLASS='Part' FORCE=true"
   rake "environment tire:import CLASS='Inspection' FORCE=true"
+  rake "environment tire:import CLASS='Tasc' FORCE=true"
 end
