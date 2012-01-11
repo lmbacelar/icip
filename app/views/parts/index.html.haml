@@ -2,8 +2,9 @@
 
 = render file: 'shared/search_form', locals: { object_class: Part, target: parts_path }
 - if @parts.empty?
-  = render file: 'shared/no_search_results', locals: { search: params[:query],
-                                                       preset: params[:preset] }
+  = render file: 'shared/no_search_results', locals: {  search: params[:query],
+                                                        preset: params[:preset],
+                                                        object_name: 'parts'}
 - else
   = group_tag title: 'Search Results', export_links: { separator: ' | ' } do
     = render 'table', parts: @parts
