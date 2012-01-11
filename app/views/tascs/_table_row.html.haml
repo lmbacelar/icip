@@ -1,7 +1,11 @@
 %tr{class: cycle('', 'alt')}
+  - if info == :full
+    %td= a.state
+    %td= a.aircraft_registration
+    %td= a.zone_name
   %td= a.action
-  %td= a.item.name
-  %td= a.checkpoint.part.description
+  %td= a.item_name
+  %td= a.checkpoint_description
   %td= a.etr
   %td= I18n.l(a.closing.try(:updated_at), format: :short_date) if a.closing.present?
   %td

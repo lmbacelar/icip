@@ -18,10 +18,22 @@
       = render @checkpoint
     = group_tag title: 'Technician' do
       = render @tasc.technician
+    - if @tasc.closed?
+      = group_tag title: 'Closing' do
+        = render @closing
+      = group_tag title: 'Engineer' do
+        = render @closing.engineer
+
 
 .actions
   -if can? :read, @inspection
     = link_to "Back to #{@inspection.aircraft} Inspection", @inspection
+  -if @tasc.open? && can?(:create, Closing)
+    |
+    = link_to 'Close Task', new_tasc_closing_path(@tasc)
+  -if can? :destroy, @closing
+    |
+    = link_to 'Re-Open Task', @closing, confirm: 'Are you sure?', method: :delete
   -if can? :update, @tasc
     |
     = link_to 'Edit Task', edit_tasc_path(@tasc)

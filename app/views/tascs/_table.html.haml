@@ -1,6 +1,10 @@
 %table
   %thead
     %tr
+      - if info == :full
+        %th State
+        %th Aircraft
+        %th Zone
       %th Action
       %th Item
       %th Description
@@ -9,6 +13,6 @@
       %th
   %tfoot
     %tr
-      %td{colspan: 6}
+      %td{colspan: info == :full ? 9 : 6}
   %tbody
-    = render partial: 'tascs/table_row', collection: tascs, as: :a
+    = render partial: 'tascs/table_row', collection: tascs, as: :a, locals: { info: info }
