@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120105193046) do
+ActiveRecord::Schema.define(:version => 20120111193908) do
 
   create_table "aircrafts", :force => true do |t|
     t.string   "registration", :limit => 10
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20120105193046) do
     t.integer  "engineer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "tasc_id"
   end
 
   create_table "image_assignments", :force => true do |t|
@@ -148,7 +149,6 @@ ActiveRecord::Schema.define(:version => 20120105193046) do
     t.integer  "inspection_id"
     t.integer  "item_id"
     t.integer  "checkpoint_id"
-    t.integer  "closing_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
