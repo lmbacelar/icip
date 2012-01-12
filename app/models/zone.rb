@@ -42,6 +42,7 @@ class Zone < ActiveRecord::Base
     # Inspection is overdue according to inspection_interval
     # and last inspection execution_date
     if inspections.unassigned.all.empty? && inspections.assigned.all.empty?
+      puts 'trying'
       if inspections.all.empty? || inspections.maximum(:execution_date) < Time.now - inspection_interval.days
         inspections.create
       end

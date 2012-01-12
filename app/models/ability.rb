@@ -53,7 +53,7 @@ class Ability
         can [:create, :read], Inspection
         # Can update Inspections as long as they are not closed
         can :update, Inspection do |ins|
-          ins.state != :closed
+          ins.state.to_sym != :closed
         end
         # Can destroy Inspections wich have not yet been executed
         can :destroy, Inspection do |ins|

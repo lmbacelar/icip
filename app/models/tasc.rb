@@ -18,7 +18,7 @@ class Tasc < ActiveRecord::Base
   # # # # # Callbacks                   # # # # #
   # # # # # Attr_accessible / protected # # # # #
   # # # # # Associations / Delegates    # # # # #
-  belongs_to :inspection
+  belongs_to :inspection, touch: true
   belongs_to :item
   belongs_to :checkpoint
   belongs_to :technician, class_name: 'User'
@@ -112,5 +112,5 @@ class Tasc < ActiveRecord::Base
   end
 
   # # # # # Private Methods             # # # # #
-  private
+private
 end
