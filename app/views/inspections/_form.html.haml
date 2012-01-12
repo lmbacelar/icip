@@ -10,7 +10,7 @@
 
       - @inspectable_locatable_items.each do |i|
         - if can? :create, Tasc
-          = link_to i.name, inspection_item_tascs_path(@inspection, i), class: 'location_link',
+          = link_to i.name, new_inspection_item_tasc_path(@inspection, i), class: 'location_link',
                     data: { location: i.location.to_json(only: [:image_id, :x1, :y1, :x2, :y2]) }
 
     .fix.right
