@@ -4,5 +4,5 @@
     = select_tag :preset, options_for_select(object_class::SearchPresets, params[:preset])
     having
     = text_field_tag :query, params[:query], placeholder: '(search conditions)'
-    = submit_tag 'Go',name: nil
+    = submit_tag 'Go', name: nil, disable_with: 'Please Wait ...'
 %br

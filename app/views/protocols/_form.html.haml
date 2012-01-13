@@ -1,6 +1,5 @@
 = simple_form_for target do |f|
   = f.error_messages
-
   -# TODO
   -# Make this a multistep form
   -# Step 1. Set Details
@@ -9,16 +8,12 @@
   = group_tag title: 'Details' do
     = f.association :author, include_blank: false, input_html: { readonly: true }
     = f.input :notes, as: :string, input_html: { size: 80 }
-
   .columns
     .fix.left
       = group_tag title: 'Images' do
         = render partial: 'image_selection_help'
         = f.association :images, label: false, input_html: { size: 20 }
-
     .fix.right
       = group_tag title: 'Checkpoints' do
         Place Checkpoints here ...
-
-  = f.submit
-
+  = f.submit disable_with: 'Please Wait ...'

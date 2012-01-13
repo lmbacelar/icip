@@ -7,4 +7,4 @@
     = f.input :password, input_html: { size: 16 }
     = f.input :password_confirmation, label: 'Password (again)', input_html: { size: 16 }
     = f.association :roles, as: :check_boxes
-  = f.submit
+  = f.submit disable_with: 'Please Wait ...'

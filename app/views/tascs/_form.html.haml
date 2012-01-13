@@ -8,7 +8,6 @@
             = image_tag i.file_url(:fitted).to_s
         - locations.each do |o|
           .location_link{ data: { location: o.to_json(except: [:created_at, :updated_at]) }}= o.name
-
     .fix.right
       = group_tag title: 'Details' do
         = render partial: 'filter_checkpoints_help'
@@ -20,6 +19,6 @@
                 prompt: '(Select one)'
         = f.input :action, collection: Tasc::Actions, prompt: '(Select one)'
         = f.input :etr, collection: Tasc::Etrs, label: 'ETR', prompt: '(Select one)'
-        = f.input :comment
-      = f.submit
+        = f.input :comment, input_html: { size: 40 }
+      = f.submit disable_with: 'Please Wait ...'
 

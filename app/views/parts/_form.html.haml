@@ -4,5 +4,4 @@
     = f.input :number, input_html: { size: 12 }
     = f.input :kind, collection: Part::Kinds, include_blank: false, prompt: '(Select one)'
     = f.input :description
-  = f.submit
-
+  = f.submit disable_with: 'Saving ...'

@@ -1,6 +1,5 @@
 = simple_form_for target do |f|
   = f.error_messages
-
   .columns
     .fix.left
       = group_tag title: 'Location', content_class: '' do
@@ -9,10 +8,9 @@
             = image_tag i.file_url(:fitted).to_s
             - i.locations.each do |o|
               .location_link{ data: { location: o.to_json }}= o.name
-
     .fix.right
       = group_tag title: 'Checkpoint' do
         = render partial: 'checkpoint_location_help'
         = f.input :part_number, input_html: { size: 20, data: {autocomplete_source: subparts_autocomplete_path} }
         = f.input :image_location, input_html: { size: 30 , class: 'image_locator' }
-    = f.submit
+    = f.submit disable_with: 'Please Wait ...'

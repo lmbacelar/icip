@@ -1,18 +1,15 @@
 = simple_form_for @inspection do |f|
   = f.error_messages
-
   .columns
     .fix.left
       = group_tag title: 'Zone Layout', content_class: '' do
         - @zone.images.each do |i|
           = div_for i do
             = render i
-
       - @inspectable_locatable_items.each do |i|
         - if can? :create, Tasc
           = link_to i.name, new_inspection_item_tasc_path(@inspection, i), class: 'location_link',
                     data: { location: i.location.to_json(only: [:image_id, :x1, :y1, :x2, :y2]) }
-
     .fix.right
       - unless current_user.role? :technician
         = group_tag title: 'Assignment' do
@@ -22,9 +19,7 @@
         = group_tag title: 'Tasks' do
           = render partial: 'new_task_help'
           = render 'tascs/table', tascs: @inspection.ordered_tascs, info: :short
-
         = group_tag title: 'Conclusion' do
           = f.input :executed, as: :select, include_blank: false
-
-      = f.submit
+      = f.submit disable_with: 'Please Wait ...'
 

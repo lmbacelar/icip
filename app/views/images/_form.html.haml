@@ -1,6 +1,5 @@
 = form_for @image, html: { multipart: true } do |f|
   = f.error_messages
-
   .columns
     .fix.left
       = group_tag title: 'Image' do
@@ -9,4 +8,4 @@
         %br
         %br
         %strong 2.
-        = f.submit 'Upload'
+        = f.submit 'Upload', disable_with: 'Please Wait ...'

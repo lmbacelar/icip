@@ -5,12 +5,9 @@
       = group_tag title: 'Images' do
         = render partial: 'image_selection_help'
         = f.association :images, label: false, input_html: { size: 20 }
-
     .fix.right
       = group_tag title: 'Details' do
         = f.input :name, input_html: { size: 2 }
         = f.input :description, input_html: { size: 25 }
         = f.input :inspection_interval, label: 'Inspection Int.', input_html: { size: 2 }
-
-  = f.submit
-
+  = f.submit disable_with: 'Please Wait ...'

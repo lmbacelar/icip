@@ -4,7 +4,6 @@
     .fix.left
       = group_tag title: 'Image', content_class: 'locator' do
         = render @image
-
     .fix.right
       = group_tag title: 'Location' do
         = render partial: 'set_location_help'
@@ -14,4 +13,4 @@
           = f.input :y1, input_html: { size: 3 }
           = f.input :x2, input_html: { size: 3 }
           = f.input :y2, input_html: { size: 3 }
-      = f.submit
+      = f.submit disable_with: 'Please Wait ...'
