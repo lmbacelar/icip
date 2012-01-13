@@ -5,11 +5,12 @@ class Inspection < ActiveRecord::Base
 
   # # # # # Constants                   # # # # #
   # Preset searches: [ search_text, elasticsearch query ]
-  SearchPresets = [ [ 'All', '*'],
+  SearchPresets = [ [ 'Open', 'NOT state:Closed'],
                     [ 'Unassigned', 'state:Unassigned'],
                     [ 'Assigned', 'state:Assigned'],
                     [ 'Pending', 'state:Pending'],
-                    [ 'Closed', 'state:Closed'] ]
+                    [ 'Closed', 'state:Closed'],
+                    [ 'All', '*'] ]
 
   # # # # # Instance Variables          # # # # #
   # # # # # Callbacks                   # # # # #
