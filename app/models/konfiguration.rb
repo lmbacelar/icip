@@ -1,6 +1,6 @@
 class Konfiguration < ActiveRecord::Base
   # # # # # Includes / Extends          # # # # #
-  include CsvSerialize::InstanceMethods
+  include CsvImport::InstanceMethods
 
   # # # # # Constants                   # # # # #
   CsvColumns = %w[number description]

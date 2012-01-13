@@ -1,6 +1,6 @@
 class Checkpoint < ActiveRecord::Base
   # # # # # Includes / Extends          # # # # #
-  include CsvSerialize::InstanceMethods
+  include CsvImport::InstanceMethods
 
   # # # # # Constants                   # # # # #
   CsvColumns = %w[location.name location.image part.number part.kind part.description]

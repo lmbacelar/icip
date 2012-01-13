@@ -1,6 +1,6 @@
 class Item < ActiveRecord::Base
   # # # # # Includes / Extends          # # # # #
-  include CsvSerialize::InstanceMethods
+  include CsvImport::InstanceMethods
 
   # # # # # Constants                   # # # # #
   CsvColumns = %w[name part.number part.kind part.description location.name location.image.name]

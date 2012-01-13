@@ -1,6 +1,6 @@
 class Part < ActiveRecord::Base
   # # # # # Includes / Extends          # # # # #
-  extend  CsvSerialize::ClassMethods
+  extend  CsvImport::ClassMethods
   include Tire::Model::Search
   include Tire::Model::Callbacks
 

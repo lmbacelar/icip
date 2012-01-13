@@ -1,6 +1,6 @@
 class Protocol < ActiveRecord::Base
   # # # # # Includes / Extends          # # # # #
-  include CsvSerialize::InstanceMethods
+  include CsvImport::InstanceMethods
 
   # # # # # Constants                   # # # # #
   # # # # # Instance Variables          # # # # #

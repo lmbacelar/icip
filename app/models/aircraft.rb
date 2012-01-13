@@ -1,7 +1,7 @@
 class Aircraft < ActiveRecord::Base
   # # # # # Includes / Extends # # # # #
-  extend  CsvSerialize::ClassMethods
-  include CsvSerialize::InstanceMethods
+  extend  CsvImport::ClassMethods
+  include CsvImport::InstanceMethods
 
   # # # # # Constants # # # # #
   CsvColumns = %w[registration manufacturer model]

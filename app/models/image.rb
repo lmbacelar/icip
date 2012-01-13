@@ -1,6 +1,6 @@
 class Image < ActiveRecord::Base
   # # # # # Includes / Extends          # # # # #
-  include CsvSerialize::InstanceMethods
+  include CsvImport::InstanceMethods
 
   # # # # # Constants                   # # # # #
   CsvColumns = %w[]

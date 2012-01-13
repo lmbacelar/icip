@@ -1,6 +1,6 @@
 class Location < ActiveRecord::Base
   # # # # # Includes / Extends          # # # # #
-  include CsvSerialize::InstanceMethods
+  include CsvImport::InstanceMethods
 
   # # # # # Constants                   # # # # #
   CsvColumns = %w[name x1 y1 x2 y2]
