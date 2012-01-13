@@ -1,13 +1,13 @@
 %tr{class: cycle('', 'alt')}
-  - if info == :full
-    %td= a.state
-    %td= a.aircraft_registration
-    %td= a.zone_name
   %td= a.action
   %td= a.item_name
   %td= a.checkpoint_description
   %td= a.etr
-  %td= I18n.l(a.closing.try(:updated_at), format: :short_date) if a.closing.present?
+  - if info == :full
+    %td= a.aircraft_registration
+    %td= a.zone_name
+  %td= I18n.l(a.created_at.to_time, format: :short_date)
+  %td= I18n.l(a.close_date.to_time, format: :short_date) if a.close_date
   %td
     %ul.icons
       - if can? :read, a
