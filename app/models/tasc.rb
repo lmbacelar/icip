@@ -5,11 +5,11 @@ class Tasc < ActiveRecord::Base
 
   # # # # # Constants                   # # # # #
   # Preset searches: [ search_text, elasticsearch query ]
-  SearchPresets = [ [ 'All', '*'],
-                    [ 'Open', 'state:open'],
+  SearchPresets = [ [ 'Open', 'state:open'],
+                    [ 'Just Open Replaces', 'state:open AND action:Replace'],
+                    [ 'Just Open Repairs', 'state:open AND action:Repair'],
                     [ 'Closed', 'state:closed'],
-                    [ 'Just Open Replacements', 'state:open AND action:Replace'],
-                    [ 'Just Open Repairs', 'state:open AND action:Repair'] ]
+                    [ 'All', '*'] ]
 
   # # # # # Instance Variables          # # # # #
   Actions = %w[Repair Replace]
@@ -70,6 +70,10 @@ class Tasc < ActiveRecord::Base
     inspection.zone.konfiguration.aircraft.registration
   end
 
+  def close_date
+    closing.try(:created_at)
+  end
+
   # Searching
   #   Model searching through ElasticSearch
   #   Index mappings
@@ -82,6 +86,7 @@ class Tasc < ActiveRecord::Base
     indexes :checkpoint_description
     indexes :aircraft_registration, index: 'not_analyzed'
     indexes :zone_name, index: 'not_analyzed'
+    indexes :close_date, type: 'date'
     indexes :created_at, type: 'date'
     indexes :updated_at, type: 'date'
   end
@@ -104,7 +109,7 @@ class Tasc < ActiveRecord::Base
 
   # Indexed methods. These are passible of showing / searching.
   def to_indexed_json
-    to_json(methods: [:state, :item_name, :checkpoint_description, :aircraft_registration, :zone_name])
+    to_json(methods: [:state, :close_date, :item_name, :checkpoint_description, :aircraft_registration, :zone_name])
   end
 
   def self.paginate(options = {})
