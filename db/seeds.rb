@@ -7,36 +7,36 @@ puts 'CREATING Roles ...'
   Role.create name: r
 end
 puts 'CREATING Users ...'
-User.create(email: 'admin@icip.com',
+User.create(email: 'admin@tap.pt',
             tap_number: '000000',
             name: 'Administrator',
-            password: 'admin',
-            password_confirmation: 'admin').roles << Role.find_by_name(:admin)
-User.create(email: 'engineer@icip.com',
+            password: 'tap',
+            password_confirmation: 'tap').roles << Role.find_by_name(:admin)
+User.create(email: 'engineer@tap.pt',
             tap_number: '000001',
             name: 'Engineer',
-            password: 'engineer',
-            password_confirmation: 'engineer').roles << Role.find_by_name(:engineer)
-User.create(email: 'technician@icip.com',
+            password: 'tap',
+            password_confirmation: 'tap').roles << Role.find_by_name(:engineer)
+User.create(email: 'technician@tap.pt',
             tap_number: '000002',
             name: 'Technician',
-            password: 'technician',
-            password_confirmation: 'technician').roles << Role.find_by_name(:technician)
+            password: 'tap',
+            password_confirmation: 'tap').roles << Role.find_by_name(:technician)
 User.create(email: 'lbacelar@tap.pt',
             tap_number: '258756',
             name: 'Luis Bacelar',
-            password: 'lbacelar',
-            password_confirmation: 'lbacelar').roles << Role.find_by_name(:admin)
+            password: 'tap',
+            password_confirmation: 'tap').roles << Role.find_by_name(:admin)
 User.create(email: 'vmmartinho@tap.pt',
             tap_number: '308007',
             name: 'Vera Martinho',
-            password: 'vmmartinho',
-            password_confirmation: 'vmmartinho').roles << Role.find_by_name(:engineer)
+            password: 'tap',
+            password_confirmation: 'tap').roles << Role.find_by_name(:engineer)
 User.create(email: 'toze@tap.pt',
             tap_number: '000003',
             name: 'ToZe',
-            password: 'toze',
-            password_confirmation: 'toze').roles << Role.find_by_name(:technician)
+            password: 'tap',
+            password_confirmation: 'tap').roles << Role.find_by_name(:technician)
 # Loading Aircrafts
 puts 'IMPORTING Aircrafts from csv ...'
 Aircraft.from_csv 'db/seeds/aircrafts.csv'
@@ -88,4 +88,11 @@ Part.all.each do |part|
   end
 end
 
+puts "SCHEDULING Inspections... This may take a while..."
+Zone.order('zones.id DESC').each do |z|
+  z.schedule_inspections
+  sleep 1
+end
+
 puts 'DONE Seeding ...'
+puts "NOTE You may have to update Tire indexes manually.\n     Use 'rake environment tire:import CLASS=<PlaceYouClassNameHere> FORCE=true'"
