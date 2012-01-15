@@ -1,0 +1,30 @@
+location.name,location.image,part.number,part.kind,part.description
+1,781-20-XX.png,137-00-263-06GG,Subpart,RH Panel Outer
+1,781-20-XX.png,137-00-263-54GG,Subpart,RH Panel Inner
+2,781-20-XX.png,137-00-262-22GG,Subpart,RH Strip Bumper Upper
+2,781-20-XX.png,137-00-262-01GG,Subpart,Strip Bumper Lower
+3,781-20-XX.png,781-00-380-11,Subpart,Shroud RH
+3,781-20-XX.png,137-00-380-13GG,Subpart,Shroud LH
+3,781-20-XX.png,781-00-380-15,Subpart,Shroud CTR
+6,781-20-XX.png,137-00-341-01GF,Subpart,Armcap RH
+6,781-20-XX.png,137-00-341-01GF,Subpart,Armcap CTR
+6,781-20-XX.png,137-00-341-01GF,Subpart,Armcap LH
+8,781-20-XX.png,137-00-370-01GG,Subpart,Escutcheon RH
+8,781-20-XX.png,137-00-370-01GG,Subpart,Escutcheon CTR
+8,781-20-XX.png,137-00-370-01GG,Subpart,Escutcheon LH
+4,781-20-XX.png,781-00-512-00,Subpart,Backrest Foodtray assy RH
+4,781-20-XX.png,781-00-512-00,Subpart,Backrest Foodtray assy LH
+5A,781-20-XX.png,TP25-7219,Subpart,Seat Belt with Buckle RH
+5A,781-20-XX.png,TP25-7219,Subpart,Seat Belt with Buckle LH
+5A,781-20-XX.png,TP25-7220,Subpart,Seat Belt without Buckle RH
+5A,781-20-XX.png,TP25-7220,Subpart,Seat Belt without Buckle LH
+5,781-20-XX.png,TP25-7931,Subpart,Dress cover - Headrest RH
+5,781-20-XX.png,TP25-7931,Subpart,Dress cover - Headrest LH
+5,781-20-XX.png,TP25-8021,Subpart,Dress cover - Backrest RH
+5,781-20-XX.png,TP25-8021,Subpart,Dress cover - Backrest LH
+5,781-20-XX.png,TP25-7930,Subpart,RH Dress cover - Seatbottom
+5,781-20-XX.png,TP25-8245,Subpart,LH Dress cover - Seatbottom
+5,781-20-XX.png,TP25-7932,Subpart,RH Dress cover - Back Poket
+5,781-20-XX.png,TP25-7932,Subpart,LH Dress cover - Back Poket
+4,781-20-XX.png,137-00-410-15CW,Subpart,Latch RH
+4,781-20-XX.png,137-00-410-15CW,Subpart,Latch LH

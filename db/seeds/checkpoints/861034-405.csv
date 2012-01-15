@@ -1,0 +1,65 @@
+location.name,location.image,part.number,part.kind,part.description
+6,861034-405.png,854676-401AE,Subpart,Armcap CTR
+2,861034-405.png,857426-410A,Subpart,RH Bumper
+2,861034-405.png,857426-409A,Subpart,LH Bumper
+1,861034-405.png,857445-126A,Subpart,RH Panel Inner
+1,861034-405.png,859055-018A,Subpart,RH Panel Outer
+1,861034-405.png,857445-129A,Subpart,LH Panel Inner
+1,861034-405.png,859055-017A,Subpart,LH Panel Outer
+4,861034-405.png,858512-405D,Subpart,RH Backrest Foodtray Outer
+4,861034-405.png,858512-405D,Subpart,LH Backrest Foodtray Outer
+4,861034-405.png,858512-405D,Subpart,CTR RH Backrest Foodtray Outer
+4,861034-405.png,858512-405D,Subpart,CTR LH Backrest Foodtray Outer
+4,861034-405.png,858511-419A,Subpart,RH Backrest Foodtray Inner
+4,861034-405.png,858511-419A,Subpart,LH Backrest Foodtray Inner
+4,861034-405.png,858511-419A,Subpart,CTR RH Backrest Foodtray Inner
+4,861034-405.png,858511-419A,Subpart,CTR LH Backrest Foodtray Inner
+4A,861034-405.png,848655-401N,Subpart,Cup Holder RH
+4A,861034-405.png,848655-401N,Subpart,Cup Holder LH
+4A,861034-405.png,848655-401N,Subpart,Cup Holder CTR RH
+4A,861034-405.png,848655-401N,Subpart,Cup Holder CTR LH
+8,861034-405.png,857152-421A,Subpart,Escutcheon CTR
+8,861034-405.png,858657-413B,Subpart,Escutcheon RH
+8,861034-405.png,858657-423A,Subpart,Escutcheon CTR RH
+8,861034-405.png,858657-423A,Subpart,Escutcheon CTR LH
+8,861034-405.png,858657-423A,Subpart,Escutcheon LH
+6,861034-405.png,857242-001AJ,Subpart,Armcap CTR RH
+6,861034-405.png,857242-001AJ,Subpart,Armcap CTR LH
+6,861034-405.png,857242-001AJ,Subpart,Armcap RH
+6,861034-405.png,857242-001AJ,Subpart,Armcap LH
+1,861034-405.png,857445-124B,Subpart,CTR RH Panel LH
+1,861034-405.png,857444-095B,Subpart,CTR RH Panel RH
+1,861034-405.png,857445-127A,Subpart,CTR LH Panel RH
+1,861034-405.png,857444-094A,Subpart,CTR LH Panel LH
+10,861034-405.png,858806-401C,Subpart,RH IAT Food Table RH Leaf
+10,861034-405.png,858807-401C,Subpart,RH IAT Food TableLH Leaf
+10,861034-405.png,858806-402C,Subpart,LH IAT Food Table RH Leaf
+10,861034-405.png,858807-402C,Subpart,LH IAT Food Table LH Leaf
+5,861034-405.png,TAP-DO-000178-EPA,Subpart,RH Dress cover - Headrest
+5,861034-405.png,TAP-DO-000178-EPA,Subpart,LH Dress cover - Headrest
+5,861034-405.png,TAP-DO-000178-EPA,Subpart,CTR RH Dress cover - Headrest
+5,861034-405.png,TAP-DO-000178-EPA,Subpart,CTR LH Dress cover - Headrest
+5,861034-405.png,TAP-DO-000175-EPA,Subpart,RH Dress cover - Backrest
+5,861034-405.png,TAP-DO-000175-EPA,Subpart,LH Dress cover - Backrest
+5,861034-405.png,TAP-DO-000175-EPA,Subpart,CTR RH Dress cover - Backrest
+5,861034-405.png,TAP-DO-000175-EPA,Subpart,CTR LH Dress cover - Backrest
+5,861034-405.png,TAP-DO-000167-EPA,Subpart,CTR RH Dress cover - Seatbottom
+5,861034-405.png,TAP-DO-000168-EPA,Subpart,RH Dress cover - Seatbottom
+5,861034-405.png,TAP-DO-000169-EPA,Subpart,LH Dress cover - Seatbottom
+5,861034-405.png,TAP-DO-000170-EPA,Subpart,CTR LH Dress cover - Seatbottom
+5,861034-405.png,TAP-DO-000180-EPA,Subpart,LH Dress cover - Back Poket
+5,861034-405.png,TAP-DO-000180-EPA,Subpart,CTR LH Dress cover - Back Poket
+5,861034-405.png,TAP-DO-000181-EPA,Subpart,RH Dress cover - Back Poket
+5,861034-405.png,TAP-DO-000181-EPA,Subpart,CTR RH Dress cover - Back Poket
+5A,861034-405.png,TP25-8391,Subpart,RH Seat - LH Seat belt with buckle
+5A,861034-405.png,TP25-8391,Subpart,CTR RH Seat - LH Seat belt with buckle
+5A,861034-405.png,TP25-8391,Subpart,CTR LH Seat - LH Seat belt with buckle
+5A,861034-405.png,TP25-8392,Subpart,LH Seat - LH Seat belt without buckle
+5A,861034-405.png,TP25-8393,Subpart,LH Seat - RH Seat belt with buckle
+5A,861034-405.png,TP25-8394,Subpart,RH Seat - RH Seat belt without buckle
+5A,861034-405.png,TP25-8394,Subpart,CTR RH Seat - RH Seat belt without buckle
+5A,861034-405.png,TP25-8394,Subpart,CTR LH Seat - RH Seat belt without buckle
+4,861034-405.png,859266-401B,Subpart,Latch RH
+4,861034-405.png,859266-401B,Subpart,Latch LH
+4,861034-405.png,859266-401B,Subpart,Latch CTR RH
+4,861034-405.png,859266-401B,Subpart,Latch CTR LH
