@@ -42,7 +42,6 @@ class Zone < ActiveRecord::Base
     # Inspection is overdue according to inspection_interval
     # and last inspection execution_date
     if inspections.unassigned.all.empty? && inspections.assigned.all.empty?
-      puts 'trying'
       if inspections.all.empty? || inspections.maximum(:execution_date) < Time.now - inspection_interval.days
         inspections.create
       end
@@ -53,23 +52,6 @@ class Zone < ActiveRecord::Base
     self.all.each do |z|
       z.schedule_inspection
       sleep delay
-    end
-  end
-
-  def items_to_csv(fname)
-    begin
-      CSV.open(fname, 'w') do |csv|
-        # header
-        csv << Item::CsvColumns
-        # iterate children
-        items.each do |i|
-          csv << [i.name, i.part.try(:number), i.part.try(:kind), i.part.try(:description)]
-        end
-      end
-    rescue Errno::EISDIR
-      puts "ERROR: '#{fname}' is a directory. Items not exported."
-    rescue Errno::EACCES
-      puts "ERROR: Permission denied on '#{fname}'. Items not exported."
     end
   end
 
@@ -87,7 +69,10 @@ class Zone < ActiveRecord::Base
                                                                   description: line[3]).id)
           # Associate location when possible
           unless line[5].nil?
-            url = File.join(Rails.root, File.join(File.dirname(fname), line[5]))
+            # Get (Rails.root)/(fname's parent dir)/images/(image_fname)
+            url = File.dirname(File.dirname(fname))
+            url = File.join(File.join(url, 'images'), line[5])
+            url = File.join(Rails.root, url)
             i.location = Location.find_by_name_and_image_id(
                                     line[4],
                                     Image.find_or_create_by_checksum(
@@ -95,18 +80,34 @@ class Zone < ActiveRecord::Base
           end
         end
       else
-        puts "ERROR: Expecting ''#{Item::CsvColumns.join(',')}' on '#{fname}'. Skipping import of Items."
+        puts "[ ERROR      ]   Expecting ''#{Item::CsvColumns.join(',')}' on '#{fname}'. Skipping import of Items."
         false
       end
     rescue Errno::EISDIR
-      puts "ERROR: '#{fname}' is a directory. Items not imported."
+      puts "[ ERROR      ]   '#{fname}' is a directory. Items not imported."
     rescue Errno::EACCES
-      puts "ERROR: Permission denied on '#{fname}'. Items not imported."
+      puts "[ ERROR      ]   Permission denied on '#{fname}'. Items not imported."
     rescue Errno::ENOENT
-      puts "ERROR: '#{fname}' not found. Items not imported."
+      puts "[ ERROR      ]   '#{fname}' not found. Items not imported."
     end
   end
 
+  # def items_to_csv(fname)
+  #   begin
+  #     CSV.open(fname, 'w') do |csv|
+  #       # header
+  #       csv << Item::CsvColumns
+  #       # iterate children
+  #       items.each do |i|
+  #         csv << [i.name, i.part.try(:number), i.part.try(:kind), i.part.try(:description)]
+  #       end
+  #     end
+  #   rescue Errno::EISDIR
+  #     puts "ERROR: '#{fname}' is a directory. Items not exported."
+  #   rescue Errno::EACCES
+  #     puts "ERROR: Permission denied on '#{fname}'. Items not exported."
+  #   end
+  # end
   # # # # # Private Methods             # # # # #
   private
 end
