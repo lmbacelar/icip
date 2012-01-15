@@ -88,47 +88,47 @@ module CsvImport
       end
     end
 
-    # def association_to_csv(assoc_sym, fname)
-    #   csv_data = association(assoc_sym).klass::CsvColumns
-    #   csv_data.collect! { |d| d.to_s }
-    #   begin
-    #     CSV.open(fname, 'w') do |csv|
-    #       # header
-    #       csv << csv_data
-    #       # iterate children
-    #       association(assoc_sym).load_target.collect do |c|
-    #         line = []
-    #         csv_data.each { |d| line << c[d] }
-    #         # export data
-    #         csv << line
-    #       end
-    #     end
-    #   rescue Errno::EISDIR
-    #     puts "ERROR: '#{fname}' is a directory. #{assoc_sym.to_s.titleize.pluralize} not exported."
-    #   rescue Errno::EACCES
-    #     puts "ERROR: Permission denied on '#{fname}'. #{assoc_sym.to_s.titleize.pluralize} not exported."
-    #   end
-    # end
+    def association_to_csv(assoc_sym, fname)
+      csv_data = association(assoc_sym).klass::CsvColumns
+      csv_data.collect! { |d| d.to_s }
+      begin
+        CSV.open(fname, 'w') do |csv|
+          # header
+          csv << csv_data
+          # iterate children
+          association(assoc_sym).load_target.collect do |c|
+            line = []
+            csv_data.each { |d| line << c[d] }
+            # export data
+            csv << line
+          end
+        end
+      rescue Errno::EISDIR
+        puts "ERROR: '#{fname}' is a directory. #{assoc_sym.to_s.titleize.pluralize} not exported."
+      rescue Errno::EACCES
+        puts "ERROR: Permission denied on '#{fname}'. #{assoc_sym.to_s.titleize.pluralize} not exported."
+      end
+    end
 
-    # ##
-    # # WARNING: Images with the same filename will be destroyed.
-    # #          This could be improved.
-    # def images_to_csv(fname)
-    #   begin
-    #     CSV.open(fname, 'w') do |csv|
-    #       csv << ['file_url']
-    #       images.collect do |i|
-    #         # copy file to csv path
-    #         FileUtils.cp File.join(Rails.public_path,i.file_url), File.join(Rails.root,File.join(File.dirname(fname), File.basename(i.file_url)))
-    #         # write filename
-    #         csv << [File.basename(i.file_url)]
-    #       end
-    #     end
-    #   rescue Errno::EISDIR
-    #     puts "ERROR: '#{fname}' is a directory. #{assoc_sym.to_s.titleize.pluralize} not exported."
-    #   rescue Errno::EACCES
-    #     puts "ERROR: Permission denied on '#{fname}'. #{assoc_sym.to_s.titleize.pluralize} not exported."
-    #   end
-    # end
+    ##
+    # WARNING: Images with the same filename will be destroyed.
+    #          This could be improved.
+    def images_to_csv(fname)
+      begin
+        CSV.open(fname, 'w') do |csv|
+          csv << ['file_url']
+          images.collect do |i|
+            # copy file to csv path
+            FileUtils.cp File.join(Rails.public_path,i.file_url), File.join(Rails.root,File.join(File.dirname(fname), File.basename(i.file_url)))
+            # write filename
+            csv << [File.basename(i.file_url)]
+          end
+        end
+      rescue Errno::EISDIR
+        puts "ERROR: '#{fname}' is a directory. #{assoc_sym.to_s.titleize.pluralize} not exported."
+      rescue Errno::EACCES
+        puts "ERROR: Permission denied on '#{fname}'. #{assoc_sym.to_s.titleize.pluralize} not exported."
+      end
+    end
   end # InstanceMethods
 end
