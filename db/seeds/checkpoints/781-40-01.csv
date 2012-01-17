@@ -54,3 +54,7 @@ location.name,location.image,part.number,part.kind,part.description
 4,781-40-XX.png,137-00-410-15CW,Subpart,Latch LH
 4,781-40-XX.png,137-00-410-15CW,Subpart,Latch CTR RH
 4,781-40-XX.png,137-00-410-15CW,Subpart,Latch CTR LH
+9,781-40-XX.png,NA_FR_LH,Subpart,Footrest LH
+9,781-40-XX.png,NA_FR_RH,Subpart,Footrest RH
+9,781-40-XX.png,NA_FR_CTR_LH,Subpart,Footrest CTR LH
+9,781-40-XX.png,NA_FR_CTR_RH,Subpart,Footrest CTR RH

@@ -26,3 +26,5 @@ location.name,location.image,part.number,part.kind,part.description
 5A,861034-XXX.png,TP25-8390,Subpart,LH Seat belt without buckle
 4,861034-XXX.png,859266-401B,Subpart,Latch RH
 4,861034-XXX.png,859266-401B,Subpart,Latch LH
+9,861034-XXX.png,NA_FR_LH,Subpart,Footrest LH
+9,861034-XXX.png,NA_FR_RH,Subpart,Footrest RH

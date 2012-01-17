@@ -48,3 +48,6 @@ location.name,location.image,part.number,part.kind,part.description
 4,781-30-22.png,137-00-410-15GG,Subpart,RH Latch
 4,781-30-22.png,137-00-410-15GG,Subpart,LH Latch
 4,781-30-22.png,137-00-410-15GG,Subpart,CTR Latch
+9,781-30-22.png,NA_FR_LH,Subpart,Footrest LH
+9,781-30-22.png,NA_FR_RH,Subpart,Footrest RH
+9,781-30-22.png,NA_FR_CTR,Subpart,Footrest CTR

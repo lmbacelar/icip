@@ -33,3 +33,5 @@ location.name,location.image,part.number,part.kind,part.description
 5A,861034-427.png,TP25-8394,Subpart,RH Seat - RH Seat belt without buckle
 4,861034-427.png,859266-401B,Subpart,Latch RH
 4,861034-427.png,859266-401B,Subpart,Latch LH
+9,861034-427.png,NA_FR_LH,Subpart,Footrest LH
+9,861034-427.png,NA_FR_RH,Subpart,Footrest RH

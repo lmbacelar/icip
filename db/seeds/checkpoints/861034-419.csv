@@ -39,3 +39,6 @@ location.name,location.image,part.number,part.kind,part.description
 4,861034-419.png,859266-401B,Subpart,Latch RH
 4,861034-419.png,859266-401B,Subpart,Latch LH
 4,861034-419.png,859266-401B,Subpart,Latch CTR
+9,861034-419.png,NA_FR_LH,Subpart,Footrest LH
+9,861034-419.png,NA_FR_RH,Subpart,Footrest RH
+9,861034-419.png,NA_FR_CTR,Subpart,Footrest CTR
