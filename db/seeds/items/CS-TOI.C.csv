@@ -13,7 +13,7 @@ name,part.number,part.kind,part.description,location.name,location.image.name
 4HJ,664-22-020-11,Seat,,4HJ,TOH-TOK_C.png
 L37,F2549019012000,Lavatory,,L37,TOH-TOK_C.png
 L38,F2549014110000,Lavatory,,L38,TOH-TOK_C.png
-B/CCarpet,Generic,Carpet,,,
-DP,Generic,Panel,,,
-SP,Generic,Sidewall,,,
+B/CCarpet,TOE-TOP_C_CARPET,Carpet,,19,TOE-TOP_C_side_dado_carpet.png
+DP,TOE-TOP_C_DADO,Panel,,18,TOE-TOP_C_side_dado_carpet.png
+SP,TOE-TOP_C_SIDE,Panel,,17,TOE-TOP_C_side_dado_carpet.png
 LABEL,Generic,Label,,,
