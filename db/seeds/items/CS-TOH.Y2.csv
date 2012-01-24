@@ -53,7 +53,7 @@ name,part.number,part.kind,part.description,location.name,location.image.name
 41HJ,782-22-08,Seat,,41HJ,TOH-TOK_Y2.png
 L53,F2549014200400,Lavatory,,L53,TOH-TOK_Y2.png
 L54,F2549019103200,Lavatory,,L54,TOH-TOK_Y2.png
-Y2/CCarpet,TOE-TOP_Y2_CARPET,Carpet,,13,TOE-TOP_Y_side_dado_carpet.png
+Y2/CCarpet,TOH_TOK_Y2_CARPET,Carpet,,13,TOE-TOP_Y_side_dado_carpet.png
 DP,TOE-TOP_Y_DADO,Panel,,12,TOE-TOP_Y_side_dado_carpet.png
 SP,TOE-TOP_Y_SIDE,Panel,,11,TOE-TOP_Y_side_dado_carpet.png
 LABEL,Generic,Label,,,

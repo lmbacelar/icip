@@ -63,7 +63,7 @@ name,part.number,part.kind,part.description,location.name,location.image.name
 26HJ,781-22-12,Seat,,26HJ,TOE-TOG_Y1.png
 L61,F2549006603000,Lavatory,,L61,TOE-TOG_Y1.png
 L62,F2549007603000,Lavatory,,L62,TOE-TOG_Y1.png
-Y1/CCarpet,TOE-TOP_Y1_CARPET,Carpet,,13,TOE-TOP_Y_side_dado_carpet.png
+Y1/CCarpet,TOE-TOG_Y1_CARPET,Carpet,,13,TOE-TOP_Y_side_dado_carpet.png
 DP,TOE-TOP_Y_DADO,Panel,,12,TOE-TOP_Y_side_dado_carpet.png
 SP,TOE-TOP_Y_SIDE,Panel,,11,TOE-TOP_Y_side_dado_carpet.png
 LABEL,Generic,Label,,,
