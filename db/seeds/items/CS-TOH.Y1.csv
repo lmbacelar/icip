@@ -63,7 +63,7 @@ name,part.number,part.kind,part.description,location.name,location.image.name
 L51,F2549014200200,Lavatory,,L51,TOH-TOK_Y1.png
 L52,F2549019103000,Lavatory,,L52,TOH-TOK_Y1.png
 L61,F2549039503000,Lavatory,,L61,TOH-TOK_Y1.png
-Y1/CCarpet,TOH_TOK_Y1_CARPET,Carpet,,13,TOE-TOP_Y_side_dado_carpet.png
+Y1/CCarpet,TOH-TOK_Y1_CARPET,Carpet,,13,TOE-TOP_Y_side_dado_carpet.png
 DP,TOE-TOP_Y_DADO,Panel,,12,TOE-TOP_Y_side_dado_carpet.png
 SP,TOE-TOP_Y_SIDE,Panel,,11,TOE-TOP_Y_side_dado_carpet.png
 LABEL,Generic,Label,,,
