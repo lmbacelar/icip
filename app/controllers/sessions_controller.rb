@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  force_ssl except: :destroy
+#  force_ssl except: :destroy
 
   def create
     user = User.find_by_email(params[:login]) || User.find_by_tap_number(params[:login])
