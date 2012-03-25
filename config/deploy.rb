@@ -5,7 +5,7 @@ server "178.79.182.149", :web, :app, :db, primary: true
 set :application, "icip"
 set :user, "deployer"
 set :deploy_to, "/home/#{user}/apps/#{application}"
-set :deploy_via, :remote_cache
+#set :deploy_via, :remote_cache
 set :use_sudo, false
 
 set :scm, "git"
