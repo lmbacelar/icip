@@ -5,12 +5,14 @@ server "178.79.182.149", :web, :app, :db, primary: true
 set :application, "icip"
 set :user, "deployer"
 set :deploy_to, "/home/#{user}/apps/#{application}"
-#set :deploy_via, :remote_cache
+set :deploy_via, :remote_cache
 set :use_sudo, false
 
 set :scm, "git"
 set :repository, "git@github.com:lmbacelar/#{application}.git"
 set :branch, "master"
+
+set :default_environment, 'PATH' => "$PATH:/home/#{user}/.rbenv/shims:/home/#{user}/.rbenv/bin"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
