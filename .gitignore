@@ -7,3 +7,4 @@ tmp/
 *.swo
 *~
 public/uploads/
+config/database.yml
