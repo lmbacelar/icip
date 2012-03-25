@@ -17,24 +17,14 @@ User.create(email: 'engineer@tap.pt',
             name: 'Engineer',
             password: 'tap',
             password_confirmation: 'tap').roles << Role.find_by_name(:engineer)
-User.create(email: 'technician@tap.pt',
+User.create(email: 'technician1@tap.pt',
             tap_number: '000002',
-            name: 'Technician',
+            name: 'Technician1',
             password: 'tap',
             password_confirmation: 'tap').roles << Role.find_by_name(:technician)
-User.create(email: 'lbacelar@tap.pt',
-            tap_number: '258756',
-            name: 'Luis Bacelar',
-            password: 'tap',
-            password_confirmation: 'tap').roles << Role.find_by_name(:admin)
-User.create(email: 'vmmartinho@tap.pt',
-            tap_number: '308007',
-            name: 'Vera Martinho',
-            password: 'tap',
-            password_confirmation: 'tap').roles << Role.find_by_name(:engineer)
-User.create(email: 'toze@tap.pt',
+User.create(email: 'technician2@tap.pt',
             tap_number: '000003',
-            name: 'ToZe',
+            name: 'Technician2',
             password: 'tap',
             password_confirmation: 'tap').roles << Role.find_by_name(:technician)
 # Loading Aircrafts
@@ -68,7 +58,7 @@ Part.all.each do |part|
   checkpoints_csv = "db/seeds/checkpoints/#{part}.csv"
   images_csv = "db/seeds/images/#{part}.csv"
   if File.exist?(images_csv) || File.exist?(checkpoints_csv)
-    p = part.protocols.create(author_id: User.find_by_tap_number('308007').id)
+    p = part.protocols.create(author_id: User.find_by_tap_number('000001').id)
     if File.exist? images_csv
       puts "[ IMPORTING  ]   Images for P/N #{part} Protocol #{p} ..."
       p.images_from_csv images_csv
