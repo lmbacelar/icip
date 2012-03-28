@@ -1,5 +1,5 @@
 class UsersController < AuthorizedController
-#  force_ssl only: :new
+  force_ssl only: :new
 
   def index
     @users = User.order(:email)
