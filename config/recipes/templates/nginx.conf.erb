@@ -1,0 +1,17 @@
+user <%= user %> <%= user %>;
+worker_processes  <%= nginx_workers %>;
+
+events {
+    worker_connections  <%= nginx_connections %>;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    include       /etc/nginx/sites-enabled/*;
+
+    sendfile        on;
+
+    keepalive_timeout  65;
+}

@@ -12,12 +12,10 @@ set -e
 
 # Feel free to change any of the following variables for your app:
 TIMEOUT=${TIMEOUT-60}
-AS_USER=deployer
-USER_HOME=/home/$AS_USER
-APP_ROOT=$USER_HOME/apps/icip/current
-PID=$APP_ROOT/tmp/pids/unicorn.pid
-PATH=$PATH:$USER_HOME/.rbenv/bin:$USER_HOME/.rbenv/shims
-CMD="cd $APP_ROOT; env PATH=$PATH sh -c 'bundle exec unicorn -D -c $APP_ROOT/config/unicorn.rb -E production'"
+APP_ROOT=<%= current_path %>
+PID=<%= unicorn_pid %>
+CMD="cd <%= current_path %>; bundle exec unicorn -D -c <%= unicorn_config %> -E production"
+AS_USER=<%= unicorn_user %>
 set -u
 
 OLD_PIN="$PID.oldbin"
