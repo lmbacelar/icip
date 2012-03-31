@@ -29,7 +29,7 @@ class Inspection < ActiveRecord::Base
   scope :executed, where('inspections.execution_date IS NOT NULL')
   scope :pending, executed.joins(:tascs).merge(Tasc.pending)
   scope :clean, executed.where('id NOT IN (SELECT inspection_id FROM tascs)')
-  scope :closed, joins(tascs: :closing) + clean
+  #scope :closed, joins(tascs: :closing) + clean
 
   # # # # # Validations                 # # # # #
   # # # # # Public Methods              # # # # #
