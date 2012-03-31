@@ -9,6 +9,10 @@ namespace :nginx do
     run "#{sudo} mkdir /etc/nginx/sites-enabled"
     template "nginx.conf.erb", "/tmp/nginx_conf"
     run "#{sudo} mv /tmp/nginx_conf /etc/nginx/conf/nginx.conf"
+    put "templates/server.crt", "/tmp/server.crt"
+    put "templates/server.key", "/tmp/server.key"
+    run "#{sudo} mv /tmp/server.crt /etc/nginx/conf/server.crt"
+    run "#{sudo} mv /tmp/server.key /etc/nginx/conf/server.key"
     add_service "nginx"
   end
   after "deploy:install", "nginx:install"

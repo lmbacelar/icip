@@ -29,5 +29,12 @@ namespace :postgresql do
   task :symlink, roles: :app do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
   end
+  %w[start stop restart].each do |command|
+    desc "#{command} postgresql"
+    task command, roles: :web do
+      run "#{sudo} rc.d #{command} postgresql"
+    end
+  end
+
   after "deploy:finalize_update", "postgresql:symlink"
 end
