@@ -14,14 +14,15 @@ end
 namespace :deploy do
   desc "Install everything onto the server"
   task :install, roles: :app do
-    puts "\nPRE_REQUISITES:\n-#{user} user setup, with sudo access.\nOn Arch do:\ni"
-    puts "\t1. Login via ssh on root user."
-    puts "\t2. > adduser deployer\n\t\t(primary group users, secondary group wheel, accept defaults and set password)"
-    puts "\t3. > visudo\n\t\t(uncomment line '%wheel ALL=(ALL) ALL')"
-    puts "\t4. > pacman -Syy\n\t\t(synchronize database)"
-    puts "\t5. > pacman -Syu\n\t\t(update system)"
+    puts "\nPRE_REQUISITES:\n-#{user} user setup, with sudo access.\nOn Arch do:\n"
+    puts "\t1. Login via ssh on root user.\n"
+    puts "\t2. > adduser deployer\n\t\t(primary group users, secondary group wheel, accept defaults and set password)\n"
+    puts "\t3. > visudo\n\t\t(uncomment line '%wheel ALL=(ALL) ALL')\n"
+    puts "\t4. > pacman -Syy\n\t\t(synchronize database)\n"
+    puts "\t5. > pacman -Syu\n\t\t(update system)\n"
+    puts "\n\n\n\t\t\tIMPORTANT !!!\n\n"
+    puts "\tDo not forget to manually add daemons that require autostart to rc.conf DAEMONS section.\n\n\n"
     puts "\tAll Done..."
-    #run "#{sudo} pacman -Syy"
-    #run "#{sudo} pacman -Sq --noconfirm base-devel"
+    run "#{sudo} pacman -Sq --noconfirm base-devel"
   end
 end

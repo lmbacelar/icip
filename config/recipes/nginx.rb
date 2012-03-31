@@ -1,3 +1,7 @@
+set_default(:nginx_user, "root")
+set_default(:nginx_workers, 2)
+set_default(:nginx_connections, 1024)
+
 namespace :nginx do
   desc "Install latest stable release of nginx"
   task :install, roles: :web do
