@@ -19,7 +19,7 @@ namespace :unicorn do
   %w[start stop restart].each do |command|
     desc "#{command} unicorn"
     task command, roles: :app do
-      run "#{sudo} rc.d #{command} unicorn_#{application}"
+      run "rc.d #{command} unicorn_#{application}"
     end
     after "deploy:#{command}", "unicorn:#{command}"
   end
