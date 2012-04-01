@@ -20,6 +20,7 @@ namespace :deploy do
     puts "\t3. > visudo\n\t\t(uncomment line '%wheel ALL=(ALL) ALL')\n"
     puts "\t4. > pacman -Syy\n\t\t(synchronize database)\n"
     puts "\t5. > pacman -Syu\n\t\t(update system)\n"
+    puts "\t        NOTE: you might need to run this twice if pacman needs upgrading.\n"
     puts "\n\n\n\t\t\tIMPORTANT !!!\n\n"
     puts "\tDo not forget to manually add daemons that require autostart to rc.conf DAEMONS section.\n\n\n"
     puts "\tAll Done..."
