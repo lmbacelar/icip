@@ -5,7 +5,7 @@ set_default :share_path, "#{prefix}/share/ruby-build"
 namespace :rubybuild do
   desc "Installs ruby-build"
   task :install, roles: :app do
-    run "git clone git://github.com/sstephenson/ruby-build.git ruby-build"
+    run "git clone git://github.com/sstephenson/ruby-build.git ruby-build > /dev/null 2>&1"
     run "#{sudo} mkdir -p #{bin_path}"
     run "#{sudo} mkdir -p #{share_path}"
     run "#{sudo} cp ruby-build/bin/* #{bin_path}"

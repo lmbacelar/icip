@@ -1,10 +1,18 @@
+def file_includes_text?(file, text)
+  run("grep '#{text}' #{file} && echo OK") == 'OK'
+end
+
+def append_to_file(file, text)
+  run("echo '#{text}' >> #{file}") unless file_includes_text?(file, text)
+end
+
 def template(from, to)
   erb = File.read(File.expand_path("../templates/#{from}", __FILE__))
   put ERB.new(erb).result(binding), to
 end
 
 def add_service(service)
-  puts "\nWARNING: Add #{service} to /etc/rc.conf DAEMONS section to make service autostart.\n"
+  # Add service to rc.conf (prevent duplicates)
 end
 
 def set_default(name, *args, &block)
@@ -26,6 +34,6 @@ namespace :deploy do
     puts "\t5. > pacman -Syu\n\t\t(update system)\n\t\tNOTE: you might need to run this twice if pacman needs upgrading.\n"
     puts "\n\n\n\t\t\tIMPORTANT !!!\n\n"
     puts "\tDo not forget to manually add daemons that require autostart to rc.conf DAEMONS section.\n\n\n"
-    run "#{sudo} pacman -Sq --noconfirm base-devel"
+    run "#{sudo} pacman -Sq --noconfirm --noprogressbar base-devel"
   end
 end

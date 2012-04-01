@@ -1,18 +1,19 @@
 set_default(:nginx_user, "root")
 set_default(:nginx_workers, 2)
 set_default(:nginx_connections, 1024)
+set_default(:ssl_key_passphrase) { Capistrano::CLI.password_prompt "Nginx HTTPS Key Passphrase: " }
 
 namespace :nginx do
   desc "Install latest stable release of nginx"
   task :install, roles: :web do
-    run "#{sudo} pacman -Sq --noconfirm nginx"
-    run "#{sudo} mkdir /etc/nginx/sites-enabled"
-    template "nginx.conf.erb", "/tmp/nginx_conf"
-    run "#{sudo} mv /tmp/nginx_conf /etc/nginx/conf/nginx.conf"
-    put "templates/server.crt", "/tmp/server.crt"
-    put "templates/server.key", "/tmp/server.key"
-    run "#{sudo} mv /tmp/server.crt /etc/nginx/conf/server.crt"
-    run "#{sudo} mv /tmp/server.key /etc/nginx/conf/server.key"
+    run "#{sudo} openssl genrsa -des3 -passout pass:#{ssl_key_passphrase} -out server.key 1024"
+    run "#{sudo} openssl req -new -passin pass:#{ssl_key_passphrase} -key server.key -subj \"/C=PT/ST=Denial/L=Lisbon/O=Dis/CN=i-dea.tk\" -out server.csr"
+    run "#{sudo} cp server.key server.key.org"
+    run "#{sudo} openssl rsa -passin pass:#{ssl_key_passphrase} -in server.key.org -out server.key"
+    run "#{sudo} openssl x509 -req -passin pass:#{ssl_key_passphrase} -days 365 -in server.csr -signkey server.key -out server.crt"
+    run "#{sudo} mv server.crt /etc/nginx/conf"
+    run "#{sudo} mv server.key /etc/nginx/conf"
+    run "#{sudo} rm server.csr server.key.org"
     add_service "nginx"
   end
   after "deploy:install", "nginx:install"

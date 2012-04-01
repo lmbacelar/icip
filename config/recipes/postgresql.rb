@@ -6,7 +6,7 @@ set_default(:postgresql_database) { "#{application}" }
 namespace :postgresql do
   desc "Install the latest stable release of PostgreSQL."
   task :install, roles: :db, only: {primary: true} do
-    run "#{sudo} pacman -Sq --noconfirm postgresql"
+    run "#{sudo} pacman -Sq --noconfirm --noprogressbar postgresql"
     add_service "postgresql"
   end
   after "deploy:install", "postgresql:install"
