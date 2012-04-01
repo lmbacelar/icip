@@ -21,6 +21,7 @@ set :user, "deployer"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false
+set :default_environment, 'PATH' => "$PATH:$HOME/.rbenv/bin:$HOME/.rbenv/shims"
 
 set :scm, "git"
 set :repository, "git@github.com:lmbacelar/#{application}.git"

@@ -8,8 +8,8 @@ namespace :elasticsearch do
     fname = capture "cd elasticsearch && ls *.xz"
     run "cd elasticsearch && #{sudo} pacman -U --noconfirm --noprogressbar #{fname}"
     run "rm elasticsearch.tar.gz && rm -rf elasticsearch"
-    add_service "elasticsearch"
     restart
+    add_service "elasticsearch"
   end
 
   %w[start stop restart].each do |command|

@@ -1,11 +1,3 @@
-def file_includes_text?(file, text)
-  run("grep '#{text}' #{file} && echo OK") == 'OK'
-end
-
-def append_to_file(file, text)
-  run("echo '#{text}' >> #{file}") unless file_includes_text?(file, text)
-end
-
 def template(from, to)
   erb = File.read(File.expand_path("../templates/#{from}", __FILE__))
   put ERB.new(erb).result(binding), to
@@ -35,5 +27,10 @@ namespace :deploy do
     puts "\n\n\n\t\t\tIMPORTANT !!!\n\n"
     puts "\tDo not forget to manually add daemons that require autostart to rc.conf DAEMONS section.\n\n\n"
     run "#{sudo} pacman -Sq --noconfirm --noprogressbar base-devel"
+  end
+
+  desc "Seed data"
+  task :seed do
+    run "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=#{rails_env}"
   end
 end

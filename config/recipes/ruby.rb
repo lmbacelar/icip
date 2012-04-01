@@ -1,5 +1,4 @@
 set_default :ruby_version, "1.9.3-p125"
-set :default_environment, 'PATH' => "$PATH:$HOME/.rbenv/bin"
 
 namespace :ruby do
   desc "Install Ruby using rbenv / ruby-build"

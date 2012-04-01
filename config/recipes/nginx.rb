@@ -6,6 +6,10 @@ set_default(:ssl_key_passphrase) { Capistrano::CLI.password_prompt "Nginx HTTPS 
 namespace :nginx do
   desc "Install latest stable release of nginx"
   task :install, roles: :web do
+    run "#{sudo} pacman -Sq --noconfirm nginx"
+    run "#{sudo} mkdir /etc/nginx/sites-enabled"
+    template "nginx.conf.erb", "/tmp/nginx_conf"
+    run "#{sudo} mv /tmp/nginx_conf /etc/nginx/conf/nginx.conf"
     run "#{sudo} openssl genrsa -des3 -passout pass:#{ssl_key_passphrase} -out server.key 1024"
     run "#{sudo} openssl req -new -passin pass:#{ssl_key_passphrase} -key server.key -subj \"/C=PT/ST=Denial/L=Lisbon/O=Dis/CN=i-dea.tk\" -out server.csr"
     run "#{sudo} cp server.key server.key.org"
