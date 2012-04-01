@@ -29,7 +29,10 @@ class Inspection < ActiveRecord::Base
   scope :executed, where('inspections.execution_date IS NOT NULL')
   scope :pending, executed.joins(:tascs).merge(Tasc.pending)
   scope :clean, executed.where('id NOT IN (SELECT inspection_id FROM tascs)')
-  #scope :closed, joins(tascs: :closing) + clean
+  # Line below might have to be removed before first migration.
+  # Comment it out if assets:precompile fails in prodution, then remove
+  # comment after first migration.
+  scope :closed, joins(tascs: :closing) + clean
 
   # # # # # Validations                 # # # # #
   # # # # # Public Methods              # # # # #
