@@ -14,7 +14,8 @@ set -e
 TIMEOUT=${TIMEOUT-60}
 APP_ROOT=<%= current_path %>
 PID=<%= unicorn_pid %>
-CMD="cd <%= current_path %>; bundle exec unicorn -D -c <%= unicorn_config %> -E production"
+# Sourcing ~./profile required by Arch, since the su -c - is not sourcing files as should
+CMD="source ~/.profile; cd <%= current_path %>; bundle exec unicorn -D -c <%= unicorn_config %> -E production"
 AS_USER=<%= unicorn_user %>
 set -u
 
