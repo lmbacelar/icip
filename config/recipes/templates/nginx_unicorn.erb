@@ -5,7 +5,7 @@ server unix:/tmp/unicorn.<%= application %>.sock fail_timeout=0;
 ### HTTP ###
 server {
   listen 80 deferred;
-  server_name icip.i-dea.tk;
+  server_name icip.<%= domain_name %>;
   root <%= current_path %>/public;
 
   location ^~ /assets/ {
@@ -30,7 +30,7 @@ server {
 ### HTTPS ###
 server {
   listen 443 deferred;
-  server_name icip.i-dea.tk;
+  server_name icip.<%= domain_name %>;
   ssl on;
   ssl_certificate /etc/nginx/conf/server.crt;
   ssl_certificate_key /etc/nginx/conf/server.key;
